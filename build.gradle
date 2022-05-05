@@ -1,0 +1,109 @@
+buildscript {
+    ext.WPI_VER = "2022.4.1"
+}
+
+plugins {
+    id "java"
+
+    id "maven-publish"
+
+    id "edu.wpi.first.GradleRIO" version "${WPI_VER}"
+    id "com.diffplug.spotless" version "6.1.0"
+    id "com.github.spotbugs" version "4.7.0"
+}
+
+group = 'CshCyberhawks.swolib'
+version = '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+}
+
+configurations {
+    jaxDoclet
+}
+
+dependencies {
+    implementation wpi.java.deps.wpilib()
+    implementation wpi.java.vendor.java()
+
+    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+    simulationDebug wpi.sim.enableDebug()
+
+    nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
+    nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
+    simulationRelease wpi.sim.enableRelease()
+
+    implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86-64"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:linuxx86-64"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
+
+    implementation group: 'org.knowm.xchart', name: 'xchart', version: '3.2.2'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'CshCyberhawks.swolib'
+            artifactId = 'library'
+            version = "${version}"
+
+            from components.java
+        }
+    }
+}
+
+spotless {
+    java {
+        licenseHeaderFile 'LICENSE_SHORTENED'
+
+        googleJavaFormat().aosp()
+
+        trimTrailingWhitespace()
+        endWithNewline()
+
+        importOrder('com.stuypulse.stuylib', 'com.stuypulse', 'edu.wpi')
+        removeUnusedImports()
+    }
+}
+
+// Example to configure HTML report
+spotbugsMain {
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+spotbugs {
+    ignoreFailures = true
+    effort = 'max'
+}
+
+javadoc {
+    destinationDir = file('docs/')
+}
+
+build {
+    dependsOn javadoc
+}
+
+jar {
+    from sourceSets.main.allSource
+}
