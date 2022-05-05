@@ -57,26 +57,12 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'CshCyberhawks.swolib'
+            groupId = 'CshCyberhawks:SwoLib'
             artifactId = 'library'
             version = "${version}"
 
             from components.java
         }
-    }
-}
-
-spotless {
-    java {
-        licenseHeaderFile 'LICENSE_SHORTENED'
-
-        googleJavaFormat().aosp()
-
-        trimTrailingWhitespace()
-        endWithNewline()
-
-        importOrder('com.stuypulse.stuylib', 'com.stuypulse', 'edu.wpi')
-        removeUnusedImports()
     }
 }
 
