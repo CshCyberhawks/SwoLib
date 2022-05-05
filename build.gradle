@@ -55,13 +55,14 @@ dependencies {
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'CshCyberhawks:SwoLib'
-            artifactId = 'library'
-            version = "${version}"
-
-            from components.java
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/CshCyberhawks/SwoLib"
+            credentials {
+                username = GITHUB_USERNAME
+                password = GITHUB_TOKEN
+            }
         }
     }
 }
