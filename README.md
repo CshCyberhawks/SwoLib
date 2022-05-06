@@ -1,2 +1,2 @@
-# Kotlin Template
-A template for coding FRC Robots using Kotlin
+# SwoLib
+FRC team 2875 Cyberhawks open source kotlin library
