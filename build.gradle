@@ -56,8 +56,8 @@ dependencies {
 
 publishing {
     publications {
-        maven(MavenPublications) {
-            from components.kt
+        maven(MavenPublication) {
+            from components.java
         }
     }
 }
