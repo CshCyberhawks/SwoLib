@@ -5,11 +5,10 @@ plugins {
     id "maven-publish"
 }
 
-group = "com.github.CshCyberhawks"
+group = "com.github.cshcyberhawks"
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
-
 
 // Set to true to use debug for JNI.
 // wpi.java.debugJni = false
@@ -43,21 +42,6 @@ dependencies {
 
 }
 
-//make it a jitpack dependency or whatever
-afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                groupId = "com.cshcyberhawks.swolib"
-                artifactId = "library"
-                version = "1.0"
-
-                from components.java
-            }
-        }
-    }
-}
-
 
 // // Simulation configuration (e.g. environment variables).
 // wpi.sim.addGui().defaultEnabled = true
@@ -67,10 +51,14 @@ afterEvaluate {
 // in order to make them all available at runtime. Also adding the manifest so WPILib
 // knows where to look for our Robot Class.
 jar {
-//    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 //    // manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
 //    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    from sourceSets.main.allSource
+}
+
+java {
+    withSourcesJar()
 }
 
 // Configure jar and deploy tasks
@@ -92,6 +80,21 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "11"
+    }
+}
+
+//make it a jitpack dependency or whatever
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = "com.cshcyberhawks.swolib"
+                artifactId = "library"
+                version = "1.0"
+
+                from components.java
+            }
+        }
     }
 }
 
