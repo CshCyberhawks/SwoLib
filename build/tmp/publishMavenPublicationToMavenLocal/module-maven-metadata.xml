@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.github.CshCyberhawks</groupId>
-  <artifactId>SwoLib</artifactId>
+  <groupId>com.cshcyberhawks.swolib</groupId>
+  <artifactId>library</artifactId>
   <versioning>
-    <latest>unspecified</latest>
-    <release>unspecified</release>
+    <latest>1.0.0</latest>
+    <release>1.0.0</release>
     <versions>
-      <version>unspecified</version>
+      <version>1.0.0</version>
     </versions>
-    <lastUpdated>20220506220532</lastUpdated>
+    <lastUpdated>20220507011711</lastUpdated>
   </versioning>
 </metadata>
