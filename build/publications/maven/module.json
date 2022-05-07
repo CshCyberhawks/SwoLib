@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3.3"
+      "version": "7.4"
     }
   },
   "variants": [
@@ -29,11 +29,11 @@
         {
           "name": "library-1.0.jar",
           "url": "library-1.0.jar",
-          "size": 2609,
-          "sha512": "914fb03071ba9fede15ecdead28137d7b4be399ba986056e280a42db024330b628dc84c412572123081849b1b9becb9d038f9194fc62a01c96e3c145270deece",
-          "sha256": "2a8467c04a3bdced28a0d835e1b8402d2f4b5cca7e946a2b5155034d7b15ab81",
-          "sha1": "6288dac05f0b6366f0ff5c9dcb6f607bed89619f",
-          "md5": "57d05266501fe1ba6533bc5c3c23ec8b"
+          "size": 6395631,
+          "sha512": "805b2eb27d0dceea586803a7bd85a4c9252427bc9b0d59fa6c14b4b8d1404b097293413bd3c8bce608d92c24b7b4e87031c74fd0ca2b90866b04542e54043031",
+          "sha256": "f3f51eded6ba98cea156345fce07790fc71e7d614442cbe72c6f4d4d4a54acc0",
+          "sha1": "b621679853a4da8e8bcd12cdda4a4dda0cb5634e",
+          "md5": "8b0eb0bb7a2128336fe3242b091a0cf7"
         }
       ]
     },
@@ -152,11 +152,31 @@
         {
           "name": "library-1.0.jar",
           "url": "library-1.0.jar",
-          "size": 2609,
-          "sha512": "914fb03071ba9fede15ecdead28137d7b4be399ba986056e280a42db024330b628dc84c412572123081849b1b9becb9d038f9194fc62a01c96e3c145270deece",
-          "sha256": "2a8467c04a3bdced28a0d835e1b8402d2f4b5cca7e946a2b5155034d7b15ab81",
-          "sha1": "6288dac05f0b6366f0ff5c9dcb6f607bed89619f",
-          "md5": "57d05266501fe1ba6533bc5c3c23ec8b"
+          "size": 6395631,
+          "sha512": "805b2eb27d0dceea586803a7bd85a4c9252427bc9b0d59fa6c14b4b8d1404b097293413bd3c8bce608d92c24b7b4e87031c74fd0ca2b90866b04542e54043031",
+          "sha256": "f3f51eded6ba98cea156345fce07790fc71e7d614442cbe72c6f4d4d4a54acc0",
+          "sha1": "b621679853a4da8e8bcd12cdda4a4dda0cb5634e",
+          "md5": "8b0eb0bb7a2128336fe3242b091a0cf7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "library-1.0-sources.jar",
+          "url": "library-1.0-sources.jar",
+          "size": 2051,
+          "sha512": "db4c399f65e5479bfb689d8a08a8a79d830f7b3678cf28779f76c489027f2ed0fed0d0e7338041337f7dceb0bebd853982c8fcf3a2ce7f1884201c84a5e9d15b",
+          "sha256": "30f9ef612e1eb97423c86a60069883a1d76907f93e03cfa98bcc3592abd97390",
+          "sha1": "011eafd3e120fa357d211c5191194b6a3d13c2f3",
+          "md5": "9d2618b295faab12d9aaccd78a4e0b1c"
         }
       ]
     }
