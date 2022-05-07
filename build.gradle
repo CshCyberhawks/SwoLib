@@ -47,10 +47,6 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.cshcyberhawks.swolib'
-            artifactId = 'library'
-            version = "1.0.0"
-
             from components.java
         }
     }
@@ -90,4 +86,9 @@ compileTestKotlin {
     kotlinOptions {
         jvmTarget = "11"
     }
+}
+
+wrapper {
+    gradleVersion = "7.3.3"
+    distributionType = Wrapper.DistributionType.ALL
 }
