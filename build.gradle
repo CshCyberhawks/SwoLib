@@ -103,5 +103,5 @@ afterEvaluate {
 
 wrapper {
     gradleVersion = "7.4"
-    distributionType = Wrapper.DistributionType.ALL
+    distributionType = Wrapper.DistributionType.BIN
 }
