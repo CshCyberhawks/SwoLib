@@ -45,6 +45,7 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
+            groupId = 'com.cshcyberhawks.swolib'
             from components.java
         }
     }

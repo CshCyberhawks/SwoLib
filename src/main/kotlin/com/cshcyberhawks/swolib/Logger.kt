@@ -1,4 +1,4 @@
-package CshCyberhawks.SwoLib;
+package com.cshcyberhawks.swolib;
 
 object Logger {
     fun log(value: String) {
