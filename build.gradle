@@ -38,23 +38,26 @@ dependencies {
 //    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:linuxx86-64"
 //    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
 }
 
 //make it a jitpack dependency or whatever
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = "com.cshcyberhawks.swolib"
-            artifactId = "library"
-            version = "1.0"
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = "com.cshcyberhawks.swolib"
+                artifactId = "library"
+                version = "1.0"
 
-            from components.java
+                from components.java
+            }
         }
     }
 }
+
 
 // // Simulation configuration (e.g. environment variables).
 // wpi.sim.addGui().defaultEnabled = true
