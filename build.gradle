@@ -46,7 +46,6 @@ dependencies {
 
 }
 
-
 // // Simulation configuration (e.g. environment variables).
 // wpi.sim.addGui().defaultEnabled = true
 // wpi.sim.addDriverstation()
@@ -58,7 +57,7 @@ jar {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 //    // manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    from sourceSets.main.allSource
+    from "src"
 }
 
 java {
@@ -103,6 +102,6 @@ afterEvaluate {
 }
 
 wrapper {
-    gradleVersion = "7.3.3"
+    gradleVersion = "7.4"
     distributionType = Wrapper.DistributionType.ALL
 }
