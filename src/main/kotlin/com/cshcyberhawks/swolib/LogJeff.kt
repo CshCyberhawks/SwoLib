@@ -1,7 +1,7 @@
 package com.cshcyberhawks.swolib;
 
-object Logger {
+object LogJeff {
     fun log(value: String) {
-        System.out.println(value)
+        println(value)
     }
 }
