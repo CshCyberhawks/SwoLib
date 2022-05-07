@@ -47,6 +47,10 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
+            groupId = "com.cshcyberhawks.swolib"
+            artifactId = "library"
+            version = "1.0"
+
             from components.java
         }
     }
