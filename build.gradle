@@ -18,7 +18,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 // wpi.java.debugJni = false
 
 // Set this to true to enable desktop support.
-// def includeDesktopSupport = true
+ def includeDesktopSupport = true
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 4.
@@ -46,17 +46,10 @@ dependencies {
 
 }
 
-// // Simulation configuration (e.g. environment variables).
-// wpi.sim.addGui().defaultEnabled = true
-// wpi.sim.addDriverstation()
-
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
 // in order to make them all available at runtime. Also adding the manifest so WPILib
 // knows where to look for our Robot Class.
 jar {
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-//    // manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from "src"
 }
 
