@@ -3,10 +3,10 @@ buildscript {
 }
 
 plugins {
+    id "maven-publish"
     id "java"
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
-    id "maven-publish"
 }
 
 group = "com.github.cshcyberhawks"
@@ -32,13 +32,13 @@ dependencies {
     // roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
     // roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
 
-    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
-    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
-    simulationDebug wpi.sim.enableDebug()
+    // nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    // nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+    // simulationDebug wpi.sim.enableDebug()
 
     nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
-    simulationRelease wpi.sim.enableRelease()
+    // simulationRelease wpi.sim.enableRelease()
 
     testImplementation 'junit:junit:4.12'
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
