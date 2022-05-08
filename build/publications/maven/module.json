@@ -2,7 +2,7 @@
   "formatVersion": "1.1",
   "component": {
     "group": "com.cshcyberhawks.swolib",
-    "module": "SwoLib",
+    "module": "library",
     "version": "unspecified",
     "attributes": {
       "org.gradle.status": "release"
@@ -20,20 +20,20 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 11,
+        "org.gradle.jvm.version": 8,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "files": [
         {
-          "name": "SwoLib-unspecified.jar",
-          "url": "SwoLib-unspecified.jar",
-          "size": 6396431,
-          "sha512": "0406d3dff4822b0ffce80d1e07c21d7884cce1de749e12b841685c48f6a00c9193c5a511d0172f65377b8a849eff520e728084debb535af2b7c4c1d875319b32",
-          "sha256": "b761e364baadcc8ea5c8d70d31706d19ef46ec290627159c92ebc149b1753ab5",
-          "sha1": "711e87baffbe6ce4edd6e4720f5d7042f16129f9",
-          "md5": "05e77d350c9d16e687a5ef34b8af66af"
+          "name": "library-unspecified.jar",
+          "url": "library-unspecified.jar",
+          "size": 16131940,
+          "sha512": "716f042c6f106a43d9738e9ca15d4cd351e9234ca794b0ec443c24f5e5cecf093396018c52edf893a8fec352add4d0853b8023591a03f2a0ff0eff197bf2d21f",
+          "sha256": "463153810abfb0187cc8813dc28a7431b1572777bc034a25d85ac1d4d9967ebf",
+          "sha1": "246bd590d575fcfdad7e78880795d6d28c460daa",
+          "md5": "32099a3470fe06113ff6f3f05066e412"
         }
       ]
     },
@@ -43,7 +43,7 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 11,
+        "org.gradle.jvm.version": 8,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "jvm"
@@ -146,17 +146,77 @@
           "version": {
             "requires": "1.6.10"
           }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-jni",
+          "version": {
+            "requires": "2022.4.1"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "ntcore-jni",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "windowsx86"
+            }
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-jni",
+          "version": {
+            "requires": "2022.4.1"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "ntcore-jni",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "windowsx86-64"
+            }
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-jni",
+          "version": {
+            "requires": "2022.4.1"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "ntcore-jni",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "linuxx86-64"
+            }
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-jni",
+          "version": {
+            "requires": "2022.4.1"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "ntcore-jni",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "osxx86-64"
+            }
+          }
         }
       ],
       "files": [
         {
-          "name": "SwoLib-unspecified.jar",
-          "url": "SwoLib-unspecified.jar",
-          "size": 6396431,
-          "sha512": "0406d3dff4822b0ffce80d1e07c21d7884cce1de749e12b841685c48f6a00c9193c5a511d0172f65377b8a849eff520e728084debb535af2b7c4c1d875319b32",
-          "sha256": "b761e364baadcc8ea5c8d70d31706d19ef46ec290627159c92ebc149b1753ab5",
-          "sha1": "711e87baffbe6ce4edd6e4720f5d7042f16129f9",
-          "md5": "05e77d350c9d16e687a5ef34b8af66af"
+          "name": "library-unspecified.jar",
+          "url": "library-unspecified.jar",
+          "size": 16131940,
+          "sha512": "716f042c6f106a43d9738e9ca15d4cd351e9234ca794b0ec443c24f5e5cecf093396018c52edf893a8fec352add4d0853b8023591a03f2a0ff0eff197bf2d21f",
+          "sha256": "463153810abfb0187cc8813dc28a7431b1572777bc034a25d85ac1d4d9967ebf",
+          "sha1": "246bd590d575fcfdad7e78880795d6d28c460daa",
+          "md5": "32099a3470fe06113ff6f3f05066e412"
         }
       ]
     },
@@ -170,8 +230,8 @@
       },
       "files": [
         {
-          "name": "SwoLib-unspecified-sources.jar",
-          "url": "SwoLib-unspecified-sources.jar",
+          "name": "library-unspecified-sources.jar",
+          "url": "library-unspecified-sources.jar",
           "size": 2045,
           "sha512": "55a1604fb335aed58f0f4b3789f69408602d0029919ebb8854809da2a803e3566e72b591983d9303b363b2532b066615077ca50a73b15888caa35121be072e88",
           "sha256": "aa53e925633d4a94030f47ac513f3833a6a53547c5de965fdb6ddc0a460d9b78",

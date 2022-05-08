@@ -3,16 +3,16 @@ buildscript {
 }
 
 plugins {
-    id "maven-publish"
     id "java"
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
+    id 'maven-publish'
 }
 
 group = "com.github.cshcyberhawks"
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 // Set to true to use debug for JNI.
 // wpi.java.debugJni = false
@@ -26,21 +26,22 @@ dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
 
-    // roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
-    // roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
-
-    // roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
-    // roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
-
-    // nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
-    // nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
-    // simulationDebug wpi.sim.enableDebug()
+    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+    simulationDebug wpi.sim.enableDebug()
 
     nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
-    // simulationRelease wpi.sim.enableRelease()
+    simulationRelease wpi.sim.enableRelease()
 
-    testImplementation 'junit:junit:4.12'
+    implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86-64"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:linuxx86-64"
+    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
+
+    testImplementation 'junit:junit:4.13.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
 }
@@ -75,13 +76,13 @@ repositories {
 
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 
@@ -91,8 +92,8 @@ afterEvaluate {
         publications {
             maven(MavenPublication) {
                 groupId = "com.cshcyberhawks.swolib"
-                // artifactId = "library"
-                // version = "1.0"
+                artifactId = "library"
+                // version = "0.3.4"
 
                 from components.java
             }
