@@ -11,8 +11,8 @@ plugins {
 
 group = "com.github.cshcyberhawks"
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 // Set to true to use debug for JNI.
 // wpi.java.debugJni = false
@@ -26,11 +26,11 @@ dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
 
-    roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
-    roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
+    // roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
+    // roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
 
-    roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
-    roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
+    // roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
+    // roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
 
     nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
     nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
@@ -75,13 +75,13 @@ repositories {
 
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 

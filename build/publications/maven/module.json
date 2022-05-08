@@ -20,7 +20,7 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 8,
+        "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "jvm"
@@ -29,11 +29,11 @@
         {
           "name": "SwoLib-unspecified.jar",
           "url": "SwoLib-unspecified.jar",
-          "size": 16131940,
-          "sha512": "243e60504d20b7ffc4abe7058519421a0d77a48d4b6ce7a19ad63875fbc639ce1a325b371681b45e26f3ad3ffd109fc20aba4a08c2161f124bc775c9b26fba0d",
-          "sha256": "0d41ed05b4b986ed3e21f7296e0d14db84fa43960c5165273baa70741017f80e",
-          "sha1": "d9101792e91f17b0be6d6407b980a74b5377c844",
-          "md5": "4f25375002149db185b72bc68050ed31"
+          "size": 6396431,
+          "sha512": "0406d3dff4822b0ffce80d1e07c21d7884cce1de749e12b841685c48f6a00c9193c5a511d0172f65377b8a849eff520e728084debb535af2b7c4c1d875319b32",
+          "sha256": "b761e364baadcc8ea5c8d70d31706d19ef46ec290627159c92ebc149b1753ab5",
+          "sha1": "711e87baffbe6ce4edd6e4720f5d7042f16129f9",
+          "md5": "05e77d350c9d16e687a5ef34b8af66af"
         }
       ]
     },
@@ -43,7 +43,7 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 8,
+        "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "jvm"
@@ -146,77 +146,17 @@
           "version": {
             "requires": "1.6.10"
           }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "windowsx86"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "windowsx86-64"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "linuxx86-64"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "osxx86-64"
-            }
-          }
         }
       ],
       "files": [
         {
           "name": "SwoLib-unspecified.jar",
           "url": "SwoLib-unspecified.jar",
-          "size": 16131940,
-          "sha512": "243e60504d20b7ffc4abe7058519421a0d77a48d4b6ce7a19ad63875fbc639ce1a325b371681b45e26f3ad3ffd109fc20aba4a08c2161f124bc775c9b26fba0d",
-          "sha256": "0d41ed05b4b986ed3e21f7296e0d14db84fa43960c5165273baa70741017f80e",
-          "sha1": "d9101792e91f17b0be6d6407b980a74b5377c844",
-          "md5": "4f25375002149db185b72bc68050ed31"
+          "size": 6396431,
+          "sha512": "0406d3dff4822b0ffce80d1e07c21d7884cce1de749e12b841685c48f6a00c9193c5a511d0172f65377b8a849eff520e728084debb535af2b7c4c1d875319b32",
+          "sha256": "b761e364baadcc8ea5c8d70d31706d19ef46ec290627159c92ebc149b1753ab5",
+          "sha1": "711e87baffbe6ce4edd6e4720f5d7042f16129f9",
+          "md5": "05e77d350c9d16e687a5ef34b8af66af"
         }
       ]
     },
