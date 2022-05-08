@@ -2,8 +2,8 @@
   "formatVersion": "1.1",
   "component": {
     "group": "com.cshcyberhawks.swolib",
-    "module": "library",
-    "version": "1.0",
+    "module": "SwoLib",
+    "version": "unspecified",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -20,20 +20,20 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 11,
+        "org.gradle.jvm.version": 8,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "files": [
         {
-          "name": "library-1.0.jar",
-          "url": "library-1.0.jar",
+          "name": "SwoLib-unspecified.jar",
+          "url": "SwoLib-unspecified.jar",
           "size": 16131940,
-          "sha512": "2fc1d0457fc84ae24ce5867d010f9fb9bfaed2743c4a2953d409c5d335a5b2fd9a7f15b5254d5c45fbd5e7a9bcb240ea6dc8b23e9a7821a496c760051f6616b4",
-          "sha256": "366a973a08322a09bb0ad3bbe6d38f7107736454dbfa5cd8b680ebb4ea52336b",
-          "sha1": "eca9ed419e2015c1cf1d65eee328c7175858b465",
-          "md5": "6866956824feae760155395aef6f100b"
+          "sha512": "243e60504d20b7ffc4abe7058519421a0d77a48d4b6ce7a19ad63875fbc639ce1a325b371681b45e26f3ad3ffd109fc20aba4a08c2161f124bc775c9b26fba0d",
+          "sha256": "0d41ed05b4b986ed3e21f7296e0d14db84fa43960c5165273baa70741017f80e",
+          "sha1": "d9101792e91f17b0be6d6407b980a74b5377c844",
+          "md5": "4f25375002149db185b72bc68050ed31"
         }
       ]
     },
@@ -43,7 +43,7 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 11,
+        "org.gradle.jvm.version": 8,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "jvm"
@@ -210,13 +210,13 @@
       ],
       "files": [
         {
-          "name": "library-1.0.jar",
-          "url": "library-1.0.jar",
+          "name": "SwoLib-unspecified.jar",
+          "url": "SwoLib-unspecified.jar",
           "size": 16131940,
-          "sha512": "2fc1d0457fc84ae24ce5867d010f9fb9bfaed2743c4a2953d409c5d335a5b2fd9a7f15b5254d5c45fbd5e7a9bcb240ea6dc8b23e9a7821a496c760051f6616b4",
-          "sha256": "366a973a08322a09bb0ad3bbe6d38f7107736454dbfa5cd8b680ebb4ea52336b",
-          "sha1": "eca9ed419e2015c1cf1d65eee328c7175858b465",
-          "md5": "6866956824feae760155395aef6f100b"
+          "sha512": "243e60504d20b7ffc4abe7058519421a0d77a48d4b6ce7a19ad63875fbc639ce1a325b371681b45e26f3ad3ffd109fc20aba4a08c2161f124bc775c9b26fba0d",
+          "sha256": "0d41ed05b4b986ed3e21f7296e0d14db84fa43960c5165273baa70741017f80e",
+          "sha1": "d9101792e91f17b0be6d6407b980a74b5377c844",
+          "md5": "4f25375002149db185b72bc68050ed31"
         }
       ]
     },
@@ -230,8 +230,8 @@
       },
       "files": [
         {
-          "name": "library-1.0-sources.jar",
-          "url": "library-1.0-sources.jar",
+          "name": "SwoLib-unspecified-sources.jar",
+          "url": "SwoLib-unspecified-sources.jar",
           "size": 2045,
           "sha512": "55a1604fb335aed58f0f4b3789f69408602d0029919ebb8854809da2a803e3566e72b591983d9303b363b2532b066615077ca50a73b15888caa35121be072e88",
           "sha256": "aa53e925633d4a94030f47ac513f3833a6a53547c5de965fdb6ddc0a460d9b78",
