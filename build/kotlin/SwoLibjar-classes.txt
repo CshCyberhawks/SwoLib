@@ -1,1 +1,1 @@
-C:\Code\Robotics\SwoLib\build\classes\kotlin\main\com\cshcyberhawks\swolib\LogJeff.class
+/home/green726/coding/SwoLib/build/classes/kotlin/main/com/cshcyberhawks/swolib/LogJeff.class
