@@ -1,9 +1,9 @@
 {
   "formatVersion": "1.1",
   "component": {
-    "group": "com.cshcyberhawks.swolib",
-    "module": "library",
-    "version": "unspecified",
+    "group": "CshCyberhawks.SwoLib",
+    "module": "SwoLib",
+    "version": "1.0.1",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -20,20 +20,20 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 8,
+        "org.gradle.jvm.version": 18,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "files": [
         {
-          "name": "library-unspecified.jar",
-          "url": "library-unspecified.jar",
-          "size": 3859,
-          "sha512": "e63a082e4269ac962cbca350a7f0941f2ab1bcb6af9909cb4893f404baad0e855e624eda8fcb2d8bce164abc4e3ddda4d4dfe9e37f3fd106ea56f73407aabce5",
-          "sha256": "47941bcd9482449af2fa3ba763f5df3d23b60c07ffb5ea036af7f0d61b824bb1",
-          "sha1": "3b8367d9765ba7608a8f3c8813449651ed5129b9",
-          "md5": "989240ee4fc4e25331025c723dae8748"
+          "name": "SwoLib-1.0.1.jar",
+          "url": "SwoLib-1.0.1.jar",
+          "size": 1597,
+          "sha512": "1f0561cf6073de757a7714417f35cdbe416d69e9033e121a4511226bdbc425b09b6ea50029bbfd7cf3d69c2c8c0a52e410f46bf5775b51ff90c730923b51ac98",
+          "sha256": "68d92d98bc6550db4df83131b298e9f542955c727422543c650921daed484c3e",
+          "sha1": "8afe88803abab680236c25f851d0465071541af0",
+          "md5": "e97925c737c3058de224f91a4504bb03"
         }
       ]
     },
@@ -43,200 +43,29 @@
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
         "org.gradle.jvm.environment": "standard-jvm",
-        "org.gradle.jvm.version": 8,
+        "org.gradle.jvm.version": 18,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
         {
-          "group": "edu.wpi.first.wpilibj",
-          "module": "wpilibj-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.wpimath",
-          "module": "wpimath-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.cscore",
-          "module": "cscore-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.cameraserver",
-          "module": "cameraserver-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.hal",
-          "module": "hal-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.wpiutil",
-          "module": "wpiutil-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
-          "group": "edu.wpi.first.thirdparty.frc2022.opencv",
-          "module": "opencv-java",
-          "version": {
-            "requires": "4.5.2-1"
-          }
-        },
-        {
-          "group": "org.ejml",
-          "module": "ejml-simple",
-          "version": {
-            "requires": "0.41"
-          }
-        },
-        {
-          "group": "com.fasterxml.jackson.core",
-          "module": "jackson-annotations",
-          "version": {
-            "requires": "2.12.4"
-          }
-        },
-        {
-          "group": "com.fasterxml.jackson.core",
-          "module": "jackson-core",
-          "version": {
-            "requires": "2.12.4"
-          }
-        },
-        {
-          "group": "com.fasterxml.jackson.core",
-          "module": "jackson-databind",
-          "version": {
-            "requires": "2.12.4"
-          }
-        },
-        {
-          "group": "edu.wpi.first.wpilibNewCommands",
-          "module": "wpilibNewCommands-java",
-          "version": {
-            "requires": "2022.4.1"
-          }
-        },
-        {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-jdk8",
           "version": {
-            "requires": "1.6.10"
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "windowsx86"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "windowsx86-64"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "linuxx86-64"
-            }
-          }
-        },
-        {
-          "group": "edu.wpi.first.ntcore",
-          "module": "ntcore-jni",
-          "version": {
-            "requires": "2022.4.1"
-          },
-          "thirdPartyCompatibility": {
-            "artifactSelector": {
-              "name": "ntcore-jni",
-              "type": "jar",
-              "extension": "jar",
-              "classifier": "osxx86-64"
-            }
+            "requires": "1.6.0"
           }
         }
       ],
       "files": [
         {
-          "name": "library-unspecified.jar",
-          "url": "library-unspecified.jar",
-          "size": 3859,
-          "sha512": "e63a082e4269ac962cbca350a7f0941f2ab1bcb6af9909cb4893f404baad0e855e624eda8fcb2d8bce164abc4e3ddda4d4dfe9e37f3fd106ea56f73407aabce5",
-          "sha256": "47941bcd9482449af2fa3ba763f5df3d23b60c07ffb5ea036af7f0d61b824bb1",
-          "sha1": "3b8367d9765ba7608a8f3c8813449651ed5129b9",
-          "md5": "989240ee4fc4e25331025c723dae8748"
-        }
-      ]
-    },
-    {
-      "name": "sourcesElements",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.usage": "java-runtime"
-      },
-      "files": [
-        {
-          "name": "library-unspecified-sources.jar",
-          "url": "library-unspecified-sources.jar",
-          "size": 2045,
-          "sha512": "55a1604fb335aed58f0f4b3789f69408602d0029919ebb8854809da2a803e3566e72b591983d9303b363b2532b066615077ca50a73b15888caa35121be072e88",
-          "sha256": "aa53e925633d4a94030f47ac513f3833a6a53547c5de965fdb6ddc0a460d9b78",
-          "sha1": "8b1f34e419bb7569168acbab29f21d2aee6ab87f",
-          "md5": "5d7b49340ddf2449a4d1f0e0aa1b062b"
+          "name": "SwoLib-1.0.1.jar",
+          "url": "SwoLib-1.0.1.jar",
+          "size": 1597,
+          "sha512": "1f0561cf6073de757a7714417f35cdbe416d69e9033e121a4511226bdbc425b09b6ea50029bbfd7cf3d69c2c8c0a52e410f46bf5775b51ff90c730923b51ac98",
+          "sha256": "68d92d98bc6550db4df83131b298e9f542955c727422543c650921daed484c3e",
+          "sha1": "8afe88803abab680236c25f851d0465071541af0",
+          "md5": "e97925c737c3058de224f91a4504bb03"
         }
       ]
     }
