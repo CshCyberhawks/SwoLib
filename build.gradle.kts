@@ -1,5 +1,5 @@
 plugins {
-    id("edu.wpi.first.GradleRIO") version "2022.4.1"
+    // id("edu.wpi.first.GradleRIO") version "2022.4.1"
     java
     kotlin("jvm") version "1.6.0"
     id("maven-publish")
