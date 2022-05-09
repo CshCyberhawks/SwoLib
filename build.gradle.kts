@@ -5,6 +5,8 @@ plugins {
     id("maven-publish")
 }
 
+version = "1.0.0"
+
 repositories {
     mavenCentral()
 }
@@ -27,7 +29,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "CshCyberhawks.SwoLib"
-            version = "1.0.1"
+            version = "1.0.0"
 
             from(components["java"])
         }
