@@ -10,6 +10,8 @@ plugins {
 }
 
 version = "1.0.0"
+group = "cshcyberhawks.swolib"
+
 sourceCompatibility = 11
 targetCompatibility = 11
 
@@ -19,26 +21,25 @@ repositories {
 }
 
 dependencies {
-    // implementation 'com.github.wpilibsuite:allwpilib:main-SNAPSHOT'
 
     //wpi
-implementation wpi.java.deps.wpilib()
-   // implementation wpi.java.vendor.java()
-   //
-   // nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
-   // nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
-   // simulationDebug wpi.sim.enableDebug()
-   //
-   // nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
-   // nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
-   // simulationRelease wpi.sim.enableRelease()
-   //
-   // implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
-   // implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
-   // runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86"
-   // runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86-64"
-   // runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:linuxx86-64"
-   // runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
+    implementation wpi.java.deps.wpilib()
+   implementation wpi.java.vendor.java()
+
+   nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+   nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+   simulationDebug wpi.sim.enableDebug()
+
+   nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
+   nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
+   simulationRelease wpi.sim.enableRelease()
+
+   implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
+   implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
+   runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86"
+   runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:windowsx86-64"
+   runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:linuxx86-64"
+   runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
@@ -46,7 +47,6 @@ implementation wpi.java.deps.wpilib()
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "11"
-        kotlinOptions.freeCompilerArgs = ["-Xjvm-default=compatibility"]
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "11"
@@ -56,22 +56,12 @@ tasks {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = "CshCyberhawks.SwoLib"
+            groupId = "cshcyberhawks.swolib"
             version = "1.0.0"
 
             from components.java
         }
     }
-}
-
-java {
-    withSourcesJar()
-}
-artifacts {
-    archives sourcesJar
-}
-jar {
-   from sourceSets.main.allSource
 }
 
 wrapper{gradleVersion = "7.3.3"}
