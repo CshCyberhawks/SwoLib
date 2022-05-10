@@ -20,8 +20,8 @@ dependencies {
     // implementation 'com.github.wpilibsuite:allwpilib:main-SNAPSHOT'
 
     //wpi
-// implementation wpi.java.deps.wpilib()
-   // implementation wpi.java.vendor.java()
+implementation wpi.java.deps.wpilib()
+   implementation wpi.java.vendor.java()
    //
    // nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
    // nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
