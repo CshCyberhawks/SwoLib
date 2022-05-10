@@ -59,6 +59,7 @@ publishing {
     publications {
         maven(MavenPublication) {  
             groupId = "${libName}"
+            artifactId = "${libName}"
             version = "${libVersion}"
 
             from components.java
