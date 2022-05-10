@@ -10,6 +10,8 @@ plugins {
 }
 
 version = "1.0.0"
+ sourceCompatibility = 11
+ targetCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -43,11 +45,11 @@ implementation wpi.java.deps.wpilib()
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
         kotlinOptions.freeCompilerArgs = ["-Xjvm-default=compatibility"]
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
 }
 
