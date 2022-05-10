@@ -1,7 +1,7 @@
 # SwoLib
 FRC team 2875 Cyberhawks open source kotlin library
 
-## Feature:
+## Features:
 
 ## Planned features:
  * [Custom swerve drive utilities](Swerve-drive)
