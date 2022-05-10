@@ -44,6 +44,7 @@ implementation wpi.java.deps.wpilib()
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.freeCompilerArgs = ["-Xjvm-default=compatibility"]
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
@@ -61,7 +62,12 @@ publishing {
     }
 }
 
-
+java {
+    withSourcesJar()
+}
+artifacts {
+    archives sourcesJar
+}
 jar {
    from sourceSets.main.allSource
 }
