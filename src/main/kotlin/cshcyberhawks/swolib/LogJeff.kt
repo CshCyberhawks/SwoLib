@@ -1,4 +1,4 @@
-package com.cshcyberhawks.swolib
+package cshcyberhawks.swolib
 import edu.wpi.first.math.controller.PIDController;
 
 
