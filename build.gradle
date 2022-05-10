@@ -21,7 +21,7 @@ dependencies {
 
     //wpi
 implementation wpi.java.deps.wpilib()
-   implementation wpi.java.vendor.java()
+   // implementation wpi.java.vendor.java()
    //
    // nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
    // nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
@@ -61,4 +61,9 @@ publishing {
     }
 }
 
-wrapper{gradleVersion = "7.2"}
+
+jar {
+   from sourceSets.main.allSource
+}
+
+wrapper{gradleVersion = "7.3.3"}
