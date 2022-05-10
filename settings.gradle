@@ -27,4 +27,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'artifactId'
+rootProject.name = 'cshcyberhawks.swolib'
