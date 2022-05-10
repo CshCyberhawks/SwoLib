@@ -1,5 +1,7 @@
 buildscript {
-   ext.WPI_VER = "2022.4.1"
+    ext.WPI_VER = "2022.4.1"
+    ext.libName = "cshcyberhawks.swolib"
+    ext.libVersion = "1.0.0"
 }
 
 plugins {
@@ -9,8 +11,8 @@ plugins {
     id 'maven-publish'
 }
 
-version = "1.0.0"
-group = "cshcyberhawks.swolib"
+version = "${libVersion}"
+group = "${libName}"
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -55,9 +57,9 @@ tasks {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = "cshcyberhawks.swolib"
-            version = "1.0.0"
+        maven(MavenPublication) {  
+            groupId = "${libName}"
+            version = "${libVersion}"
 
             from components.java
         }
