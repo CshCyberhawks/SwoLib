@@ -27,8 +27,9 @@ dependencies {
     //wpi
     implementation wpi.java.deps.wpilib()
    implementation wpi.java.vendor.java()
+    implementation 'junit:junit:4.13.2'
 
-   nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
    simulationDebug wpi.sim.enableDebug()
 
@@ -44,6 +45,12 @@ dependencies {
    runtimeOnly "edu.wpi.first.ntcore:ntcore-jni:${WPI_VER}:osxx86-64"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnit()
 }
 
 tasks {
