@@ -1,6 +1,9 @@
 # SwoLib
 FRC team 2875 Cyberhawks open source kotlin library
 
+## Todo:
+- [ ] Angle calculations (optimize angles)
+
 ## Features:
 
 ## Planned features:
