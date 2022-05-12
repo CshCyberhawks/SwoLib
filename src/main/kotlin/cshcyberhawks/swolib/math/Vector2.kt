@@ -1,14 +1,12 @@
 package cshcyberhawks.swolib.math
 
 /**
- * A class for managing a 2d vector (coordinate).
- *
- * A class for managing a 2d vector (coordinate).
+ * A class for managing a 2d vector/coordinate.
  *
  * @property x X value for the coordinate.
  * @property y Y value for the coordinate.
  *
- * @constructor Creates a vector2 with the specified x and y value.
+ * @constructor Creates a vector2 with the specified x and y values.
  */
 class Vector2(x: Number = 0, y: Number = 0) {
     var x: Double = x.toDouble()
