@@ -10,6 +10,8 @@ object AngleCalculations {
      * A function that changes an angle range from -180-180 to 0-360.
      *
      * @param angle The angle you want to convert.
+     *
+     * @return The converted angle.
      */
     fun wrapAroundAngles(angle: Number): Number {
         var angle: Double = angle.toDouble()
@@ -24,6 +26,8 @@ object AngleCalculations {
      *
      * @param desiredAngle The angle you want to face towards.
      * @param currentAngle The angle you are currently at.
+     *
+     * @return The optimized angle.
      */
     fun optimizeAngle(desiredAngle: Number, currentAngle: Number): Number {
         val desiredAngle: Double = desiredAngle.toDouble()
