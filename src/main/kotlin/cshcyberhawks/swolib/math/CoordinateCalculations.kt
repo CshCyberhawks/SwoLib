@@ -2,7 +2,13 @@ package cshcyberhawks.swolib.math
 
 import kotlin.math.*
 
+/**
+ * A collection of methods for calculations related to coordinate systems.
+ */
 object CoordinateCalculations {
+    /**
+     * Converts from a cartesian coordinate (x, y) to a polar coordinate (theta, r).
+     */
     fun cartesianToPolar(coordinate: Vector2): Polar {
         val r = sqrt(coordinate.x.pow(2) + coordinate.y.pow(2))
         val theta = Math.toDegrees(atan2(coordinate.y, coordinate.x))
