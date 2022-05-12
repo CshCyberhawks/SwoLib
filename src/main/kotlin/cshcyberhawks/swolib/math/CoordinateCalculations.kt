@@ -8,6 +8,8 @@ import kotlin.math.*
 object CoordinateCalculations {
     /**
      * Converts from a cartesian coordinate (x, y) to a polar coordinate (theta, r).
+     *
+     * @param coordinate A vector2 representing the coordinate you want to convert.
      */
     fun cartesianToPolar(coordinate: Vector2): Polar {
         val r = sqrt(coordinate.x.pow(2) + coordinate.y.pow(2))
@@ -15,10 +17,21 @@ object CoordinateCalculations {
         return Polar(theta, r)
     }
 
+    /**
+     * Converts from a cartesian coordinate (x, y) to a polar coordinate (theta, r).
+     *
+     * @param coordinateX The x value for the coordinate you want to convert.
+     * @param coordinateY The y value for the coordinate you want to convert.
+     */
     fun cartesianToPolar(coordinateX: Number, coordinateY: Number): Polar {
         return cartesianToPolar(Vector2(coordinateX, coordinateY))
     }
 
+    /**
+     * Converts from a polar coordinate (theta, r) to a cartesian coordinate (x, y).
+     *
+     * @param coordinate The polar coordinate that you want to convert.
+     */
     fun polarToCartesian(coordinate: Polar): Vector2 {
         val theta = Math.toRadians(coordinate.theta)
         val x = coordinate.r * cos(theta)
@@ -26,6 +39,12 @@ object CoordinateCalculations {
         return Vector2(x, y)
     }
 
+    /**
+     * Converts from a polar coordinate (theta, r) to a cartesian coordinate (x, y).
+     *
+     * @param coordinateTheta The theta value for the coordinate you want to convert.
+     * @param coordinateR The r value for the coordinate you want to convert.
+     */
     fun polarToCartesian(coordinateTheta: Number, coordinateR: Number): Vector2 {
         return polarToCartesian(Polar(coordinateTheta, coordinateR))
     }
