@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.motors
+package cshcyberhawks.swolib.hardware
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX
 
@@ -6,6 +6,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX
  * A class for helping with built in TalonFX Drive Encoders.
  *
  * @property driveMotor The TalonFX you want the encoder for.
+ *
+ * @constructor Gets the encoder from the TalonFX motor.
  */
 class TalonFXDriveEncoder(var driveMotor: TalonFX) {
     /**
