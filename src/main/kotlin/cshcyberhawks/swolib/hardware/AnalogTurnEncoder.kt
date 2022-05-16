@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.AnalogInput
  *
  * @constructor Creates the encoder.
  */
-class AnalogTurnEncoder(private val port: Int) {
+class AnalogTurnEncoder(val port: Int) {
     val encoder: AnalogInput = AnalogInput(port)
 
     private fun voltageToDegrees(input: Double): Double {
