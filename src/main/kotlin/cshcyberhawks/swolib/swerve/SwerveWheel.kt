@@ -45,7 +45,6 @@ class SwerveWheel(var turnMotor: TalonSRX, var driveMotor: WPI_TalonFX, var turn
         oldAngle = angle
 
         val driveVelocity = driveEncoder.getVelocity().toDouble()
-        val currentDriveSpeed = convertToMetersPerSecondFromSecond(driveVelocity)
 
         val turnValue = AngleCalculations.wrapAroundAngles(turnEncoder.get())
 
