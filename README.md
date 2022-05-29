@@ -22,7 +22,7 @@ FRC team 2875 Cyberhawks open source kotlin library
 ### Autonomous:
  * Autonomous swerve drive utilities - custom written - doesn't use any wpilib trajectory generation or swerve classes
  * High and lower level classes - ranging from commands to go to a cerain coordinate to the class that manipulates the swerve drive train
- * PID auto corrected (if the robot drifts off course, it will corerct itself using a PID), and trapezoid motion profiled (gradual acceleration and decelleration so as to not overshoot targets)
+ * PID auto corrected (if the robot drifts off course, it will corerct itself using a PID), and trapezoid motion profiled (gradual acceleration and deceleration so as to not overshoot targets)
  * Turning controlled with PID
  * Several commands to easily move the robot to positions
  * Limelight integration - use the limelight to track balls/targets and feed positional data for the robot to move to. 
