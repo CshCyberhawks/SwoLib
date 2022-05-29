@@ -2,12 +2,12 @@
 FRC team 2875 Cyberhawks open source kotlin library
 
 ## Features:
- * [Custom swerve drive utilities](Swerve-drive)
+ * [Custom swerve drive utilities](Swerve-drive:)
  * [Math utilities](Math)
  * [Motor utilities](Motors)
 
 ## Planned features:
- * [Autnomous utilities](Autonomous)
+ * [Autnomous utilities](Autonomous:)
  * [Limelight utilities](Limelight)
  * [Various quality of life utilities](QOL)
 
