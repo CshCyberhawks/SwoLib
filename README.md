@@ -15,7 +15,7 @@ FRC team 2875 Cyberhawks open source kotlin library
 ### Swerve-drive:
  * None of the swerve-drive utilities use the wpilib swerve drive classes, they are all completely custom
  * Contains a class to wrap the entire swerve drive (swerve drive train)
- * Classes for each individual swerve module (swervewheel). Note: these are currently configured for swerve modules with 1 falcon 500 motor (drive) and 1 775 motor (turn). It is also expected to have an analog encoder for wheel turning data
+ * Classes for each individual swerve module (swervewheel). Note: these are currently configured for swerve modules with a single falcon 500 motor (drive) and a single 775 motor (turn). It is also expected to have an analog encoder for wheel turning data
  * Custom odometry - takes in encoder data from each individual wheel and calculates robot position. This is more accurate than an accelerometer, however, cannot detect any external stresses (ie driving into a wall) and thus is recommended to be used solely in autonomous. 
  * Wheel speed normalization
 
