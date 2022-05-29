@@ -25,5 +25,5 @@ FRC team 2875 Cyberhawks open source kotlin library
  * PID auto corrected (if the robot drifts off course, it will corerct itself using a PID), and trapezoid motion profiled (gradual acceleration and deceleration so as to not overshoot targets)
  * Turning controlled with PID
  * Several commands to easily move the robot to positions
- * Limelight integration - use the limelight to track balls/targets and feed positional data for the robot to move to. 
+ * Limelight integration - use the limelight to track targets (ie balls) and feed positional data for the robot to move to. 
  * sort of trajectory generation - through the chaining of go-to-position commands, the robot can be made to follow a set path while still self-correcting
