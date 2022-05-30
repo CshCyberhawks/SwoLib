@@ -1,5 +1,6 @@
 package cshcyberhawks.swolib.hardware
 
+
 import edu.wpi.first.wpilibj.AnalogInput
 
 /**
@@ -20,6 +21,8 @@ class AnalogTurnEncoder(val port: Int) {
      * @return The position in degrees.
      */
     fun get(): Number {
-        return voltageToDegrees(encoder.voltage);
+        return voltageToDegrees(encoder.voltage)
     }
 }
+
+
