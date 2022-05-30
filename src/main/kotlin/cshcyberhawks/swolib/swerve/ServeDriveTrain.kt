@@ -6,11 +6,24 @@ import cshcyberhawks.swolib.math.Vector2
 import edu.wpi.first.util.WPIUtilJNI
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 
-// import frc.robot.Constants
-// import frc.robot.util.DriveState
-// import frc.robot.util.MathClass
-// import java.awt.Robot
-
+/**
+ * A class to encapsulate an entire 4 wheeled swerve drive train. The swerve modules are SwoLib
+ * module and this drive train uses a NavX gyro for field orientation. This class also uses a set of
+ * constants, we recommend leaving that constructor parameter empty and using the default values.
+ *
+ * @property backLeftModule The back left swerve module in the drive train
+ *
+ * @property backRightModule The back right swerve module in the drive train
+ *
+ * @property frontLeftModule The front left swerve module in the drive train
+ *
+ * @property frontRightModule The front right swerve module in the drive train
+ *
+ * @property gyro The navx gyro used by the swerve drive train for field orientation
+ *
+ * @property moduleConstants A set of constants used by the drive train for swerve calculations. It
+ * is reccommended to leave this empty and use defualt values
+ */
 class SwerveDriveTrain(
         var backLeftModule: SwerveModule,
         var backRightModule: SwerveModule,
