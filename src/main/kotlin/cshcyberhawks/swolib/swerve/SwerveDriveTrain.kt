@@ -15,10 +15,8 @@ import kotlin.math.abs
  *
  * @property gyro The navx gyro used by the swerve drive train for field orientation.
  *
- * @property twistMultiplier The multiplier for the speed that the robot twists.
- *
  */
-class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro, private val twistMultiplier: Number = 0.5) {
+class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro) {
     var throttle = 0.5
 
     private fun normalizeWheelSpeeds(wheelVectors: Array<Polar>, maxSpeed: Double, minSpeed: Double): Array<Polar> {
@@ -55,10 +53,10 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         return CoordinateCalculations.polarToCartesian(polar.theta + gyroAngle, polar.r)
     }
 
-    private fun calculateDrive(inputX: Double, inputY: Double, twistConstant: Double, inputTwist: Double): Polar {
+    private fun calculateDrive(inputX: Double, inputY: Double, inputTwist: Double, twistConstant: Double, twistMultiplier: Double): Polar {
         val driveCoordinate = fieldOriented(inputX, inputY, gyro.getAngle().toDouble())
 
-        val twistCoordinate = CoordinateCalculations.polarToCartesian(twistConstant, inputTwist * twistMultiplier.toDouble())
+        val twistCoordinate = CoordinateCalculations.polarToCartesian(twistConstant, inputTwist * twistMultiplier)
 
         return CoordinateCalculations.cartesianToPolar(driveCoordinate.x + twistCoordinate.x, driveCoordinate.y + twistCoordinate.y)
     }
@@ -72,10 +70,10 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         }
 
         // The random numbers are the angle that the wheels need to turn to for the robot to turn
-        var frontRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), 45.0, inputTwist.toDouble())
-        var frontLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), 135.0, inputTwist.toDouble())
-        var backRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), -45.0, inputTwist.toDouble())
-        var backLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), -135.0, inputTwist.toDouble())
+        var frontRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.frontRightTurnAngle.toDouble(), swerveConfiguration.frontRightTurnMultiplier.toDouble())
+        var frontLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.frontLeftTurnAngle.toDouble(), swerveConfiguration.frontLeftTurnMultiplier.toDouble())
+        var backRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.backRightTurnAngle.toDouble(), swerveConfiguration.backRightTurnMultiplier.toDouble())
+        var backLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.backLeftTurnAngle.toDouble(), swerveConfiguration.backLeftTurnMultiplier.toDouble())
 
         val wheelVectors = normalizeWheelSpeeds(arrayOf(frontRightVector, frontLeftVector, backRightVector, backLeftVector), 1.0, -1.0)
 

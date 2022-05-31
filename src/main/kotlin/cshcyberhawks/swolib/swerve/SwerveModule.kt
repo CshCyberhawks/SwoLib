@@ -46,7 +46,7 @@ class SwerveModule(
         var turnPID: PIDController,
         val wheelRadius: Number,
         val gearRatio: Number,
-        val maxSpeed: Number
+        val maxSpeed: Number,
 ) {
     private var oldAngle: Double = 0.0
 
