@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 
@@ -84,11 +85,11 @@ class SwerveModule(
 
     /**
      * The function used to control the movement of the wheels. This is called by the
-     * SwerveDriveTrain class
+     * SwerveDriveTrain class.
      *
-     * @param inputSpeed The desired speed of the wheel
+     * @param inputSpeed The desired speed of the wheel.
      *
-     * @param inputAngle The desired angle of the wheel
+     * @param inputAngle The desired angle of the wheel.
      */
     fun drive(inputSpeed: Number, inputAngle: Number) {
         var speed = inputSpeed.toDouble()
@@ -114,5 +115,14 @@ class SwerveModule(
         if (!turnPID.atSetpoint()) {
             turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))
         }
+    }
+
+    /**
+     * The function used to control the movement of the wheels. This is called by the SwerveDriveTrain class.
+     *
+     * @param input A polar vector with the desired speed and angle for the wheel.
+     */
+    fun drive(input: Polar) {
+        drive(input.r, input.theta)
     }
 }
