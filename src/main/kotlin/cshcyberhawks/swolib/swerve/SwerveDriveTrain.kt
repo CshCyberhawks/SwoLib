@@ -7,6 +7,17 @@ import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration
 import kotlin.math.abs
 
+/**
+ * A class to encapsulate an entire 4 wheeled swerve drive train. The swerve modules are SwoLib
+ * module and this drive train uses a NavX gyro for field orientation.
+ *
+ * @property swerveConfiguration A class that encapsulates the swerve modules used in the drive train.
+ *
+ * @property gyro The navx gyro used by the swerve drive train for field orientation.
+ *
+ * @property twistMultiplier The multiplier for the speed that the robot twists.
+ *
+ */
 class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro, private val twistMultiplier: Number = 0.5) {
     var throttle = 0.5
 
