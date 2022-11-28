@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 
@@ -74,7 +75,7 @@ class SwerveModule(
     }
 
     fun preserveAngle() {
-        drive(0, oldAngle)
+        drive(0.0, oldAngle)
     }
 
     fun kill() {
@@ -90,22 +91,22 @@ class SwerveModule(
      *
      * @param inputAngle The desired angle of the wheel.
      */
-    fun drive(inputSpeed: Number, inputAngle: Number) {
+    fun drive(inputSpeed: Double, inputAngle: Double) {
         var speed = inputSpeed.toDouble()
-        var angle = AngleCalculations.wrapAroundAngles(inputAngle).toDouble()
+        var angle = AngleCalculations.wrapAroundAngles(inputAngle)
 
         oldAngle = angle
 
         val turnValue = AngleCalculations.wrapAroundAngles(turnEncoder.get())
 
-        angle = AngleCalculations.optimizeAngle(angle, turnValue).toDouble()
+        angle = AngleCalculations.optimizeAngle(angle, turnValue)
         if (angle != oldAngle) {
             speed *= -1
         }
 
         speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed.toDouble()))
 
-        val turnPIDOutput = turnPID.calculate(turnValue.toDouble(), angle)
+        val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
         driveMotor.set(
                 ControlMode.PercentOutput,
@@ -121,7 +122,7 @@ class SwerveModule(
      *
      * @param input A polar vector with the desired speed and angle for the wheel.
      */
-    fun drive(input: Polar) {
+    fun drive(input: Coordinate) {
         drive(input.r, input.theta)
     }
 }
