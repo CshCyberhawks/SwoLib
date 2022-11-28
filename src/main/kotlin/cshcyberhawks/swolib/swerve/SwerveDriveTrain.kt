@@ -1,9 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
 import cshcyberhawks.swolib.hardware.NavXGyro
-import cshcyberhawks.swolib.math.CoordinateCalculations
-import cshcyberhawks.swolib.math.Polar
-import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import kotlin.math.abs
 

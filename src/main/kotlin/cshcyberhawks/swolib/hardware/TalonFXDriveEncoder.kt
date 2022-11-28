@@ -24,7 +24,7 @@ class TalonFXDriveEncoder(var driveMotor: TalonFX) {
      *
      * @return The position in rotations.
      */
-    fun getPositon(): Number {
+    fun getPosition(): Number {
         return driveMotor.selectedSensorPosition / 2048
     }
 }

@@ -7,7 +7,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
-import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 
