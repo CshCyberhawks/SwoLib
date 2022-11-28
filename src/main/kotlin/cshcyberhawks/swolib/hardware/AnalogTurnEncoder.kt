@@ -20,7 +20,7 @@ class AnalogTurnEncoder(val port: Int) {
      *
      * @return The position in degrees.
      */
-    fun get(): Number {
+    fun get(): Double {
         return voltageToDegrees(encoder.voltage)
     }
 }

@@ -1,6 +1,7 @@
 package cshcyberhawks.swolib.swerve
 
 import cshcyberhawks.swolib.hardware.NavXGyro
+import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import kotlin.math.abs
 
@@ -14,9 +15,10 @@ import kotlin.math.abs
  *
  */
 class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro) {
+    //TODO: Throttle things
     var throttle = 0.5
 
-    private fun normalizeWheelSpeeds(wheelVectors: Array<Polar>, maxSpeed: Double, minSpeed: Double): Array<Polar> {
+    private fun normalizeWheelSpeeds(wheelVectors: Array<Coordinate>, maxSpeed: Double, minSpeed: Double): Array<Coordinate> {
         var min = wheelVectors[0].r
         var max = wheelVectors[0].r
 
@@ -44,22 +46,17 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         return wheelVectors
     }
 
-    private fun fieldOriented(x: Double, y: Double, gyroAngle: Double): Vector2 {
-        val polar = CoordinateCalculations.cartesianToPolar(x, y)
-
-        return CoordinateCalculations.polarToCartesian(polar.theta + gyroAngle, polar.r)
+    private fun fieldOriented(coord: Coordinate, gyroAngle: Double): Coordinate {
+        coord.theta += gyroAngle
+        return coord
     }
 
-    private fun calculateDrive(inputX: Double, inputY: Double, inputTwist: Double, twistConstant: Double, twistMultiplier: Double): Polar {
-        val driveCoordinate = fieldOriented(inputX, inputY, gyro.getAngle().toDouble())
-
-        val twistCoordinate = CoordinateCalculations.polarToCartesian(twistConstant, inputTwist * twistMultiplier)
-
-        return CoordinateCalculations.cartesianToPolar(driveCoordinate.x + twistCoordinate.x, driveCoordinate.y + twistCoordinate.y)
+    private fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate): Coordinate {
+        return fieldOriented(driveCoord, gyro.getAngle()) + twistCoord
     }
 
-    fun drive(inputX: Number, inputY: Number, inputTwist: Number) {
-        if (inputX == 0 && inputY == 0 && inputTwist == 0) {
+    fun drive(input: Coordinate, inputTwist: Double) {
+        if (input == Coordinate(0.0, 0.0) && inputTwist == 0.0) {
             // Leave the angles alone if there is no input
             // Without this the wheel flip back to their default positions
             swerveConfiguration.preserveAngles()
@@ -67,10 +64,10 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         }
 
         // The random numbers are the angle that the wheels need to turn to for the robot to turn
-        var frontRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.angleConfiguration.frontRight.toDouble(), swerveConfiguration.speedConfiguration.frontRight.toDouble())
-        var frontLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.angleConfiguration.frontLeft.toDouble(), swerveConfiguration.speedConfiguration.frontLeft.toDouble())
-        var backRightVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.angleConfiguration.backRight.toDouble(), swerveConfiguration.speedConfiguration.backRight.toDouble())
-        var backLeftVector = calculateDrive(inputX.toDouble(), inputY.toDouble(), inputTwist.toDouble(), swerveConfiguration.angleConfiguration.backLeft.toDouble(), swerveConfiguration.speedConfiguration.backLeft.toDouble())
+        var frontRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontRight, inputTwist * swerveConfiguration.speedConfiguration.frontRight))
+        var frontLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontLeft, inputTwist * swerveConfiguration.speedConfiguration.frontLeft))
+        var backRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backRight, inputTwist * swerveConfiguration.speedConfiguration.backRight))
+        var backLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backLeft, inputTwist * swerveConfiguration.speedConfiguration.backLeft))
 
         val wheelVectors = normalizeWheelSpeeds(arrayOf(frontRightVector, frontLeftVector, backRightVector, backLeftVector), 1.0, -1.0)
 

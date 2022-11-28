@@ -13,7 +13,7 @@ object AngleCalculations {
      *
      * @return The converted angle.
      */
-    fun wrapAroundAngles(angle: Number): Number {
+    fun wrapAroundAngles(angle: Double): Double {
         var angle: Double = angle.toDouble()
         while (angle < 0) {
             angle += 360
@@ -29,9 +29,7 @@ object AngleCalculations {
      *
      * @return The optimized angle.
      */
-    fun optimizeAngle(desiredAngle: Number, currentAngle: Number): Number {
-        val desiredAngle: Double = desiredAngle.toDouble()
-        val currentAngle: Double = currentAngle.toDouble()
+    fun optimizeAngle(desiredAngle: Double, currentAngle: Double): Double {
         if (abs(desiredAngle - currentAngle) > 90 && abs(desiredAngle - currentAngle) < 270) {
             return (desiredAngle + 180) % 360
         }

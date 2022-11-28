@@ -1,8 +1,8 @@
 package cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration
 
 class FourWheelSpeedConfiguration(
-    var frontRight: Number = 0.5,
-    var frontLeft: Number = 0.5,
-    var backRight: Number = 0.5,
-    var backLeft: Number = 0.5
+    var frontRight: Double = 0.5,
+    var frontLeft: Double = 0.5,
+    var backRight: Double = 0.5,
+    var backLeft: Double = 0.5
 ) {}

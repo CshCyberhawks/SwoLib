@@ -15,7 +15,7 @@ class TalonFXDriveEncoder(var driveMotor: TalonFX) {
      *
      * @return The velocity in RPM.
      */
-    fun getVelocity(): Number {
+    fun getVelocity(): Double {
         return driveMotor.selectedSensorVelocity / 204.8
     }
 
@@ -24,7 +24,7 @@ class TalonFXDriveEncoder(var driveMotor: TalonFX) {
      *
      * @return The position in rotations.
      */
-    fun getPosition(): Number {
+    fun getPosition(): Double {
         return driveMotor.selectedSensorPosition / 2048
     }
 }

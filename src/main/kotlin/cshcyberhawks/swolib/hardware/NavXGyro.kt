@@ -22,8 +22,8 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current angle.
      */
-    fun getAngle(): Number {
-        return AngleCalculations.wrapAroundAngles(AngleCalculations.wrapAroundAngles(gyro.yaw).toDouble() - offsetValue)
+    fun getAngle(): Double {
+        return AngleCalculations.wrapAroundAngles(AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble()) - offsetValue)
     }
 
     /**
@@ -48,7 +48,7 @@ class NavXGyro(private val port: SPI.Port) {
      * This exists because the built-in offset was refusing to work.
      */
     fun setOffset() {
-        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw).toDouble()
+        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble())
     }
 
     /**
@@ -56,7 +56,7 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current x velocity.
      */
-    fun getVelocityX(): Number {
+    fun getVelocityX(): Double {
         return filter.calculate(gyro.velocityX.toDouble())
     }
 
@@ -65,7 +65,7 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current y velocity.
      */
-    fun getVelocityY(): Number {
+    fun getVelocityY(): Double {
         return filter.calculate(gyro.velocityY.toDouble())
     }
 
@@ -74,7 +74,7 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current z velocity.
      */
-    fun getVelocityZ(): Number {
+    fun getVelocityZ(): Double {
         return filter.calculate(gyro.velocityZ.toDouble())
     }
 
@@ -83,7 +83,7 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current x acceleration.
      */
-    fun getAccelerationX(): Number {
+    fun getAccelerationX(): Double {
         return filter.calculate(gyro.worldLinearAccelX.toDouble())
     }
 
@@ -92,7 +92,7 @@ class NavXGyro(private val port: SPI.Port) {
      *
      * @return The current x acceleration.
      */
-    fun getAccelerationY(): Number {
+    fun getAccelerationY(): Double {
         return filter.calculate(gyro.worldLinearAccelX.toDouble())
     }
 
