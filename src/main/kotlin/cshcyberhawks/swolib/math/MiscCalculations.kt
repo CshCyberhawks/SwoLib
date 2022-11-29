@@ -12,7 +12,7 @@ object MiscCalculations {
      * @return The speed in meters per second.
      */
     fun gToMetersPerSecond(g: Double): Double {
-        return g / 9.8066
+        return g * 9.8066
     }
 
     /**
