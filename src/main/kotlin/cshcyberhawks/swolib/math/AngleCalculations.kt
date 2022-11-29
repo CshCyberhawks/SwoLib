@@ -14,9 +14,8 @@ object AngleCalculations {
      * @return The converted angle.
      */
     fun wrapAroundAngles(angle: Double): Double {
-        var angle: Double = angle.toDouble()
         while (angle < 0) {
-            angle += 360
+            return angle + 360
         }
         return angle
     }
