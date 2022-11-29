@@ -17,5 +17,9 @@ class MiscCalculationsTest {
 
     @Test
     fun calculateDeadzone() {
+        assertEquals(0.0, MiscCalculations.calculateDeadzone(1.2, 2.0), 0.0)
+        assertEquals(2.2, MiscCalculations.calculateDeadzone(2.2, 2.0), 0.0)
+        assertEquals(0.0, MiscCalculations.calculateDeadzone(-1.2, 2.0), 0.0)
+        assertEquals(-2.2, MiscCalculations.calculateDeadzone(-2.2, 2.0), 0.0)
     }
 }
