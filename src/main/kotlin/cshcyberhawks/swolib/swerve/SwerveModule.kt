@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode
 import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
+import com.ctre.phoenix.motorcontrol.can.TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
@@ -39,21 +40,21 @@ import edu.wpi.first.math.controller.PIDController
  */
 class SwerveModule(
         var turnMotor: TalonSRX,
-        var driveMotor: WPI_TalonFX,
+        var driveMotor: TalonFX,
         var turnEncoder: AnalogTurnEncoder,
-        var drivePIDF: Number,
+        var drivePIDF: Double,
         var drivePID: PIDController,
         var turnPID: PIDController,
-        val wheelRadius: Number,
-        val gearRatio: Number,
-        val maxSpeed: Number,
+        val wheelRadius: Double,
+        val gearRatio: Double,
+        val maxSpeed: Double,
 ) {
     private var oldAngle: Double = 0.0
 
     var driveEncoder: TalonFXDriveEncoder = TalonFXDriveEncoder(driveMotor)
 
     init {
-        driveMotor.config_kF(0, drivePIDF.toDouble())
+        driveMotor.config_kF(0, drivePIDF)
         driveMotor.config_kP(0, drivePID.p)
         driveMotor.config_kI(0, drivePID.i)
         driveMotor.config_kD(0, drivePID.d)
@@ -62,15 +63,15 @@ class SwerveModule(
     }
 
     private fun convertToMetersPerSecond(rpm: Double): Double {
-        return ((2 * Math.PI * wheelRadius.toDouble()) / 60) * (rpm / gearRatio.toDouble())
+        return ((2 * Math.PI * wheelRadius) / 60) * (rpm / gearRatio)
     }
 
     private fun convertToMetersPerSecondFromSecond(rps: Double): Double {
-        return (2 * Math.PI * wheelRadius.toDouble()) * (rps / gearRatio.toDouble())
+        return (2 * Math.PI * wheelRadius * (rps / gearRatio))
     }
 
     private fun convertToWheelRotations(meters: Double): Double {
-        val wheelConstant = 2 * Math.PI * wheelRadius.toDouble() / 60
+        val wheelConstant = 2 * Math.PI * wheelRadius / 60
         return 7 * meters / wheelConstant
     }
 
@@ -92,7 +93,7 @@ class SwerveModule(
      * @param inputAngle The desired angle of the wheel.
      */
     fun drive(inputSpeed: Double, inputAngle: Double) {
-        var speed = inputSpeed.toDouble()
+        var speed = inputSpeed
         var angle = AngleCalculations.wrapAroundAngles(inputAngle)
 
         oldAngle = angle
@@ -104,13 +105,13 @@ class SwerveModule(
             speed *= -1
         }
 
-        speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed.toDouble()))
+        speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
         driveMotor.set(
                 ControlMode.PercentOutput,
-                MathUtil.clamp(speed / maxSpeed.toDouble(), -1.0, 1.0)
+                MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
         )
         if (!turnPID.atSetpoint()) {
             turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))
