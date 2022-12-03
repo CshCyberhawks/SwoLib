@@ -1,5 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
+import cshcyberhawks.swolib.hardware.GenericGyro
 import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
@@ -14,7 +15,7 @@ import kotlin.math.abs
  * @property gyro The navx gyro used by the swerve drive train for field orientation.
  *
  */
-class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro) {
+class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: GenericGyro) {
     //TODO: Throttle things
     var throttle = 0.5
 
