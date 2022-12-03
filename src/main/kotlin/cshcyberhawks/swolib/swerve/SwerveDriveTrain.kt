@@ -1,7 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
-import cshcyberhawks.swolib.hardware.GenericGyro
-import cshcyberhawks.swolib.hardware.NavXGyro
+import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import kotlin.math.abs
