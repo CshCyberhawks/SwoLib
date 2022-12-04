@@ -1,5 +1,5 @@
 # SwoLib
-FRC team 2875 Cyberhawks open source kotlin library (it is usable from Java as well)
+FRC team 2875 Cyberhawks open source Java/Kotlin library
 
 ## Features:
  * [Custom swerve drive utilities](#swerve-drive)
