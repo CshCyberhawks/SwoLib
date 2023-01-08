@@ -167,3 +167,5 @@ simgui*.json
 
 # Java build directories
 build
+
+.run
