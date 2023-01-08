@@ -3,10 +3,9 @@ package cshcyberhawks.swolib.swerve
 import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode
 import com.ctre.phoenix.motorcontrol.can.TalonSRX
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import com.ctre.phoenix.motorcontrol.can.TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
-import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
+import cshcyberhawks.swolib.hardware.TalonFXEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
@@ -51,7 +50,7 @@ class SwerveModule(
 ) {
     private var oldAngle: Double = 0.0
 
-    var driveEncoder: TalonFXDriveEncoder = TalonFXDriveEncoder(driveMotor)
+    var driveEncoder: TalonFXEncoder = TalonFXEncoder(driveMotor)
 
     init {
         driveMotor.config_kF(0, drivePIDF)
