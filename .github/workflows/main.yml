@@ -18,6 +18,9 @@ jobs:
         run: |
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
+          mkdir ../temp
+          mv .git/ ../temp
+          cd ../temp
           git fetch
           git checkout $TARGET_BRANCH       # checkout to your branch
           mkdir ../new
