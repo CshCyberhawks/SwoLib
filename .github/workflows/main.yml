@@ -19,7 +19,7 @@ jobs:
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
           cp -r $SRC_FOLDER_PATH ../src
-          git checkout $TARGET_BRANCH       # checkout to your branch
+          git checkout publish       # checkout to your branch
           mv -r ../src ./src
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
