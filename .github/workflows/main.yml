@@ -13,14 +13,21 @@ jobs:
       - uses: actions/checkout@v2
       - name: copy
         env:
-          SRC_FOLDER_PATH: './src/main/kotlin/cshcyberhawks/swolib'
+          SRC_FOLDER_PATH: 'src/main/kotlin/cshcyberhawks/swolib'
           TARGET_BRANCH: 'publish'
         run: |
-          #files=$(find $SRC_FOLDER_PATH -type f) # get the file list
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
-          git checkout $TARGET_BRANCH $SRC_FOLDER_PATH
+          mkdir ../temp
+          mv .git/ ../temp
+          cd ../temp
+          git fetch
           git checkout $TARGET_BRANCH       # checkout to your branch
+          mkdir ../new
+          mv .git/ ../new
+          cd ../new
+          mv ../SwoLib/$SRC_FOLDER_PATH ./src
+          git fetch
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
