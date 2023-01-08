@@ -2,11 +2,11 @@ package cshcyberhawks.swolib.swerve
 
 import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode
+import com.ctre.phoenix.motorcontrol.can.TalonSRX
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import com.ctre.phoenix.motorcontrol.can.TalonFX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
-import cshcyberhawks.swolib.hardware.interfaces.GenericDriveMotor
-import cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
@@ -39,8 +39,10 @@ import edu.wpi.first.math.controller.PIDController
  * friction
  */
 class SwerveModule(
-        var turnMotor: GenericTurnMotor,
-        var driveMotor: GenericDriveMotor,
+        var turnMotor: TalonSRX,
+        var driveMotor: TalonFX,
+        var turnEncoder: AnalogTurnEncoder,
+        var drivePIDF: Double,
         var drivePID: PIDController,
         var turnPID: PIDController,
         val wheelRadius: Double,
@@ -48,6 +50,17 @@ class SwerveModule(
         val maxSpeed: Double,
 ) {
     private var oldAngle: Double = 0.0
+
+    var driveEncoder: TalonFXDriveEncoder = TalonFXDriveEncoder(driveMotor)
+
+    init {
+        driveMotor.config_kF(0, drivePIDF)
+        driveMotor.config_kP(0, drivePID.p)
+        driveMotor.config_kI(0, drivePID.i)
+        driveMotor.config_kD(0, drivePID.d)
+
+        driveMotor.setNeutralMode(NeutralMode.Brake)
+    }
 
     private fun convertToMetersPerSecond(rpm: Double): Double {
         return ((2 * Math.PI * wheelRadius) / 60) * (rpm / gearRatio)
@@ -85,22 +98,23 @@ class SwerveModule(
 
         oldAngle = angle
 
-        val turnValue = AngleCalculations.wrapAroundAngles(turnMotor.getTurnValue())
+        val turnValue = AngleCalculations.wrapAroundAngles(turnEncoder.get())
 
         angle = AngleCalculations.optimizeAngle(angle, turnValue)
         if (angle != oldAngle) {
             speed *= -1
         }
 
-        speed *= convertToWheelRotations(maxSpeed)
-
-        val drivePIDOutput = drivePID.calculate(driveMotor.getVelocity(), speed)
+        speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
-        driveMotor[ControlMode.PercentOutput] = MathUtil.clamp((convertToMetersPerSecond(speed) / maxSpeed) + drivePIDOutput, -1.0, 1.0)
+        driveMotor.set(
+                ControlMode.PercentOutput,
+                MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
+        )
         if (!turnPID.atSetpoint()) {
-            turnMotor[ControlMode.PercentOutput] = MathUtil.clamp(turnPIDOutput, -1.0, 1.0)
+            turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))
         }
     }
 

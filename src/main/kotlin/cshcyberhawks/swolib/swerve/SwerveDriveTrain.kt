@@ -1,6 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
-import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
+import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import kotlin.math.abs
@@ -14,30 +14,29 @@ import kotlin.math.abs
  * @property gyro The navx gyro used by the swerve drive train for field orientation.
  *
  */
-class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: GenericGyro) {
+class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, var gyro: NavXGyro) {
+    companion object {
+        fun normalizeWheelSpeeds(wheelVectors: Array<Double>, distanceFromZero: Double): Array<Double> {
+            var max = abs(wheelVectors[0])
+
+            for (wheelVector in wheelVectors) {
+                if (abs(wheelVector) > max) {
+                    max = abs(wheelVector)
+                }
+            }
+
+            val maxSpeed = if (max > distanceFromZero) max else distanceFromZero
+
+            for (i in wheelVectors.indices) {
+                wheelVectors[i] = wheelVectors[i] / maxSpeed * distanceFromZero
+            }
+
+            return wheelVectors
+        }
+    }
+
     //TODO: Throttle things
     var throttle = 0.5
-
-    private fun normalizeWheelSpeeds(
-        speeds: Array<Coordinate>,
-        distanceFromZero: Double
-    ): Array<Coordinate> {
-        var max = abs(speeds[0].r)
-
-        for (wheelVector in speeds) {
-            if (abs(wheelVector.r) > max) {
-                max = abs(wheelVector.r)
-            }
-        }
-
-        val maxSpeed = if (max > distanceFromZero) max else distanceFromZero
-
-        for (i in speeds.indices) {
-            speeds[i].r = speeds[i].r / maxSpeed * distanceFromZero
-        }
-
-        return speeds
-    }
 
     private fun fieldOriented(coord: Coordinate, gyroAngle: Double): Coordinate {
         coord.theta += gyroAngle
@@ -57,17 +56,17 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         }
 
         // The random numbers are the angle that the wheels need to turn to for the robot to turn
-        var frontRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontRight, inputTwist * swerveConfiguration.speedConfiguration.frontRight))
-        var frontLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontLeft, inputTwist * swerveConfiguration.speedConfiguration.frontLeft))
-        var backRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backRight, inputTwist * swerveConfiguration.speedConfiguration.backRight))
-        var backLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backLeft, inputTwist * swerveConfiguration.speedConfiguration.backLeft))
+        val frontRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontRight, inputTwist * swerveConfiguration.speedConfiguration.frontRight))
+        val frontLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontLeft, inputTwist * swerveConfiguration.speedConfiguration.frontLeft))
+        val backRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backRight, inputTwist * swerveConfiguration.speedConfiguration.backRight))
+        val backLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backLeft, inputTwist * swerveConfiguration.speedConfiguration.backLeft))
 
-        val wheelVectors = normalizeWheelSpeeds(arrayOf(frontRightVector, frontLeftVector, backRightVector, backLeftVector), 1.0)
+        val wheelVectors = normalizeWheelSpeeds(arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r), 1.0)
 
-        frontRightVector = wheelVectors[0]
-        frontLeftVector = wheelVectors[1]
-        backRightVector = wheelVectors[2]
-        backLeftVector = wheelVectors[3]
+        frontRightVector.r = wheelVectors[0]
+        frontLeftVector.r = wheelVectors[1]
+        backRightVector.r = wheelVectors[2]
+        backLeftVector.r = wheelVectors[3]
 
         swerveConfiguration.frontRight.drive(frontRightVector)
         swerveConfiguration.frontLeft.drive(frontLeftVector)

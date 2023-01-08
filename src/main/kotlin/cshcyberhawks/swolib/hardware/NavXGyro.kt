@@ -1,7 +1,6 @@
 package cshcyberhawks.swolib.hardware
 
 import com.kauailabs.navx.frc.AHRS
-import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
 import edu.wpi.first.math.filter.LinearFilter
 import edu.wpi.first.wpilibj.SPI
@@ -13,7 +12,7 @@ import edu.wpi.first.wpilibj.SPI
  *
  * @constructor Creates a gyro with the specified port.
  */
-class NavXGyro(private val port: SPI.Port): GenericGyro {
+class NavXGyro(private val port: SPI.Port) {
     val gyro: AHRS = AHRS(port)
     private val filter: LinearFilter = LinearFilter.highPass(0.1, 0.02)
     var offsetValue: Double = 0.0
@@ -23,7 +22,7 @@ class NavXGyro(private val port: SPI.Port): GenericGyro {
      *
      * @return The current angle.
      */
-    override fun getAngle(): Double {
+    fun getAngle(): Double {
         return AngleCalculations.wrapAroundAngles(AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble()) - offsetValue)
     }
 
