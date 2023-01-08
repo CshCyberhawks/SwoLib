@@ -18,12 +18,13 @@ jobs:
         run: |
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
+          git fetch
+          git checkout $TARGET_BRANCH       # checkout to your branch
           mkdir ../new
           mv .git/ ../new
           cd ../new
-          git fetch
-          git checkout $TARGET_BRANCH       # checkout to your branch
           mv ../SwoLib/$SRC_FOLDER_PATH ./src
+          git fetch
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
