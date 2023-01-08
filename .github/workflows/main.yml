@@ -19,7 +19,7 @@ jobs:
           #files=$(find $SRC_FOLDER_PATH -type f) # get the file list
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
-          git checkout $TARGET_BRANCH $SRC_FOLDER_PATH
+          git checkout $TARGET_BRANCH $(find $SRC_FOLDER_PATH -type f)
           git checkout $TARGET_BRANCH       # checkout to your branch
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
