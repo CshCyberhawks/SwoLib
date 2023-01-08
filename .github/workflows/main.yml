@@ -18,13 +18,12 @@ jobs:
         run: |
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
+          mkdir ../new
+          mv .git/ ../new
+          mv $SRC_FOLDER_PATH ../new
+          cd ../new
           git fetch
-          cp -r $SRC_FOLDER_PATH ../src
           git checkout $TARGET_BRANCH       # checkout to your branch
-          mv .git/ ../git
-          rm -rf .
-          mv ../git .
-          mv ../src .
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
