@@ -35,7 +35,6 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         }
     }
 
-    //TODO: Throttle things
     var throttle = 0.5
 
     private fun fieldOriented(coord: Coordinate, gyroAngle: Double): Coordinate {
@@ -54,6 +53,8 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
             swerveConfiguration.preserveAngles()
             return
         }
+
+        input *= throttle
 
         // The random numbers are the angle that the wheels need to turn to for the robot to turn
         val frontRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontRight, inputTwist * swerveConfiguration.speedConfiguration.frontRight))
