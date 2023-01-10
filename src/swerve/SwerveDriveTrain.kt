@@ -38,7 +38,8 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
     var throttle = 0.5
 
     private fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate): Coordinate {
-        return driveCoord.apply { theta += gyro.getAngle() } + twistCoord
+//        return driveCoord.apply { theta += gyro.getAngle() } + twistCoord
+        return driveCoord + twistCoord
     }
 
     fun drive(input: Coordinate, inputTwist: Double) {
@@ -52,12 +53,39 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         input *= throttle
 
         // The random numbers are the angle that the wheels need to turn to for the robot to turn
-        val frontRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontRight, inputTwist * swerveConfiguration.speedConfiguration.frontRight))
-        val frontLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.frontLeft, inputTwist * swerveConfiguration.speedConfiguration.frontLeft))
-        val backRightVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backRight, inputTwist * swerveConfiguration.speedConfiguration.backRight))
-        val backLeftVector = calculateDrive(input, Coordinate.fromPolar(swerveConfiguration.angleConfiguration.backLeft, inputTwist * swerveConfiguration.speedConfiguration.backLeft))
+        val frontRightVector = calculateDrive(
+            input,
+            Coordinate.fromPolar(
+                swerveConfiguration.angleConfiguration.frontRight,
+                inputTwist * swerveConfiguration.speedConfiguration.frontRight
+            )
+        )
+        val frontLeftVector = calculateDrive(
+            input,
+            Coordinate.fromPolar(
+                swerveConfiguration.angleConfiguration.frontLeft,
+                inputTwist * swerveConfiguration.speedConfiguration.frontLeft
+            )
+        )
+        val backRightVector = calculateDrive(
+            input,
+            Coordinate.fromPolar(
+                swerveConfiguration.angleConfiguration.backRight,
+                inputTwist * swerveConfiguration.speedConfiguration.backRight
+            )
+        )
+        val backLeftVector = calculateDrive(
+            input,
+            Coordinate.fromPolar(
+                swerveConfiguration.angleConfiguration.backLeft,
+                inputTwist * swerveConfiguration.speedConfiguration.backLeft
+            )
+        )
 
-        val wheelVectors = normalizeWheelSpeeds(arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r), 1.0)
+        val wheelVectors = normalizeWheelSpeeds(
+            arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r),
+            1.0
+        )
 
         frontRightVector.r = wheelVectors[0]
         frontLeftVector.r = wheelVectors[1]

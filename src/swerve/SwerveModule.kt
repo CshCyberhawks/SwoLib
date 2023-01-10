@@ -2,14 +2,15 @@ package cshcyberhawks.swolib.swerve
 
 import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode
-import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import com.ctre.phoenix.motorcontrol.can.TalonFX
+import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * A class used to encapsulate each individual swerve module in the swerve drive train. This class
@@ -38,15 +39,15 @@ import edu.wpi.first.math.controller.PIDController
  * friction
  */
 class SwerveModule(
-        var turnMotor: TalonSRX,
-        var driveMotor: TalonFX,
-        var turnEncoder: AnalogTurnEncoder,
-        var drivePIDF: Double,
-        var drivePID: PIDController,
-        var turnPID: PIDController,
-        val wheelRadius: Double,
-        val gearRatio: Double,
-        val maxSpeed: Double,
+    var turnMotor: TalonSRX,
+    var driveMotor: TalonFX,
+    var turnEncoder: AnalogTurnEncoder,
+    var drivePIDF: Double,
+    var drivePID: PIDController,
+    var turnPID: PIDController,
+    val wheelRadius: Double,
+    val gearRatio: Double,
+    val maxSpeed: Double,
 ) {
     private var oldAngle: Double = 0.0
 
@@ -104,13 +105,16 @@ class SwerveModule(
             speed *= -1
         }
 
+        SmartDashboard.putNumber("${turnEncoder.port} desired angle", angle)
+        SmartDashboard.putNumber("${turnEncoder.port} desired speed", speed)
+
         speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
         driveMotor.set(
-                ControlMode.PercentOutput,
-                MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
+            ControlMode.PercentOutput,
+            MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
         )
         if (!turnPID.atSetpoint()) {
             turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))

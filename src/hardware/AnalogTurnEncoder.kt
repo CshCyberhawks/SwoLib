@@ -19,6 +19,13 @@ class AnalogTurnEncoder(val port: Int, private val offset: Double) {
      * @return The position in degrees.
      */
     fun get(): Double = voltageToDegrees(encoder.voltage) - offset
+
+    /**
+     * Gets the raw position of the encoder (ignores the offset).
+     *
+     * @return The raw position in degrees.
+     */
+    fun getRaw(): Double = voltageToDegrees(encoder.voltage)
 }
 
 
