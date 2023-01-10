@@ -37,13 +37,8 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
 
     var throttle = 0.5
 
-    private fun fieldOriented(coord: Coordinate, gyroAngle: Double): Coordinate {
-        coord.theta += gyroAngle
-        return coord
-    }
-
     private fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate): Coordinate {
-        return fieldOriented(driveCoord, gyro.getAngle()) + twistCoord
+        return driveCoord.apply { theta += gyro.getAngle() } + twistCoord
     }
 
     fun drive(input: Coordinate, inputTwist: Double) {
