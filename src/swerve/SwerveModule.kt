@@ -105,9 +105,6 @@ class SwerveModule(
             speed *= -1
         }
 
-        SmartDashboard.putNumber("${turnEncoder.port} desired angle", angle)
-        SmartDashboard.putNumber("${turnEncoder.port} desired speed", speed)
-
         speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
