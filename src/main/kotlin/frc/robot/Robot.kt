@@ -72,13 +72,15 @@ class Robot : TimedRobot() {
         4.0
     )
 
+    val gyro = NavXGyro(SPI.Port.kMXP)
+
     val driveTrain = SwerveDriveTrain(
         FourWheelSwerveConfiguration(
             frontRightSwerveModule,
             frontLeftSwerveModule,
             backRightSwerveModule,
             backLeftSwerveModule
-        ), NavXGyro(SPI.Port.kMXP)
+        ), gyro
     )
 
     val joystick = Joystick(0)
@@ -140,9 +142,9 @@ class Robot : TimedRobot() {
      * This function is called periodically during operator control.
      */
     override fun teleopPeriodic() {
-        SmartDashboard.putNumber("Desired direction", Coordinate(joystick.x, joystick.y).theta)
-        SmartDashboard.putNumber("Desired mag", Coordinate(joystick.x, joystick.y).r)
-        println(Coordinate(joystick.x, joystick.y).theta)
+        if (joystick.trigger) {
+            gyro.setOffset()
+        }
 
         driveTrain.drive(Coordinate(joystick.x, joystick.y).apply { theta += 90 }, joystick.twist)
     }
