@@ -14,10 +14,10 @@ object AngleCalculations {
      * @return The converted angle.
      */
     fun wrapAroundAngles(angle: Double): Double {
-        while (angle < 0) {
-            return angle + 360
+        if (angle < 0) {
+            return (angle % 360) + 360
         }
-        return angle
+        return (angle % 360)
     }
 
     /**
