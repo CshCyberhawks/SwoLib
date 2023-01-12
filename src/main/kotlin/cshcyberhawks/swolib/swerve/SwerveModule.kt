@@ -5,23 +5,22 @@ import com.ctre.phoenix.motorcontrol.NeutralMode
 import com.ctre.phoenix.motorcontrol.can.TalonFX
 import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
-import cshcyberhawks.swolib.hardware.TalonFXEncoder
+import cshcyberhawks.swolib.hardware.GenericTurnEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * A class used to encapsulate each individual swerve module in the swerve drive train. This class
- * directly constrols each module's PIDs, motors, and encoders. This module is set up to use a
+ * directly controls each module's PIDs, motors, and encoders. This module is set up to use a
  * single falcon 500 motor for driving and any motor that is controlled by a TalonSRX for turning.
  * The module uses the falcon's builtin encoders and PIDs. The module requires an analog encoder and
  * TalonSRX motor controller for the turning motor.
  *
  * @property turnMotor The turning motor controller - must
  *
- * @property dirveMotor The Falcon500 drive motor controller
+ * @property driveMotor The Falcon500 drive motor controller
  *
  * @property AnalogTurnEncoder The analog turn encoder used to track the module's wheel angle
  *
@@ -41,7 +40,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 class SwerveModule(
     var turnMotor: TalonSRX,
     var driveMotor: TalonFX,
-    var turnEncoder: AnalogTurnEncoder,
+    var turnEncoder: GenericTurnEncoder,
     var drivePIDF: Double,
     var drivePID: PIDController,
     var turnPID: PIDController,
@@ -50,8 +49,6 @@ class SwerveModule(
     val maxSpeed: Double,
 ) {
     private var oldAngle: Double = 0.0
-
-    var driveEncoder: TalonFXEncoder = TalonFXEncoder(driveMotor)
 
     init {
         driveMotor.config_kF(0, drivePIDF)
