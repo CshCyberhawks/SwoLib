@@ -10,7 +10,7 @@ class AngleCalculationsTest {
     fun wrapAroundAngles() {
         assertEquals(0.0, AngleCalculations.wrapAroundAngles(0.0), 0.0)
         assertEquals(180.0, AngleCalculations.wrapAroundAngles(180.0), 0.0)
-        assertEquals(360.0, AngleCalculations.wrapAroundAngles(360.0), 0.0)
+        assertEquals(0.0, AngleCalculations.wrapAroundAngles(360.0), 0.0)
         assertEquals(180.0, AngleCalculations.wrapAroundAngles(-180.0), 0.0)
         assertEquals(0.0, AngleCalculations.wrapAroundAngles(-360.0), 0.0)
     }
