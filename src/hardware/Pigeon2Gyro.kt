@@ -12,9 +12,7 @@ class Pigeon2Gyro(private val port: Int) : GenericGyro {
      *
      * @return The current angle.
      */
-    override fun getAngle(): Double {
-        return AngleCalculations.wrapAroundAngles(gyro.yaw - offsetValue)
-    }
+    override fun getAngle(): Double = AngleCalculations.wrapAroundAngles(gyro.yaw - offsetValue)
 
     /**
      * Sets the angle offset of the gyro to the current direction.

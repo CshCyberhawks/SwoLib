@@ -10,6 +10,7 @@ import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
+import kotlin.math.PI
 
 /**
  * A class used to encapsulate each individual swerve module in the swerve drive train. This class
@@ -59,18 +60,9 @@ class SwerveModule(
         driveMotor.setNeutralMode(NeutralMode.Brake)
     }
 
-    private fun convertToMetersPerSecond(rpm: Double): Double {
-        return ((2 * Math.PI * wheelRadius) / 60) * (rpm / gearRatio)
-    }
+    private fun convertToMetersPerSecond(rpm: Double): Double = (2 * PI * wheelRadius * rpm) / (60 * gearRatio)
 
-    private fun convertToMetersPerSecondFromSecond(rps: Double): Double {
-        return (2 * Math.PI * wheelRadius * (rps / gearRatio))
-    }
-
-    private fun convertToWheelRotations(meters: Double): Double {
-        val wheelConstant = 2 * Math.PI * wheelRadius / 60
-        return 7 * meters / wheelConstant
-    }
+    private fun convertToWheelRotations(meters: Double): Double = (60 * gearRatio * meters) / (2 * PI * wheelRadius)
 
     fun preserveAngle() {
         drive(0.0, oldAngle)
@@ -102,7 +94,7 @@ class SwerveModule(
             speed *= -1
         }
 
-        speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
+        speed *= maxSpeed
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 

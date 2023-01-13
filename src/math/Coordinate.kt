@@ -21,18 +21,12 @@ class Coordinate(var x: Double = 0.0, var y: Double = 0.0) {
         }
 
     companion object {
-        fun fromPolar(theta: Double, r: Double): Coordinate {
-            return Coordinate(r * sin(theta), r * cos(theta))
-        }
+        fun fromPolar(theta: Double, r: Double): Coordinate = Coordinate(r * sin(theta), r * cos(theta))
     }
 
-    operator fun plus(other: Coordinate): Coordinate {
-        return Coordinate(x + other.x, y + other.y)
-    }
+    operator fun plus(other: Coordinate): Coordinate = Coordinate(x + other.x, y + other.y)
 
-    operator fun minus(other: Coordinate): Coordinate {
-        return Coordinate(x - other.x, y - other.y)
-    }
+    operator fun minus(other: Coordinate): Coordinate = Coordinate(x - other.x, y - other.y)
 
     operator fun timesAssign(other: Double) {
         x *= other
@@ -45,6 +39,6 @@ class Coordinate(var x: Double = 0.0, var y: Double = 0.0) {
 
         other as Coordinate
 
-        return x == other.x && y == other.y
+        return (x == other.x) && (y == other.y)
     }
 }
