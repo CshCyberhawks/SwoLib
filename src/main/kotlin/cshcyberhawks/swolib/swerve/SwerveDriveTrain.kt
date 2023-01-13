@@ -1,7 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
 import cshcyberhawks.swolib.hardware.GenericGyro
-import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import kotlin.math.abs
@@ -52,7 +51,6 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
 
         input *= throttle
 
-        // The random numbers are the angle that the wheels need to turn to for the robot to turn
         val frontRightVector = calculateDrive(
             input,
             Coordinate.fromPolar(

@@ -11,9 +11,7 @@ object MiscCalculations {
      *
      * @return The speed in meters per second.
      */
-    fun gToMetersPerSecond(g: Double): Double {
-        return g * 9.8066
-    }
+    fun gToMetersPerSecond(g: Double): Double = g * 9.8066
 
     /**
      * Deadzones an input so it can not be below a certain value.
@@ -23,7 +21,5 @@ object MiscCalculations {
      *
      * @return The deadzoned value.
      */
-    fun calculateDeadzone(input: Double, deadzoneValue: Double): Double {
-        return if (abs(input) > deadzoneValue) input else 0.0
-    }
+    fun calculateDeadzone(input: Double, deadzoneValue: Double): Double = if (abs(input) > deadzoneValue) input else 0.0
 }

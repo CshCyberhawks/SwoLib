@@ -2,7 +2,6 @@ package cshcyberhawks.swolib.hardware
 
 import com.kauailabs.navx.frc.AHRS
 import cshcyberhawks.swolib.math.AngleCalculations
-import edu.wpi.first.math.filter.LinearFilter
 import edu.wpi.first.wpilibj.SPI
 
 /**
@@ -21,9 +20,7 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
      *
      * @return The current angle.
      */
-    override fun getAngle(): Double {
-        return AngleCalculations.wrapAroundAngles(AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble()) - offsetValue)
-    }
+    override fun getAngle(): Double = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble() - offsetValue)
 
     /**
      * Sets the angle offset of the gyro to the current direction.
