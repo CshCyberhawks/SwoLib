@@ -5,4 +5,4 @@ class FourWheelSpeedConfiguration(
     var frontLeft: Double = 0.5,
     var backRight: Double = 0.5,
     var backLeft: Double = 0.5
-) {}
+)

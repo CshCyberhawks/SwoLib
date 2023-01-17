@@ -2,26 +2,26 @@ package cshcyberhawks.swolib.swerve
 
 import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode
-import com.ctre.phoenix.motorcontrol.can.TalonSRX
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX
 import com.ctre.phoenix.motorcontrol.can.TalonFX
+import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
-import cshcyberhawks.swolib.hardware.TalonFXDriveEncoder
+import cshcyberhawks.swolib.hardware.GenericTurnEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
+import kotlin.math.PI
 
 /**
  * A class used to encapsulate each individual swerve module in the swerve drive train. This class
- * directly constrols each module's PIDs, motors, and encoders. This module is set up to use a
+ * directly controls each module's PIDs, motors, and encoders. This module is set up to use a
  * single falcon 500 motor for driving and any motor that is controlled by a TalonSRX for turning.
  * The module uses the falcon's builtin encoders and PIDs. The module requires an analog encoder and
  * TalonSRX motor controller for the turning motor.
  *
  * @property turnMotor The turning motor controller - must
  *
- * @property dirveMotor The Falcon500 drive motor controller
+ * @property driveMotor The Falcon500 drive motor controller
  *
  * @property AnalogTurnEncoder The analog turn encoder used to track the module's wheel angle
  *
@@ -39,19 +39,17 @@ import edu.wpi.first.math.controller.PIDController
  * friction
  */
 class SwerveModule(
-        var turnMotor: TalonSRX,
-        var driveMotor: TalonFX,
-        var turnEncoder: AnalogTurnEncoder,
-        var drivePIDF: Double,
-        var drivePID: PIDController,
-        var turnPID: PIDController,
-        val wheelRadius: Double,
-        val gearRatio: Double,
-        val maxSpeed: Double,
+    var turnMotor: TalonSRX,
+    var driveMotor: TalonFX,
+    var turnEncoder: GenericTurnEncoder,
+    var drivePIDF: Double,
+    var drivePID: PIDController,
+    var turnPID: PIDController,
+    val wheelRadius: Double,
+    val gearRatio: Double,
+    val maxSpeed: Double,
 ) {
     private var oldAngle: Double = 0.0
-
-    var driveEncoder: TalonFXDriveEncoder = TalonFXDriveEncoder(driveMotor)
 
     init {
         driveMotor.config_kF(0, drivePIDF)
@@ -62,18 +60,9 @@ class SwerveModule(
         driveMotor.setNeutralMode(NeutralMode.Brake)
     }
 
-    private fun convertToMetersPerSecond(rpm: Double): Double {
-        return ((2 * Math.PI * wheelRadius) / 60) * (rpm / gearRatio)
-    }
+    private fun convertToMetersPerSecond(rpm: Double): Double = (2 * PI * wheelRadius * rpm) / (60 * gearRatio)
 
-    private fun convertToMetersPerSecondFromSecond(rps: Double): Double {
-        return (2 * Math.PI * wheelRadius * (rps / gearRatio))
-    }
-
-    private fun convertToWheelRotations(meters: Double): Double {
-        val wheelConstant = 2 * Math.PI * wheelRadius / 60
-        return 7 * meters / wheelConstant
-    }
+    private fun convertToWheelRotations(meters: Double): Double = (60 * gearRatio * meters) / (2 * PI * wheelRadius)
 
     fun preserveAngle() {
         drive(0.0, oldAngle)
@@ -105,13 +94,13 @@ class SwerveModule(
             speed *= -1
         }
 
-        speed = convertToMetersPerSecond(speed * convertToWheelRotations(maxSpeed))
+        speed *= maxSpeed
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
         driveMotor.set(
-                ControlMode.PercentOutput,
-                MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
+            ControlMode.PercentOutput,
+            MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
         )
         if (!turnPID.atSetpoint()) {
             turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))

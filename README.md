@@ -1,5 +1,5 @@
 # SwoLib
-FRC team 2875 Cyberhawks open source kotlin library
+FRC team 2875 Cyberhawks open source Java/Kotlin library
 
 ## Features:
  * [Custom swerve drive utilities](#swerve-drive)
@@ -18,6 +18,7 @@ FRC team 2875 Cyberhawks open source kotlin library
  * Classes for each individual swerve module (swervewheel). Note: these are currently configured for swerve modules with a single falcon 500 motor (drive) and a single 775 motor (turn). It is also expected to have an analog encoder for wheel turning data
  * Custom odometry - takes in encoder data from each individual wheel and calculates robot position. This is more accurate than an accelerometer, however, cannot detect any external stresses (ie driving into a wall) and thus is recommended to be used solely in autonomous. 
  * Wheel speed normalization
+ * PID based drift correction for both positional and angular drift (using a NavX gyro and our custom position tracking odometry)
 
 ### Autonomous:
  * Autonomous swerve drive utilities - custom written - doesn't use any wpilib trajectory generation or swerve classes
