@@ -22,7 +22,6 @@ class FourWheelSwerveConfiguration(
     var speedConfiguration: FourWheelSpeedConfiguration = FourWheelSpeedConfiguration(),
     var angleConfiguration: FourWheelAngleConfiguration = FourWheelAngleConfiguration()
 ) {
-
     /**
      * A function that allows you to preserve the current angle for all the swerve wheels in the configuration.
      */

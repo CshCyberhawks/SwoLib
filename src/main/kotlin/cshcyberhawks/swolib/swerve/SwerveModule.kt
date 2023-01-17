@@ -8,6 +8,7 @@ import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.GenericTurnEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
+import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 import kotlin.math.PI
@@ -42,35 +43,21 @@ class SwerveModule(
     var turnMotor: TalonSRX,
     var driveMotor: TalonFX,
     var turnEncoder: GenericTurnEncoder,
-    var drivePIDF: Double,
     var drivePID: PIDController,
     var turnPID: PIDController,
-    val wheelRadius: Double,
-    val gearRatio: Double,
-    val maxSpeed: Double,
+    val maxSpeed: Double
 ) {
     private var oldAngle: Double = 0.0
 
     init {
-        driveMotor.config_kF(0, drivePIDF)
         driveMotor.config_kP(0, drivePID.p)
         driveMotor.config_kI(0, drivePID.i)
         driveMotor.config_kD(0, drivePID.d)
 
         driveMotor.setNeutralMode(NeutralMode.Brake)
     }
-
-    private fun convertToMetersPerSecond(rpm: Double): Double = (2 * PI * wheelRadius * rpm) / (60 * gearRatio)
-
-    private fun convertToWheelRotations(meters: Double): Double = (60 * gearRatio * meters) / (2 * PI * wheelRadius)
-
     fun preserveAngle() {
         drive(0.0, oldAngle)
-    }
-
-    fun kill() {
-        driveMotor[ControlMode.PercentOutput] = 0.0
-        turnMotor[ControlMode.PercentOutput] = 0.0
     }
 
     /**
