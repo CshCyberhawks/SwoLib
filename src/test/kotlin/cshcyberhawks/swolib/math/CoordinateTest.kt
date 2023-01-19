@@ -1,8 +1,7 @@
 package cshcyberhawks.swolib.math
 
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import kotlin.math.sqrt
 
 class CoordinateTest {
