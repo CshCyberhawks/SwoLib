@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/AngleCalculationsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/AngleCalculationsTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/ConversionsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/ConversionsTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/CoordinateTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/CoordinateTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/MiscCalculationsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/math/MiscCalculationsTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrainTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrainTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +31,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -62,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674169085238</updated>
-      <workItem from="1674169086688" duration="146000" />
+      <workItem from="1674169086688" duration="601000" />
     </task>
     <servers />
   </component>

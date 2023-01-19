@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2023.2.1"
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
+    id "org.jetbrains.dokka" version "1.7.20"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -87,6 +88,10 @@ jar {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+repositories {
+    mavenCentral()
 }
 
 // Configure jar and deploy tasks
