@@ -31,44 +31,32 @@ class Robot : TimedRobot() {
         TalonSRX(Constants.frontRightTurnMotor),
         TalonFX(Constants.frontRightDriveMotor),
         frontRightEncoder,
-        0.0,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        0.0505,
-        7.0,
         4.0
     )
     val frontLeftSwerveModule = SwerveModule(
         TalonSRX(Constants.frontLeftTurnMotor),
         TalonFX(Constants.frontLeftDriveMotor),
         frontLeftEncoder,
-        0.0,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        0.0505,
-        7.0,
         4.0
     )
     val backRightSwerveModule = SwerveModule(
         TalonSRX(Constants.backRightTurnMotor),
         TalonFX(Constants.backRightDriveMotor),
         backRightEncoder,
-        0.0,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        0.0505,
-        7.0,
         4.0
     )
     val backLeftSwerveModule = SwerveModule(
         TalonSRX(Constants.backLeftTurnMotor),
         TalonFX(Constants.backLeftDriveMotor),
         backLeftEncoder,
-        0.0,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        0.0505,
-        7.0,
         4.0
     )
 
