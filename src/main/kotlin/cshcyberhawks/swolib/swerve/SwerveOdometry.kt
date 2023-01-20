@@ -16,9 +16,7 @@ class SwerveOdometry(private val swerveDriveTrain: SwerveDriveTrain, private val
     fun getVelocity(wheelVectors: Array<Coordinate> = swerveDriveTrain.swerveConfiguration.getWheelVectors()): Vector3 {
         var total = Coordinate()
 
-        wheelVectors.forEach {
-            total += it
-        }
+        wheelVectors.forEach { total += it }
 
         total /= wheelVectors.size
 
