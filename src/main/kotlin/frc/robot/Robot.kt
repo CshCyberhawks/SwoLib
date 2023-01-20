@@ -7,6 +7,7 @@ import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import cshcyberhawks.swolib.swerve.SwerveModule
+import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.controller.PIDController
@@ -74,6 +75,8 @@ class Robot : TimedRobot() {
         ), gyro
     )
 
+    val swo = SwerveOdometry(driveTrain, gyro)
+
     val joystick = Joystick(0)
 
     /**
@@ -99,6 +102,7 @@ class Robot : TimedRobot() {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run()
+        swo.periodic()
     }
 
     /**
@@ -126,7 +130,6 @@ class Robot : TimedRobot() {
      * This function is called once when teleop is enabled.
      */
     override fun teleopInit() {
-        println("HFUEBFUE")
     }
 
     /**
