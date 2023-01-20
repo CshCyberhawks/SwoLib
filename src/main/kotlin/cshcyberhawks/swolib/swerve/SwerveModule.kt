@@ -6,9 +6,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX
 import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.GenericTurnEncoder
+import cshcyberhawks.swolib.hardware.TalonFXEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
+import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 import kotlin.math.PI
@@ -45,9 +47,11 @@ class SwerveModule(
     var turnEncoder: GenericTurnEncoder,
     var drivePID: PIDController,
     var turnPID: PIDController,
-    val maxSpeed: Double
+    val configuration: SwerveModuleConfiguration
 ) {
     private var oldAngle: Double = 0.0
+
+    private val driveEncoder: TalonFXEncoder = TalonFXEncoder(driveMotor)
 
     init {
         driveMotor.config_kP(0, drivePID.p)
@@ -56,6 +60,11 @@ class SwerveModule(
 
         driveMotor.setNeutralMode(NeutralMode.Brake)
     }
+
+    private fun rpmToMeters(rpm: Double): Double = (PI * configuration.wheelRadius * rpm) / (30 * configuration.gearRatio)
+
+    fun getWheelVector(): Coordinate = Coordinate.fromPolar(AngleCalculations.wrapAroundAngles(turnEncoder.get()), rpmToMeters(driveEncoder.getVelocity()))
+
     fun preserveAngle() {
         drive(0.0, oldAngle)
     }
@@ -81,13 +90,13 @@ class SwerveModule(
             speed *= -1
         }
 
-        speed *= maxSpeed
+        speed *= configuration.maxSpeed
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
 
         driveMotor.set(
             ControlMode.PercentOutput,
-            MathUtil.clamp(speed / maxSpeed, -1.0, 1.0)
+            MathUtil.clamp(speed / configuration.maxSpeed, -1.0, 1.0)
         )
         if (!turnPID.atSetpoint()) {
             turnMotor.set(ControlMode.PercentOutput, MathUtil.clamp(turnPIDOutput, -1.0, 1.0))

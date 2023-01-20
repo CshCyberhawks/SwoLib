@@ -12,14 +12,16 @@ class Pigeon2Gyro(private val port: Int) : GenericGyro {
      *
      * @return The current angle.
      */
-    override fun getAngle(): Double = AngleCalculations.wrapAroundAngles(gyro.yaw - offsetValue)
+    override fun getYaw(): Double = AngleCalculations.wrapAroundAngles(gyro.yaw - offsetValue)
+    override fun getPitch(): Double = gyro.pitch
+    override fun getRoll(): Double = gyro.roll
 
     /**
      * Sets the angle offset of the gyro to the current direction.
      *
      * This exists because the built-in offset was refusing to work.
      */
-    override fun setOffset() {
+    override fun setYawOffset() {
         offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw)
     }
 

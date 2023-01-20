@@ -33,6 +33,11 @@ class Coordinate(var x: Double = 0.0, var y: Double = 0.0) {
         y *= other
     }
 
+    operator fun divAssign(other: Int) {
+        x /= other
+        y /= other
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

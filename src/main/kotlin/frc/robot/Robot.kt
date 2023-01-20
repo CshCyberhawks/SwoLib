@@ -8,6 +8,7 @@ import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import cshcyberhawks.swolib.swerve.SwerveModule
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
+import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
@@ -27,13 +28,15 @@ class Robot : TimedRobot() {
     val backRightEncoder = AnalogTurnEncoder(Constants.backRightEncoder, 103.4)
     val backLeftEncoder = AnalogTurnEncoder(Constants.backLeftEncoder, 113.5)
 
+    val swerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
+
     val frontRightSwerveModule = SwerveModule(
         TalonSRX(Constants.frontRightTurnMotor),
         TalonFX(Constants.frontRightDriveMotor),
         frontRightEncoder,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        4.0
+        swerveModuleConfiguration
     )
     val frontLeftSwerveModule = SwerveModule(
         TalonSRX(Constants.frontLeftTurnMotor),
@@ -41,7 +44,7 @@ class Robot : TimedRobot() {
         frontLeftEncoder,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        4.0
+        swerveModuleConfiguration
     )
     val backRightSwerveModule = SwerveModule(
         TalonSRX(Constants.backRightTurnMotor),
@@ -49,7 +52,7 @@ class Robot : TimedRobot() {
         backRightEncoder,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        4.0
+        swerveModuleConfiguration
     )
     val backLeftSwerveModule = SwerveModule(
         TalonSRX(Constants.backLeftTurnMotor),
@@ -57,7 +60,7 @@ class Robot : TimedRobot() {
         backLeftEncoder,
         PIDController(0.01, 0.0, 0.0),
         PIDController(0.01, 0.0, 0.0),
-        4.0
+        swerveModuleConfiguration
     )
 
     val gyro = NavXGyro(SPI.Port.kMXP)
@@ -131,7 +134,7 @@ class Robot : TimedRobot() {
      */
     override fun teleopPeriodic() {
         if (joystick.trigger) {
-            gyro.setOffset()
+            gyro.setYawOffset()
         }
 
         driveTrain.drive(Coordinate(joystick.x, joystick.y).apply { theta += 90 }, joystick.twist)

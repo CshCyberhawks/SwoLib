@@ -1,5 +1,6 @@
 package cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration
 
+import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.SwerveModule
 
 /**
@@ -30,5 +31,9 @@ class FourWheelSwerveConfiguration(
         backLeft.preserveAngle()
         backRight.preserveAngle()
         frontLeft.preserveAngle()
+    }
+
+    fun getWheelVectors(): Array<Coordinate> {
+        return arrayOf(frontRight.getWheelVector(), frontLeft.getWheelVector(), backRight.getWheelVector(), backLeft.getWheelVector())
     }
 }
