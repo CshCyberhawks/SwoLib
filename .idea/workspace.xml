@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelAngleConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelAngleConfiguration.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelSpeedConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelSpeedConfiguration.kt" afterDir="false" />
-    </list>
+    <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
