@@ -126,8 +126,7 @@ class Robot : TimedRobot() {
     /**
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
-    override fun autonomousInit() {
-    }
+    override fun autonomousInit() {}
 
     /**
      * This function is called periodically during autonomous.
@@ -137,8 +136,7 @@ class Robot : TimedRobot() {
     /**
      * This function is called once when teleop is enabled.
      */
-    override fun teleopInit() {
-    }
+    override fun teleopInit() {}
 
     /**
      * This function is called periodically during operator control.
