@@ -13,7 +13,8 @@ class SwerveOdometry(private val swerveDriveTrain: SwerveDriveTrain, private val
 
     private var lastUpdateTime: Double = MiscCalculations.getCurrentTime()
 
-    fun getVelocity(wheelVectors: Array<Coordinate> = swerveDriveTrain.swerveConfiguration.getWheelVectors()): Vector3 {
+    fun getVelocity(): Vector3 {
+        val wheelVectors: Array<Coordinate> = swerveDriveTrain.swerveConfiguration.getWheelVectors()
         var total = Coordinate()
 
         wheelVectors.forEach { total += it }

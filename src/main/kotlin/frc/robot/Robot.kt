@@ -24,10 +24,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
  * project.
  */
 class Robot : TimedRobot() {
-    val frontRightEncoder = AnalogTurnEncoder(Constants.frontRightEncoder, 81.6)
-    val frontLeftEncoder = AnalogTurnEncoder(Constants.frontLeftEncoder, 311.2)
-    val backRightEncoder = AnalogTurnEncoder(Constants.backRightEncoder, 103.4)
-    val backLeftEncoder = AnalogTurnEncoder(Constants.backLeftEncoder, 113.5)
+    val encoderOffsets = arrayOf(310.781218176, 81.91405411200002, 115.48826942400002, 99.75584916000001)
+
+    val frontLeftEncoder = AnalogTurnEncoder(Constants.frontLeftEncoder, encoderOffsets[0])
+    val frontRightEncoder = AnalogTurnEncoder(Constants.frontRightEncoder, encoderOffsets[1])
+    val backLeftEncoder = AnalogTurnEncoder(Constants.backLeftEncoder, encoderOffsets[2])
+    val backRightEncoder = AnalogTurnEncoder(Constants.backRightEncoder, encoderOffsets[3])
 
     val swerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
 
@@ -86,6 +88,7 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
+        gyro.setYawOffset()
     }
 
     /**
@@ -103,6 +106,10 @@ class Robot : TimedRobot() {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run()
         swo.periodic()
+
+        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
+        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
+        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
@@ -159,5 +166,9 @@ class Robot : TimedRobot() {
         SmartDashboard.putNumber("FrontRightEncoder", frontRightEncoder.getRaw())
         SmartDashboard.putNumber("BackLeftEncoder", backLeftEncoder.getRaw())
         SmartDashboard.putNumber("BackRightEncoder", backRightEncoder.getRaw())
+
+        val encoderValues = arrayOf(frontLeftEncoder.getRaw(), frontRightEncoder.getRaw(), backLeftEncoder.getRaw(), backRightEncoder.getRaw())
+
+        SmartDashboard.putString("Encoder Values", encoderValues.joinToString(", "))
     }
 }

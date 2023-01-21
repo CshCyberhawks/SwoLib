@@ -13,6 +13,7 @@ import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWhe
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import kotlin.math.PI
 
 /**
