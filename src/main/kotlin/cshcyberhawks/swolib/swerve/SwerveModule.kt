@@ -87,6 +87,8 @@ class SwerveModule(
 
         oldAngle = angle
 
+        SmartDashboard.putNumber("${turnEncoder.port} desired anglePre", angle)
+
         val turnValue = AngleCalculations.wrapAroundAngles(turnEncoder.get())
 
 

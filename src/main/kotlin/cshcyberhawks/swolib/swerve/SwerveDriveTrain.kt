@@ -3,6 +3,7 @@ package cshcyberhawks.swolib.swerve
 import cshcyberhawks.swolib.hardware.GenericGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import kotlin.math.abs
 
 /**
@@ -35,7 +36,8 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
         }
 
         fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate, gyroAngle: Double): Coordinate {
-            return driveCoord.apply { theta += gyroAngle } + twistCoord
+//            return driveCoord.apply { theta += gyroAngle } + twistCoord
+            return driveCoord + twistCoordgit 
         }
     }
 
@@ -48,6 +50,11 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
             swerveConfiguration.preserveAngles()
             return
         }
+
+        SmartDashboard.putNumber("Input X", input.x)
+        SmartDashboard.putNumber("Input Y", input.y)
+        SmartDashboard.putNumber("Input Twist", inputTwist)
+        SmartDashboard.putNumber("Gyro Angle", gyro.getYaw())
 
         input *= throttle
 
@@ -86,10 +93,10 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
             gyroAngle
         )
 
-        val wheelVectors = normalizeWheelSpeeds(
-            arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r),
-            1.0
-        )
+//        val wheelVectors = normalizeWheelSpeeds(
+  val wheelVectors = arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r)
+//            1.0
+//        )
 
         frontRightVector.r = wheelVectors[0]
         frontLeftVector.r = wheelVectors[1]

@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
+    <list default="true" id="57d401d0-2b1c-47ba-afb4-27e193b0b127" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/AngleCalculations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/AngleCalculations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrain.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveModule.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,57 +22,30 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Kotlin Class" />
-        <option value="Kotlin Data Class" />
-        <option value="JUnit5 Test Class" />
-      </list>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2KZ55UbHxWyJk18QTxgSNUEcCc8" />
+  <component name="ProjectId" id="2KecHcUSJQrVrcy8yQSPwk7NpS1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="cshcyberhawks.swolib.swerve" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Gradle.Build &amp; Deploy Robot">
+}]]></component>
+  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="cshcyberhawks.swolib" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="cshcyberhawks.swolib" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -77,15 +54,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="" />
-      <created>1674169085238</created>
+      <changelist id="57d401d0-2b1c-47ba-afb4-27e193b0b127" name="Changes" comment="" />
+      <created>1674338406970</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1674169085238</updated>
-      <workItem from="1674169086688" duration="4771000" />
-      <workItem from="1674268112051" duration="396000" />
-      <workItem from="1674268524174" duration="4730000" />
-      <workItem from="1674325950065" duration="162000" />
+      <updated>1674338406970</updated>
+      <workItem from="1674338408037" duration="2440000" />
     </task>
     <servers />
   </component>
