@@ -3,7 +3,6 @@ package cshcyberhawks.swolib.swerve
 import cshcyberhawks.swolib.hardware.GenericGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import kotlin.math.abs
 
 /**

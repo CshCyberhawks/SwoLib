@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase
 import kotlin.math.cos
 import kotlin.math.sqrt
 
-class SwerveOdometry(private val swerveDriveTrain: SwerveDriveTrain, private val gyro: GenericGyro): SubsystemBase() {
+class SwerveOdometry(private val swerveDriveTrain: SwerveDriveTrain, private val gyro: GenericGyro) : SubsystemBase() {
     var fieldPosition: Vector3 = Vector3()
 
     private var lastUpdateTime: Double = MiscCalculations.getCurrentTime()
@@ -26,7 +26,8 @@ class SwerveOdometry(private val swerveDriveTrain: SwerveDriveTrain, private val
         returnCoordinate.y = total.y * cos(gyro.getRoll())
 
         // Pythagorean Theorem because computers can't do trig (quickly)
-        returnCoordinate.z = sqrt(total.x * total.x - returnCoordinate.x * returnCoordinate.x) + sqrt(total.y * total.y - returnCoordinate.y * returnCoordinate.y)
+        returnCoordinate.z =
+            sqrt(total.x * total.x - returnCoordinate.x * returnCoordinate.x) + sqrt(total.y * total.y - returnCoordinate.y * returnCoordinate.y)
 
         return returnCoordinate
     }

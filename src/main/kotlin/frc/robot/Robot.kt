@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
+import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import cshcyberhawks.swolib.swerve.SwerveModule
 import cshcyberhawks.swolib.swerve.SwerveOdometry
@@ -147,7 +148,12 @@ class Robot : TimedRobot() {
             gyro.setYawOffset()
         }
 
-        driveTrain.drive(Coordinate(joystick.x, joystick.y).apply { theta += 90 }, joystick.twist)
+        driveTrain.drive(
+            Coordinate(
+                MiscCalculations.calculateDeadzone(joystick.x, 0.05),
+                MiscCalculations.calculateDeadzone(joystick.y, 0.05)
+            ).apply { theta += 90 }.apply { y = -y }, MiscCalculations.calculateDeadzone(joystick.twist, 0.05)
+        )
     }
 
     /**
@@ -167,7 +173,12 @@ class Robot : TimedRobot() {
         SmartDashboard.putNumber("BackLeftEncoder", backLeftEncoder.getRaw())
         SmartDashboard.putNumber("BackRightEncoder", backRightEncoder.getRaw())
 
-        val encoderValues = arrayOf(frontLeftEncoder.getRaw(), frontRightEncoder.getRaw(), backLeftEncoder.getRaw(), backRightEncoder.getRaw())
+        val encoderValues = arrayOf(
+            frontLeftEncoder.getRaw(),
+            frontRightEncoder.getRaw(),
+            backLeftEncoder.getRaw(),
+            backRightEncoder.getRaw()
+        )
 
         SmartDashboard.putString("Encoder Values", encoderValues.joinToString(", "))
     }

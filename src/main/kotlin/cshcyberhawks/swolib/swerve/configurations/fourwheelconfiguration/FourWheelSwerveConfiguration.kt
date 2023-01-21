@@ -34,6 +34,11 @@ class FourWheelSwerveConfiguration(
     }
 
     fun getWheelVectors(): Array<Coordinate> {
-        return arrayOf(frontRight.getWheelVector(), frontLeft.getWheelVector(), backRight.getWheelVector(), backLeft.getWheelVector())
+        return arrayOf(
+            frontRight.getWheelVector(),
+            frontLeft.getWheelVector(),
+            backRight.getWheelVector(),
+            backLeft.getWheelVector()
+        )
     }
 }

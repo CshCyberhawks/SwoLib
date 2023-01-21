@@ -9,7 +9,6 @@ import cshcyberhawks.swolib.hardware.GenericTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXEncoder
 import cshcyberhawks.swolib.math.AngleCalculations
 import cshcyberhawks.swolib.math.Coordinate
-import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
 import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
@@ -62,9 +61,13 @@ class SwerveModule(
         driveMotor.setNeutralMode(NeutralMode.Brake)
     }
 
-    private fun rpmToMeters(rpm: Double): Double = (PI * configuration.wheelRadius * rpm) / (30 * configuration.gearRatio)
+    private fun rpmToMeters(rpm: Double): Double =
+        (PI * configuration.wheelRadius * rpm) / (30 * configuration.gearRatio)
 
-    fun getWheelVector(): Coordinate = Coordinate.fromPolar(AngleCalculations.wrapAroundAngles(turnEncoder.get()), rpmToMeters(driveEncoder.getVelocity()))
+    fun getWheelVector(): Coordinate = Coordinate.fromPolar(
+        AngleCalculations.wrapAroundAngles(turnEncoder.get()),
+        rpmToMeters(driveEncoder.getVelocity())
+    )
 
     fun preserveAngle() {
         drive(0.0, oldAngle)
@@ -86,10 +89,13 @@ class SwerveModule(
 
         val turnValue = AngleCalculations.wrapAroundAngles(turnEncoder.get())
 
+
         angle = AngleCalculations.optimizeAngle(angle, turnValue)
         if (angle != oldAngle) {
             speed *= -1
         }
+        SmartDashboard.putNumber("${turnEncoder.port} desired angle", angle)
+        SmartDashboard.putNumber("${turnEncoder.port} desired speed", speed)
 
         speed *= configuration.maxSpeed
 

@@ -24,5 +24,5 @@ object MiscCalculations {
      */
     fun calculateDeadzone(input: Double, deadzoneValue: Double): Double = if (abs(input) > deadzoneValue) input else 0.0
 
-    fun getCurrentTime(): Double = WPIUtilJNI.now() * 1.0e-6;
+    fun getCurrentTime(): Double = WPIUtilJNI.now() * 1.0e-6
 }
