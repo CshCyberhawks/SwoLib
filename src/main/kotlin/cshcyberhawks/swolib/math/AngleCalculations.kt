@@ -29,7 +29,6 @@ object AngleCalculations {
      * @return The optimized angle.
      */
     fun optimizeAngle(desiredAngle: Double, currentAngle: Double): Double {
-
         if (desiredAngle > wrapAroundAngles(currentAngle - 90) && desiredAngle < wrapAroundAngles(currentAngle + 90)) {
             return (desiredAngle + 180) % 360
         }
