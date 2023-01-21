@@ -34,13 +34,13 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
 
             return wheelVectors
         }
+
+        fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate, gyroAngle: Double): Coordinate {
+            return driveCoord.apply { theta += gyroAngle } + twistCoord
+        }
     }
 
     var throttle = 0.5
-
-    private fun calculateDrive(driveCoord: Coordinate, twistCoord: Coordinate): Coordinate {
-        return driveCoord.apply { theta += gyro.getYaw() } + twistCoord
-    }
 
     fun drive(input: Coordinate, inputTwist: Double) {
         if (input == Coordinate(0.0, 0.0) && inputTwist == 0.0) {
@@ -52,33 +52,39 @@ class SwerveDriveTrain(var swerveConfiguration: FourWheelSwerveConfiguration, va
 
         input *= throttle
 
+        val gyroAngle = gyro.getYaw()
+
         val frontRightVector = calculateDrive(
             input,
             Coordinate.fromPolar(
                 swerveConfiguration.angleConfiguration.frontRight,
                 inputTwist * swerveConfiguration.speedConfiguration.frontRight
-            )
+            ),
+            gyroAngle
         )
         val frontLeftVector = calculateDrive(
             input,
             Coordinate.fromPolar(
                 swerveConfiguration.angleConfiguration.frontLeft,
                 inputTwist * swerveConfiguration.speedConfiguration.frontLeft
-            )
+            ),
+            gyroAngle
         )
         val backRightVector = calculateDrive(
             input,
             Coordinate.fromPolar(
                 swerveConfiguration.angleConfiguration.backRight,
                 inputTwist * swerveConfiguration.speedConfiguration.backRight
-            )
+            ),
+            gyroAngle
         )
         val backLeftVector = calculateDrive(
             input,
             Coordinate.fromPolar(
                 swerveConfiguration.angleConfiguration.backLeft,
                 inputTwist * swerveConfiguration.speedConfiguration.backLeft
-            )
+            ),
+            gyroAngle
         )
 
         val wheelVectors = normalizeWheelSpeeds(

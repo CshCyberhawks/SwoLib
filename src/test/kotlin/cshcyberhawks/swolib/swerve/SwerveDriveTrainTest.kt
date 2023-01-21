@@ -1,7 +1,9 @@
 package cshcyberhawks.swolib.swerve
 
+import cshcyberhawks.swolib.math.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import kotlin.math.sqrt
 
 
 class SwerveDriveTrainTest {
@@ -38,5 +40,18 @@ class SwerveDriveTrainTest {
         for (i in wheelSpeeds4.indices) {
             assertEquals(wheelSpeeds4[i], normalizedWheelVectors4[i], 0.0)
         }
+    }
+
+    private fun assertCoordinate(cord1: Coordinate, cord2: Coordinate) {
+        assertEquals(cord1.x, cord2.x, 0.01)
+        assertEquals(cord1.y, cord2.y, 0.01)
+    }
+
+    @Test
+    fun calculateDrive() {
+        assertCoordinate(Coordinate(1.0, 1.0), SwerveDriveTrain.calculateDrive(Coordinate(1.0, 1.0), Coordinate(), 0.0))
+        assertCoordinate(Coordinate.fromPolar(45.0, 1.0), SwerveDriveTrain.calculateDrive(Coordinate(0.0, 0.0), Coordinate.fromPolar(45.0, 1.0), 0.0))
+        assertCoordinate(Coordinate(0.0, 1.0), SwerveDriveTrain.calculateDrive(Coordinate(1.0, 0.0), Coordinate(), 90.0))
+        assertCoordinate(Coordinate(1.0 + 1.0 / sqrt(2.0), 1.0 / sqrt(2.0)), SwerveDriveTrain.calculateDrive(Coordinate(1.0, 0.0), Coordinate.fromPolar(45.0, 1.0), 0.0))
     }
 }
