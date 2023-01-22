@@ -6,6 +6,7 @@ import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.math.MiscCalculations
+import cshcyberhawks.swolib.math.Vector2
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
@@ -86,7 +87,7 @@ class Robot : TimedRobot() {
             gyro.setYawOffset()
         }
 
-        swerveDriveTrain.drive(joystick.y, joystick.x, joystick.twist, 0.5, true)
+        swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick.twist)
     }
 
     /**
