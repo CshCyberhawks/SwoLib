@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57d401d0-2b1c-47ba-afb4-27e193b0b127" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/MathClass.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/Polar.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveWheel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/Vector2.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/AngleCalculations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/AngleCalculations.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrain.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveModule.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveOdometry.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelAngleConfiguration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelSpeedConfiguration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/FourWheelSwerveConfiguration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/configurations/fourwheelconfiguration/SwerveModuleConfiguration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrainTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/cshcyberhawks/swolib/swerve/SwerveDriveTrainTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,12 +36,16 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2KecHcUSJQrVrcy8yQSPwk7NpS1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -43,7 +57,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.Clean">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="cshcyberhawks.swolib" />
       <method v="2">
@@ -60,10 +74,15 @@
       <option name="presentableId" value="Default" />
       <updated>1674338406970</updated>
       <workItem from="1674338408037" duration="2440000" />
+      <workItem from="1674340883996" duration="28000" />
+      <workItem from="1674411589466" duration="5247000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

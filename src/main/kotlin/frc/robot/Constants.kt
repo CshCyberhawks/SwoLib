@@ -18,4 +18,6 @@ object Constants {
     const val frontLeftEncoder = 1
     const val backRightEncoder = 3
     const val backLeftEncoder = 2
+
+    val turnEncoderOffsets: Array<Double> = arrayOf(261.65036383200004, 312.89059296000005, 282.12887736000005, 94.74608404800001)
 }

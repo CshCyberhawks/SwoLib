@@ -6,17 +6,13 @@ import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.math.MiscCalculations
-import cshcyberhawks.swolib.swerve.SwerveDriveTrain
-import cshcyberhawks.swolib.swerve.SwerveModule
-import cshcyberhawks.swolib.swerve.SwerveOdometry
-import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.FourWheelSwerveConfiguration
-import cshcyberhawks.swolib.swerve.configurations.fourwheelconfiguration.SwerveModuleConfiguration
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandScheduler
+import frc.robot.subsystems.SwerveDriveTrain
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,60 +21,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
  * project.
  */
 class Robot : TimedRobot() {
-    val encoderOffsets = arrayOf(310.781218176, 81.91405411200002, 115.48826942400002, 99.75584916000001)
-
-    val frontLeftEncoder = AnalogTurnEncoder(Constants.frontLeftEncoder, encoderOffsets[0])
-    val frontRightEncoder = AnalogTurnEncoder(Constants.frontRightEncoder, encoderOffsets[1])
-    val backLeftEncoder = AnalogTurnEncoder(Constants.backLeftEncoder, encoderOffsets[2])
-    val backRightEncoder = AnalogTurnEncoder(Constants.backRightEncoder, encoderOffsets[3])
-
-    val swerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
-
-    val frontRightSwerveModule = SwerveModule(
-        TalonSRX(Constants.frontRightTurnMotor),
-        TalonFX(Constants.frontRightDriveMotor),
-        frontRightEncoder,
-        PIDController(0.01, 0.0, 0.0),
-        PIDController(0.01, 0.0, 0.0),
-        swerveModuleConfiguration
-    )
-    val frontLeftSwerveModule = SwerveModule(
-        TalonSRX(Constants.frontLeftTurnMotor),
-        TalonFX(Constants.frontLeftDriveMotor),
-        frontLeftEncoder,
-        PIDController(0.01, 0.0, 0.0),
-        PIDController(0.01, 0.0, 0.0),
-        swerveModuleConfiguration
-    )
-    val backRightSwerveModule = SwerveModule(
-        TalonSRX(Constants.backRightTurnMotor),
-        TalonFX(Constants.backRightDriveMotor),
-        backRightEncoder,
-        PIDController(0.01, 0.0, 0.0),
-        PIDController(0.01, 0.0, 0.0),
-        swerveModuleConfiguration
-    )
-    val backLeftSwerveModule = SwerveModule(
-        TalonSRX(Constants.backLeftTurnMotor),
-        TalonFX(Constants.backLeftDriveMotor),
-        backLeftEncoder,
-        PIDController(0.01, 0.0, 0.0),
-        PIDController(0.01, 0.0, 0.0),
-        swerveModuleConfiguration
-    )
-
     val gyro = NavXGyro(SPI.Port.kMXP)
 
-    val driveTrain = SwerveDriveTrain(
-        FourWheelSwerveConfiguration(
-            frontRightSwerveModule,
-            frontLeftSwerveModule,
-            backRightSwerveModule,
-            backLeftSwerveModule
-        ), gyro
-    )
-
-    val swo = SwerveOdometry(driveTrain, gyro)
+    val swerveDriveTrain = SwerveDriveTrain(gyro)
 
     val joystick = Joystick(0)
 
@@ -106,11 +51,6 @@ class Robot : TimedRobot() {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run()
-        swo.periodic()
-
-        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
-        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
-        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
@@ -146,12 +86,7 @@ class Robot : TimedRobot() {
             gyro.setYawOffset()
         }
 
-        driveTrain.drive(
-            Coordinate(
-                MiscCalculations.calculateDeadzone(joystick.x, 0.05),
-                MiscCalculations.calculateDeadzone(joystick.y, 0.05)
-            ).apply { theta += 90 }.apply { y = -y }, MiscCalculations.calculateDeadzone(joystick.twist, 0.05)
-        )
+        swerveDriveTrain.drive(joystick.y, joystick.x, joystick.twist, 0.5, true)
     }
 
     /**
@@ -166,18 +101,19 @@ class Robot : TimedRobot() {
      * This function is called periodically during test mode.
      */
     override fun testPeriodic() {
-        SmartDashboard.putNumber("FrontLeftEncoder", frontLeftEncoder.getRaw())
-        SmartDashboard.putNumber("FrontRightEncoder", frontRightEncoder.getRaw())
-        SmartDashboard.putNumber("BackLeftEncoder", backLeftEncoder.getRaw())
-        SmartDashboard.putNumber("BackRightEncoder", backRightEncoder.getRaw())
-
-        val encoderValues = arrayOf(
-            frontLeftEncoder.getRaw(),
-            frontRightEncoder.getRaw(),
-            backLeftEncoder.getRaw(),
-            backRightEncoder.getRaw()
-        )
-
-        SmartDashboard.putString("Encoder Values", encoderValues.joinToString(", "))
+//        SmartDashboard.putNumber("FrontLeftEncoder", frontLeftEncoder.getRaw())
+//        SmartDashboard.putNumber("FrontRightEncoder", frontRightEncoder.getRaw())
+//        SmartDashboard.putNumber("BackLeftEncoder", backLeftEncoder.getRaw())
+//        SmartDashboard.putNumber("BackRightEncoder", backRightEncoder.getRaw())
+//
+//        val encoderValues = arrayOf(
+//            frontLeftEncoder.getRaw(),
+//            frontRightEncoder.getRaw(),
+//            backLeftEncoder.getRaw(),
+//            backRightEncoder.getRaw()
+//        )
+//
+//        SmartDashboard.putString("Encoder Values", encoderValues.joinToString(", "))
+        swerveDriveTrain.logEncoderValues()
     }
 }
