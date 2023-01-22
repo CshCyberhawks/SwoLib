@@ -14,6 +14,26 @@ import java.lang.Double.min
 import kotlin.math.*
 
 class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets oscillation
+    companion object {
+        fun normalizeWheelSpeeds(wheelVectors: Array<Double>, distanceFromZero: Double): Array<Double> {
+            var max = abs(wheelVectors[0])
+
+            for (wheelVector in wheelVectors) {
+                if (abs(wheelVector) > max) {
+                    max = abs(wheelVector)
+                }
+            }
+
+            val maxSpeed = if (max > distanceFromZero) max else distanceFromZero
+
+            for (i in wheelVectors.indices) {
+                wheelVectors[i] = wheelVectors[i] / maxSpeed * distanceFromZero
+            }
+
+            return wheelVectors
+        }
+    }
+
     var backLeft: SwerveWheel =
             SwerveWheel(
                     Constants.backLeftTurnMotor,
@@ -161,9 +181,9 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets
         val frontLeftAngle = frontLeftVector.theta
         val backRightAngle = backRightVector.theta
         val backLeftAngle = backLeftVector.theta
-        var wheelSpeeds: DoubleArray =
-                doubleArrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
-        wheelSpeeds = MathClass.normalizeSpeeds(wheelSpeeds, 1.0, -1.0)
+        var wheelSpeeds =
+                arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
+        wheelSpeeds = normalizeWheelSpeeds(wheelSpeeds, 1.0)
 
         // SmartDashboard.putNumber("frontRightAngle", frontRightAngle)
         // SmartDashboard.putNumber("frontLeftAngle", frontLeftAngle)
