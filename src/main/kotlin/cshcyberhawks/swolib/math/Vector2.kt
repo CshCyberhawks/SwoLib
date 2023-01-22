@@ -8,6 +8,8 @@ class Vector2(var x: Double = 0.0, var y: Double = 0.0) {
         fun fromPolar(cord: Polar): Vector2 = Vector2(cord.r * cos(Math.toRadians(cord.theta)), cord.r * sin(Math.toRadians(cord.theta)))
     }
 
+    operator fun plus(other: Vector2): Vector2 = Vector2(x + other.x, y + other.y)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
