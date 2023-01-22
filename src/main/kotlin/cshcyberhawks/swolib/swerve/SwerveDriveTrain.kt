@@ -13,7 +13,7 @@ import java.lang.Double.max
 import java.lang.Double.min
 import kotlin.math.*
 
-class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() {
+class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets oscillation
     companion object {
         fun normalizeWheelSpeeds(wheelVectors: Array<Double>, distanceFromZero: Double): Array<Double> {
             var max = abs(wheelVectors[0])
@@ -60,8 +60,39 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() {
             )
 
 
+    var xPID: PIDController = PIDController(1.2, 0.0, 0.2)
+    var yPID: PIDController = PIDController(1.2, 0.0, 0.2)
+
+    // .3, 0.0, 0.01
+    var twistPID: PIDController = PIDController(2.0, 0.0, 0.1)
+
+    var wheelArr: Array<SwerveWheel> = arrayOf(backLeft, backRight, frontLeft, frontRight)
+
+    var isTwisting = false
+
+    // I do this to prevent large jumps in value with first run of loop in predicted
+    // odometry
+    private var lastUpdateTime = -1.0
+
+    // var maxSwos = 13.9458
+    // var maxMeters = 3.777
+
     init {
         gyro.setYawOffset()
+    }
+
+    fun polarToCartesian(theta: Double, r: Double): DoubleArray {
+        // math to turn polar coordinate into cartesian
+        val x = r * cos(Math.toRadians(theta))
+        val y = r * sin(Math.toRadians(theta))
+        return doubleArrayOf(x, y)
+    }
+
+    fun cartesianToPolar(x: Double, y: Double): DoubleArray {
+        // math to turn cartesian into polar
+        val r = sqrt(Math.pow(x, 2.0) + y.pow(2.0))
+        val theta = Math.toDegrees(atan2(y, x))
+        return doubleArrayOf(theta, r)
     }
 
     fun fieldOriented(input: Vector2, gyroAngle: Double): Vector2 {
@@ -102,7 +133,18 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() {
             return
         }
 
+
+        SmartDashboard.putNumber("in twist", inputTwist)
+
+
+        isTwisting = inputTwist != 0.0
+
+        // SmartDashboard.putNumber("drive inputX ", inputX)
+        // SmartDashboard.putNumber("drive inputY ", inputY)
+
         val twistMult = 0.5;
+
+        // calculates the speed and angle for each motor
         val frontRightVector =
                 calculateDrive(
                         input,
@@ -131,19 +173,37 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() {
                         -135.0,
                         inputTwist*twistMult))
                 )
-
+        val frontRightSpeed = frontRightVector.r
+        val frontLeftSpeed = frontLeftVector.r
+        val backRightSpeed = backRightVector.r
+        val backLeftSpeed = backLeftVector.r
+        val frontRightAngle = frontRightVector.theta
+        val frontLeftAngle = frontLeftVector.theta
+        val backRightAngle = backRightVector.theta
+        val backLeftAngle = backLeftVector.theta
         var wheelSpeeds =
-                arrayOf(frontRightVector.r, frontLeftVector.r, backRightVector.r, backLeftVector.r)
+                arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
         wheelSpeeds = normalizeWheelSpeeds(wheelSpeeds, 1.0)
 
-        backRight.drive(wheelSpeeds[2], backRightVector.theta)
-        backLeft.drive(wheelSpeeds[3], backLeftVector.theta)
-        frontRight.drive(wheelSpeeds[0], frontRightVector.theta)
-        frontLeft.drive(wheelSpeeds[1], frontLeftVector.theta)
+        // SmartDashboard.putNumber("frontRightAngle", frontRightAngle)
+        // SmartDashboard.putNumber("frontLeftAngle", frontLeftAngle)
+        // SmartDashboard.putNumber("backRightAngle", backRightAngle)
+        // SmartDashboard.putNumber("backLeftAngle", backLeftAngle)
+
+        // sets the speed and angle of each motor
+        backRight.drive(wheelSpeeds[2], backRightAngle)
+        backLeft.drive(wheelSpeeds[3], backLeftAngle)
+        frontRight.drive(wheelSpeeds[0], frontRightAngle)
+        frontLeft.drive(wheelSpeeds[1], frontLeftAngle)
     }
 
     fun logEncoderValues() {
         val vals = arrayOf(frontRight.getRawEncoder(), frontLeft.getRawEncoder(), backLeft.getRawEncoder(), backRight.getRawEncoder())
         SmartDashboard.putString("Encoder values", vals.joinToString(", "))
     }
+
+    // public void resetPredictedOdometry() {
+    // predictedVelocity = new Vector2(0, 0)
+    // }
+
 }
