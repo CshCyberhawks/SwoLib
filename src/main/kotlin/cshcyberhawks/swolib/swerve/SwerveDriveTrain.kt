@@ -77,19 +77,7 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets
         gyro.setYawOffset()
     }
 
-    fun polarToCartesian(theta: Double, r: Double): DoubleArray {
-        // math to turn polar coordinate into cartesian
-        val x = r * cos(Math.toRadians(theta))
-        val y = r * sin(Math.toRadians(theta))
-        return doubleArrayOf(x, y)
-    }
-
-    fun cartesianToPolar(x: Double, y: Double): DoubleArray {
-        // math to turn cartesian into polar
-        val r = sqrt(Math.pow(x, 2.0) + y.pow(2.0))
-        val theta = Math.toDegrees(atan2(y, x))
-        return doubleArrayOf(theta, r)
-    }
+    fun getWheelVectors(): Array<Polar> = arrayOf(frontRight.getWheelVector(), frontLeft.getWheelVector(), backRight.getWheelVector(), backLeft.getWheelVector())
 
     fun fieldOriented(input: Vector2, gyroAngle: Double): Vector2 {
         val polar = Polar.fromVector2(input)
