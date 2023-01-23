@@ -31,7 +31,7 @@ class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var
         // Pitch and roll might be flipped
         val x = total.x * cos(Math.toRadians(gyro.getPitch()))
         val y = total.y * cos(Math.toRadians(gyro.getRoll()))
-        val z = total.x * sin(Math.toRadians(gyro.getPitch())) + total.y * sin(Math.toRadians(gyro.getRoll())) // This BS is to avoid another trig call (they are slow)
+        val z = total.x * sin(Math.toRadians(gyro.getPitch())) + total.y * sin(Math.toRadians(gyro.getRoll()))
         return Vector3(x, y, z)
     }
 

@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="57d401d0-2b1c-47ba-afb4-27e193b0b127" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/Vector2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/Vector2.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveOdometry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveOdometry.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
       <workItem from="1674338408037" duration="2440000" />
       <workItem from="1674340883996" duration="28000" />
       <workItem from="1674411589466" duration="6643000" />
-      <workItem from="1674513892784" duration="3415000" />
+      <workItem from="1674513892784" duration="3461000" />
     </task>
     <servers />
   </component>
