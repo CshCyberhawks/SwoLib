@@ -4,13 +4,9 @@ import cshcyberhawks.swolib.hardware.GenericGyro
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.math.Vector2
 import edu.wpi.first.math.controller.PIDController
-import edu.wpi.first.util.WPIUtilJNI
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import frc.robot.Constants
-import frc.robot.util.*
-import java.lang.Double.max
-import java.lang.Double.min
 import kotlin.math.*
 
 class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets oscillation
