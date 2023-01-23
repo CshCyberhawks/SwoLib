@@ -6,12 +6,16 @@ interface GenericGyro {
      *
      * @return The current angle.
      */
-    fun getAngle(): Double
+    fun getYaw(): Double
+
+    fun getPitch(): Double
+
+    fun getRoll(): Double
 
     /**
      * Sets the angle offset of the gyro to the current direction.
      *
      * This exists because the built-in offset was refusing to work.
      */
-    fun setOffset()
+    fun setYawOffset()
 }

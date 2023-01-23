@@ -21,7 +21,8 @@ class Coordinate(var x: Double = 0.0, var y: Double = 0.0) {
         }
 
     companion object {
-        fun fromPolar(theta: Double, r: Double): Coordinate = Coordinate(r * sin(theta), r * cos(theta))
+        fun fromPolar(theta: Double, r: Double): Coordinate =
+            Coordinate(r * sin(toRadians(theta)), r * cos(toRadians(theta)))
     }
 
     operator fun plus(other: Coordinate): Coordinate = Coordinate(x + other.x, y + other.y)
@@ -31,6 +32,11 @@ class Coordinate(var x: Double = 0.0, var y: Double = 0.0) {
     operator fun timesAssign(other: Double) {
         x *= other
         y *= other
+    }
+
+    operator fun divAssign(other: Int) {
+        x /= other
+        y /= other
     }
 
     override fun equals(other: Any?): Boolean {
