@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.GenericTurnEncoder
 import cshcyberhawks.swolib.hardware.TalonFXEncoder
+import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 import frc.robot.Constants
@@ -81,6 +82,7 @@ class SwerveWheel(turnPort: Int, drivePort: Int, private val turnEncoderPort: In
         return wrapAroundAngles(turnEncoder.get())
     }
 
+    fun getWheelVector(): Polar = Polar(getTurnValue(), getCurrentDriveSpeed())
 
     fun drive(speed: Double, angle: Double) {
         var speed = speed

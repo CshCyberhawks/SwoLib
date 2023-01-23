@@ -7,6 +7,7 @@ import cshcyberhawks.swolib.hardware.NavXGyro
 import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Vector2
+import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
@@ -25,6 +26,8 @@ class Robot : TimedRobot() {
     val gyro = NavXGyro(SPI.Port.kMXP)
 
     val swerveDriveTrain = SwerveDriveTrain(gyro)
+
+    val swo = SwerveOdometry(swerveDriveTrain, gyro)
 
     val joystick = Joystick(0)
 
@@ -88,6 +91,14 @@ class Robot : TimedRobot() {
         }
 
         swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick.twist)
+        swo.updatePosition()
+
+        SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
+        SmartDashboard.putNumber("Gyro Roll", gyro.getRoll())
+
+        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
+        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
+        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
