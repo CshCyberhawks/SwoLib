@@ -8,6 +8,7 @@ import cshcyberhawks.swolib.math.Coordinate
 import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
+import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import frc.robot.subsystems.SwerveDriveTrain
+import frc.robot.subsystems.SwerveWheel
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,9 +25,34 @@ import frc.robot.subsystems.SwerveDriveTrain
  * project.
  */
 class Robot : TimedRobot() {
+    var backLeft: SwerveWheel =
+        SwerveWheel(
+            Constants.backLeftTurnMotor,
+            Constants.backLeftDriveMotor,
+            Constants.backLeftEncoder
+        )
+    var backRight: SwerveWheel =
+        SwerveWheel(
+            Constants.backRightTurnMotor,
+            Constants.backRightDriveMotor,
+            Constants.backRightEncoder
+        )
+    var frontLeft: SwerveWheel =
+        SwerveWheel(
+            Constants.frontLeftTurnMotor,
+            Constants.frontLeftDriveMotor,
+            Constants.frontLeftEncoder
+        )
+    var frontRight: SwerveWheel =
+        SwerveWheel(
+            Constants.frontRightTurnMotor,
+            Constants.frontRightDriveMotor,
+            Constants.frontRightEncoder
+        )
+
     val gyro = NavXGyro(SPI.Port.kMXP)
 
-    val swerveDriveTrain = SwerveDriveTrain(gyro)
+    val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
 
     val swo = SwerveOdometry(swerveDriveTrain, gyro)
 

@@ -13,14 +13,14 @@ import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 import frc.robot.Constants
-import java.lang.reflect.AnnotatedWildcardType
 import kotlin.math.abs
 
 
 class SwerveWheel(turnPort: Int, drivePort: Int, private val turnEncoderPort: Int) {
     private var turnMotor: TalonSRX = TalonSRX(turnPort)
     private var driveMotor: TalonFX = TalonFX(drivePort)
-    val turnEncoder: GenericTurnEncoder = AnalogTurnEncoder(turnEncoderPort, Constants.turnEncoderOffsets[turnEncoderPort])
+    val turnEncoder: GenericTurnEncoder =
+        AnalogTurnEncoder(turnEncoderPort, Constants.turnEncoderOffsets[turnEncoderPort])
     private var driveEncoder: TalonFXEncoder = TalonFXEncoder(driveMotor)
 
     private var oldAngle = 0.0

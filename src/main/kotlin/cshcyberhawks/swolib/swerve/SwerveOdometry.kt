@@ -8,7 +8,6 @@ import cshcyberhawks.swolib.math.Vector3
 import frc.robot.subsystems.SwerveDriveTrain
 import kotlin.math.cos
 import kotlin.math.sin
-import kotlin.math.sqrt
 
 class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var gyro: GenericGyro) {
     var fieldPosition = Vector3()
@@ -17,7 +16,7 @@ class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var
     fun getVelocity(): Vector3 {
         var total = Vector2()
 
-        val wheelVectors = swerveDriveTrain.getWheelVectors()
+        val wheelVectors = swerveDriveTrain.swerveConfiguration.getWheelVectors()
         for (wheel in wheelVectors) {
             val wheelVector = Vector2.fromPolar(wheel)
             total += wheelVector
