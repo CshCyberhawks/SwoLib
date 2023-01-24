@@ -9,6 +9,7 @@ import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration
+import cshcyberhawks.swolib.swerve.configurations.SwerveModuleConfiguration
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.SPI
@@ -25,29 +26,46 @@ import frc.robot.subsystems.SwerveWheel
  * project.
  */
 class Robot : TimedRobot() {
+    val swerveConfiguration: SwerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
+
+    val drivePID = PIDController(0.01, 0.0, 0.0)
+    val turnPID = PIDController(0.01, 0.0, 0.0)
+
     var backLeft: SwerveWheel =
         SwerveWheel(
-            Constants.backLeftTurnMotor,
-            Constants.backLeftDriveMotor,
-            Constants.backLeftEncoder
+            TalonFX(Constants.backLeftDriveMotor),
+            TalonSRX(Constants.backLeftTurnMotor),
+            AnalogTurnEncoder(Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder]),
+            drivePID,
+            turnPID,
+            swerveConfiguration
         )
     var backRight: SwerveWheel =
         SwerveWheel(
-            Constants.backRightTurnMotor,
-            Constants.backRightDriveMotor,
-            Constants.backRightEncoder
+            TalonFX(Constants.backRightDriveMotor),
+            TalonSRX(Constants.backRightTurnMotor),
+            AnalogTurnEncoder(Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder]),
+            drivePID,
+            turnPID,
+            swerveConfiguration
         )
     var frontLeft: SwerveWheel =
         SwerveWheel(
-            Constants.frontLeftTurnMotor,
-            Constants.frontLeftDriveMotor,
-            Constants.frontLeftEncoder
+            TalonFX(Constants.frontLeftDriveMotor),
+            TalonSRX(Constants.frontLeftTurnMotor),
+            AnalogTurnEncoder(Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder]),
+            drivePID,
+            turnPID,
+            swerveConfiguration
         )
     var frontRight: SwerveWheel =
         SwerveWheel(
-            Constants.frontRightTurnMotor,
-            Constants.frontRightDriveMotor,
-            Constants.frontRightEncoder
+            TalonFX(Constants.frontRightDriveMotor),
+            TalonSRX(Constants.frontRightTurnMotor),
+            AnalogTurnEncoder(Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder]),
+            drivePID,
+            turnPID,
+            swerveConfiguration
         )
 
     val gyro = NavXGyro(SPI.Port.kMXP)
