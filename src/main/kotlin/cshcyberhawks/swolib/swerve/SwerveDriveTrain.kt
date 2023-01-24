@@ -55,24 +55,6 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets
                     Constants.frontRightEncoder
             )
 
-
-    var xPID: PIDController = PIDController(1.2, 0.0, 0.2)
-    var yPID: PIDController = PIDController(1.2, 0.0, 0.2)
-
-    // .3, 0.0, 0.01
-    var twistPID: PIDController = PIDController(2.0, 0.0, 0.1)
-
-    var wheelArr: Array<SwerveWheel> = arrayOf(backLeft, backRight, frontLeft, frontRight)
-
-    var isTwisting = false
-
-    // I do this to prevent large jumps in value with first run of loop in predicted
-    // odometry
-    private var lastUpdateTime = -1.0
-
-    // var maxSwos = 13.9458
-    // var maxMeters = 3.777
-
     init {
         gyro.setYawOffset()
     }
@@ -120,11 +102,6 @@ class SwerveDriveTrain(val gyro: GenericGyro) : SubsystemBase() { // p = 10 gets
 
         SmartDashboard.putNumber("in twist", inputTwist)
 
-
-        isTwisting = inputTwist != 0.0
-
-        // SmartDashboard.putNumber("drive inputX ", inputX)
-        // SmartDashboard.putNumber("drive inputY ", inputY)
 
         val twistMult = 0.5;
 
