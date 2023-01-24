@@ -9,8 +9,9 @@ import frc.robot.subsystems.SwerveDriveTrain
 import kotlin.math.cos
 import kotlin.math.sin
 
-class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var gyro: GenericGyro) {
+class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var gyro: GenericGyro, val swoToMeters: Double) {
     var fieldPosition = Vector3()
+        get() = fieldPosition * swoToMeters
     var lastTime = MiscCalculations.getCurrentTime()
 
     fun getVelocity(): Vector3 {
