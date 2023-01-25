@@ -55,18 +55,14 @@ class SwerveWheel(val driveMotor: TalonFX, val turnMotor: TalonSRX, val turnEnco
 
     fun drive(speed: Double, angle: Double) {
         var speed = speed
-        var angle = angle
+        var angle = AngleCalculations.wrapAroundAngles(angle)
         oldAngle = angle
 
         val turnValue = getTurnValue()
 
-        angle = AngleCalculations.wrapAroundAngles(angle)
-
-        // Optimization Code stolen from
-        // https://github.com/Frc2481/frc-2015/blob/master/src/Components/SwerveModule.cpp
-        if (abs(angle - turnValue) > 90 && abs(angle - turnValue) < 270) {
-            angle = ((angle.toInt() + 180) % 360).toDouble()
-            speed = -speed
+        angle = AngleCalculations.optimizeAngle(angle, turnValue)
+        if (angle != oldAngle) {
+            speed *= -1
         }
 
         speed *= configuration.maxSpeed
