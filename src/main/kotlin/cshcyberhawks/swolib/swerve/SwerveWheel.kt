@@ -27,9 +27,9 @@ class SwerveWheel(val driveMotor: TalonFX, val turnMotor: TalonSRX, val turnEnco
     init {
         driveMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0)
         driveMotor.config_kF(0, 0.0)
-        driveMotor.config_kP(0, 0.01)
-        driveMotor.config_kI(0, 0.0)
-        driveMotor.config_kD(0, 0.0)
+        driveMotor.config_kP(0, drivePID.getP())
+        driveMotor.config_kI(0, drivePID.getI())
+        driveMotor.config_kD(0, drivePID.getD())
 
 
         driveMotor.setNeutralMode(NeutralMode.Brake)
