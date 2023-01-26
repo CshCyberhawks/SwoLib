@@ -1,8 +1,9 @@
-package frc.robot.subsystems
+package cshcyberhawks.swolib.autonomous
 
 import cshcyberhawks.swolib.hardware.GenericGyro
 import cshcyberhawks.swolib.math.*
 import cshcyberhawks.swolib.swerve.SwerveOdometry
+import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
@@ -112,7 +113,7 @@ class SwerveAuto(
                 ) == 0.0)
     }
 
-    private fun isFinishedMoving(): Boolean {
+    fun isFinishedMoving(): Boolean {
         return isAtDesiredAngle() && isAtDesiredPosition()
     }
 }
