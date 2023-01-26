@@ -5,7 +5,7 @@ import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.math.Vector3
-import frc.robot.subsystems.SwerveDriveTrain
+import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import kotlin.math.cos
 import kotlin.math.sin
 

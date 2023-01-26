@@ -13,7 +13,7 @@ class GoToFieldElementsAndExecute(
             swerveAuto: SwerveAuto,
             elements: List<FieldElement>,
             commands: List<CommandBase>,
-            finishCondition: List<GoToPositionAndExecute.FinishCondition) : this(swerveAuto, elements.toList(), commands) {
+            finishCondition: List<GoToPositionAndExecute.FinishCondition>) : this(swerveAuto, elements.toList(), commands) {
                 this.finishCondition = finishCondition
             }
 

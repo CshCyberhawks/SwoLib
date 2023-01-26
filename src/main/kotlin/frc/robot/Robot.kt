@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.SPI
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandScheduler
-import frc.robot.subsystems.SwerveDriveTrain
-import frc.robot.subsystems.SwerveWheel
+import cshcyberhawks.swolib.swerve.SwerveDriveTrain
+import cshcyberhawks.swolib.swerve.SwerveWheel
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -72,7 +72,7 @@ class Robot : TimedRobot() {
 
     val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
 
-    val swo = SwerveOdometry(swerveDriveTrain, gyro)
+    val swo = SwerveOdometry(swerveDriveTrain, gyro, 3.9)
 
     val joystick = Joystick(0)
 

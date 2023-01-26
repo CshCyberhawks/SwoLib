@@ -1,7 +1,7 @@
 package cshcyberhawks.swolib.swerve.configurations
 
 import cshcyberhawks.swolib.math.Polar
-import frc.robot.subsystems.SwerveWheel
+import cshcyberhawks.swolib.swerve.SwerveWheel
 
 data class FourWheelAngleConfiguration(
     val frontRight: Double = 45.0,
