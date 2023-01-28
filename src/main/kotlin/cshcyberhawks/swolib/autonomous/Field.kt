@@ -1,8 +1,6 @@
-package frc.robot.subsystems
+package cshcyberhawks.swolib.autonomous
 
-import cshcyberhawks.swolib.autonomous.FieldElement
-import cshcyberhawks.swolib.autonomous.SwerveAuto
-import cshcyberhawks.swolib.commands.autonomous.GoToFieldElements
+import cshcyberhawks.swolib.autonomous.commands.GoToFieldElements
 import cshcyberhawks.swolib.math.Vector2
 import kotlin.math.abs
 

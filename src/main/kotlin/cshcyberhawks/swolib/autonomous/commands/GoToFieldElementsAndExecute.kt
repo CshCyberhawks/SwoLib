@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.commands.autonomous
+package cshcyberhawks.swolib.autonomous.commands
 
 import cshcyberhawks.swolib.autonomous.FieldElement
 import cshcyberhawks.swolib.autonomous.SwerveAuto

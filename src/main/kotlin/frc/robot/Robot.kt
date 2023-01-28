@@ -1,5 +1,6 @@
 package frc.robot
 
+import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.hardware.implementations.NavXGyro
 import cshcyberhawks.swolib.hardware.implementations.TalonFXDriveMotor
 import cshcyberhawks.swolib.hardware.implementations.TalonSRXTurnMotor
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import cshcyberhawks.swolib.swerve.SwerveWheel
+import edu.wpi.first.math.trajectory.TrapezoidProfile
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -66,6 +68,8 @@ class Robot : TimedRobot() {
     val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
 
     val swo = SwerveOdometry(swerveDriveTrain, gyro, 3.9)
+
+    val auto = SwerveAuto(PIDController(0.5, 0.0, 0.05), PIDController(0.5, 0.0, 0.05), PIDController(10.0, 0.0, 12.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.0, 0.1, swo, swerveDriveTrain, gyro)
 
     val joystick = Joystick(0)
     val joystick2 = Joystick(1)
