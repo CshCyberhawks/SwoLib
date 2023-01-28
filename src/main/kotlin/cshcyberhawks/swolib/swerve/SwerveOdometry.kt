@@ -14,7 +14,6 @@ class SwerveOdometry(
     val swoToMeters: Double
 ) {
     var fieldPosition = Vector3()
-        get() = fieldPosition * swoToMeters
     var lastTime = MiscCalculations.getCurrentTime()
 
     fun getVelocity(): Vector3 {
@@ -32,9 +31,9 @@ class SwerveOdometry(
         total = Vector2.fromPolar(polar)
 
         // Pitch and roll might be flipped
-        val x = total.x * cos(Math.toRadians(gyro.getPitch()))
-        val y = total.y * cos(Math.toRadians(gyro.getRoll()))
-        val z = total.x * sin(Math.toRadians(gyro.getPitch())) + total.y * sin(Math.toRadians(gyro.getRoll()))
+        val x = total.x * cos(Math.toRadians(gyro.getPitch())) / swoToMeters
+        val y = total.y * cos(Math.toRadians(gyro.getRoll())) / swoToMeters
+        val z = (total.x * sin(Math.toRadians(gyro.getPitch())) + total.y * sin(Math.toRadians(gyro.getRoll()))) / swoToMeters
         return Vector3(x, y, z)
     }
 
