@@ -1,6 +1,6 @@
 package cshcyberhawks.swolib.autonomous
 
-import cshcyberhawks.swolib.hardware.GenericGyro
+import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.*
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain

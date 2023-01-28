@@ -1,6 +1,7 @@
 package cshcyberhawks.swolib.hardware
 
 import com.ctre.phoenix.sensors.Pigeon2
+import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
 
 class Pigeon2Gyro(private val port: Int) : GenericGyro {

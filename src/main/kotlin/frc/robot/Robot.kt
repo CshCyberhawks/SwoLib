@@ -1,11 +1,8 @@
 package frc.robot
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX
-import com.ctre.phoenix.motorcontrol.can.TalonSRX
-import cshcyberhawks.swolib.hardware.AnalogTurnEncoder
 import cshcyberhawks.swolib.hardware.NavXGyro
-import cshcyberhawks.swolib.math.Coordinate
-import cshcyberhawks.swolib.math.MiscCalculations
+import cshcyberhawks.swolib.hardware.TalonFXDriveMotor
+import cshcyberhawks.swolib.hardware.TalonSRXTurnMotor
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration
@@ -33,36 +30,32 @@ class Robot : TimedRobot() {
 
     var backLeft: SwerveWheel =
         SwerveWheel(
-            TalonFX(Constants.backLeftDriveMotor),
-            TalonSRX(Constants.backLeftTurnMotor),
-            AnalogTurnEncoder(Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder]),
+            TalonFXDriveMotor(Constants.backLeftDriveMotor),
+            TalonSRXTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder]),
             drivePID,
             turnPID,
             swerveConfiguration
         )
     var backRight: SwerveWheel =
         SwerveWheel(
-            TalonFX(Constants.backRightDriveMotor),
-            TalonSRX(Constants.backRightTurnMotor),
-            AnalogTurnEncoder(Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder]),
+            TalonFXDriveMotor(Constants.backRightDriveMotor),
+            TalonSRXTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder]),
             drivePID,
             turnPID,
             swerveConfiguration
         )
     var frontLeft: SwerveWheel =
         SwerveWheel(
-            TalonFX(Constants.frontLeftDriveMotor),
-            TalonSRX(Constants.frontLeftTurnMotor),
-            AnalogTurnEncoder(Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder]),
+            TalonFXDriveMotor(Constants.frontLeftDriveMotor),
+            TalonSRXTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder]),
             drivePID,
             turnPID,
             swerveConfiguration
         )
     var frontRight: SwerveWheel =
         SwerveWheel(
-            TalonFX(Constants.frontRightDriveMotor),
-            TalonSRX(Constants.frontRightTurnMotor),
-            AnalogTurnEncoder(Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder]),
+            TalonFXDriveMotor(Constants.frontRightDriveMotor),
+            TalonSRXTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder]),
             drivePID,
             turnPID,
             swerveConfiguration

@@ -1,11 +1,10 @@
 package cshcyberhawks.swolib.swerve
 
-import cshcyberhawks.swolib.hardware.GenericGyro
+import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.math.Vector3
-import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import kotlin.math.cos
 import kotlin.math.sin
 

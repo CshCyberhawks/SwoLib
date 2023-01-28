@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.hardware
+package cshcyberhawks.swolib.hardware.interfaces
 
 interface GenericGyro {
     /**
