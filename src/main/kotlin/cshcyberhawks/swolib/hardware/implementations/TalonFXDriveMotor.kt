@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.hardware
+package cshcyberhawks.swolib.hardware.implementations
 
 import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.NeutralMode

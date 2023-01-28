@@ -1,8 +1,8 @@
 package frc.robot
 
-import cshcyberhawks.swolib.hardware.NavXGyro
-import cshcyberhawks.swolib.hardware.TalonFXDriveMotor
-import cshcyberhawks.swolib.hardware.TalonSRXTurnMotor
+import cshcyberhawks.swolib.hardware.implementations.NavXGyro
+import cshcyberhawks.swolib.hardware.implementations.TalonFXDriveMotor
+import cshcyberhawks.swolib.hardware.implementations.TalonSRXTurnMotor
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration

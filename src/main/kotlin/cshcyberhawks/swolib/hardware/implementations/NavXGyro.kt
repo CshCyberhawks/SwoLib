@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.hardware
+package cshcyberhawks.swolib.hardware.implementations
 
 import com.kauailabs.navx.frc.AHRS
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro

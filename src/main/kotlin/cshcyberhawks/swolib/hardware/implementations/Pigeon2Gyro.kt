@@ -1,4 +1,4 @@
-package cshcyberhawks.swolib.hardware
+package cshcyberhawks.swolib.hardware.implementations
 
 import com.ctre.phoenix.sensors.Pigeon2
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
