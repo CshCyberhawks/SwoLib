@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/GenericDriveMotor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/GenericMotor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/GenericTurnMotor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/MotorNeutralMode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/TalonFXDriveMotor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/TalonSRXTurnMotor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/TalonFXEncoder.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveWheel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/swerve/SwerveWheel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui-ds.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui-ds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/TalonFXDriveMotor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/TalonFXDriveMotor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +54,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="cshcyberhawks.swolib.hardware.implementations" />
+      <recent name="cshcyberhawks.swolib.hardware.enums" />
+      <recent name="cshcyberhawks.swolib.hardware.interfaces" />
+    </key>
+  </component>
   <component name="RunManager" selected="Gradle.Clean">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="cshcyberhawks.swolib" />
@@ -81,7 +82,8 @@
       <workItem from="1674411589466" duration="6643000" />
       <workItem from="1674513892784" duration="3461000" />
       <workItem from="1674685689437" duration="2921000" />
-      <workItem from="1674921631120" duration="1675000" />
+      <workItem from="1674921631120" duration="3529000" />
+      <workItem from="1674925857408" duration="138000" />
     </task>
     <servers />
   </component>

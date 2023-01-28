@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX
 import cshcyberhawks.swolib.hardware.enums.MotorNeutralMode
 import cshcyberhawks.swolib.hardware.interfaces.GenericDriveMotor
 
-class TalonFXDriveMotor(deviceId: Int, canBus: String? = null) : GenericDriveMotor {
+class TalonFXDriveMotor(deviceId: Int, canBus: String = "") : GenericDriveMotor {
     private val motor = TalonFX(deviceId, canBus)
     override fun setInverted(inverted: Boolean) {
         motor.inverted = inverted
