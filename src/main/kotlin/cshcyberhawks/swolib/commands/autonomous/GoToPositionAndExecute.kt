@@ -6,9 +6,9 @@ import cshcyberhawks.swolib.math.Vector2
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToPositionAndExecute(
-        val swerveAuto: SwerveAuto,
-        val desiredPosition: FieldPosition,
-        val command: CommandBase
+    val swerveAuto: SwerveAuto,
+    val desiredPosition: FieldPosition,
+    val command: CommandBase
 ) : CommandBase() {
     init {
         addRequirements(swerveAuto.swerveSystem)
@@ -25,16 +25,16 @@ class GoToPositionAndExecute(
 
     // TODO: implement the turning to face the object
     constructor(
-            swerveAuto: SwerveAuto,
-            pos: Vector2,
-            command: CommandBase
+        swerveAuto: SwerveAuto,
+        pos: Vector2,
+        command: CommandBase
     ) : this(swerveAuto, FieldPosition(pos.x, pos.y, 0.0), command)
 
     constructor(
-            swerveAuto: SwerveAuto,
-            pos: Vector2,
-            command: CommandBase,
-            finishCondition: FinishCondition
+        swerveAuto: SwerveAuto,
+        pos: Vector2,
+        command: CommandBase,
+        finishCondition: FinishCondition
     ) : this(swerveAuto, FieldPosition(pos.x, pos.y, 0.0), command) {
         this.finishCondition = finishCondition
     }
@@ -52,8 +52,8 @@ class GoToPositionAndExecute(
         when (finishCondition) {
             FinishCondition.POSITION -> return swerveAuto.isFinishedMoving()
             FinishCondition.COMMAND -> return command.isFinished
-            FinishCondition.BOTH -> return swerveAuto.isFinishedMoving() && command.isFinished()
-            FinishCondition.EITHER -> return swerveAuto.isFinishedMoving() || command.isFinished()
+            FinishCondition.BOTH -> return swerveAuto.isFinishedMoving() && command.isFinished
+            FinishCondition.EITHER -> return swerveAuto.isFinishedMoving() || command.isFinished
         }
     }
 }

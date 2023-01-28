@@ -10,7 +10,13 @@ import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
 
 
-class SwerveWheel(val driveMotor: GenericDriveMotor, val turnMotor: GenericTurnMotor, val drivePID: PIDController, val turnPID: PIDController, val configuration: SwerveModuleConfiguration) {
+class SwerveWheel(
+    val driveMotor: GenericDriveMotor,
+    val turnMotor: GenericTurnMotor,
+    val drivePID: PIDController,
+    val turnPID: PIDController,
+    val configuration: SwerveModuleConfiguration
+) {
     private var oldAngle = 0.0
 
     init {

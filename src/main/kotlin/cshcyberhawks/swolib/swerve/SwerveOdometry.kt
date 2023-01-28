@@ -8,7 +8,11 @@ import cshcyberhawks.swolib.math.Vector3
 import kotlin.math.cos
 import kotlin.math.sin
 
-class SwerveOdometry(private var swerveDriveTrain: SwerveDriveTrain, private var gyro: GenericGyro, val swoToMeters: Double) {
+class SwerveOdometry(
+    private var swerveDriveTrain: SwerveDriveTrain,
+    private var gyro: GenericGyro,
+    val swoToMeters: Double
+) {
     var fieldPosition = Vector3()
         get() = fieldPosition * swoToMeters
     var lastTime = MiscCalculations.getCurrentTime()
