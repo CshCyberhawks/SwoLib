@@ -59,6 +59,10 @@ class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, pr
         input: Vector2,
         inputTwist: Double,
     ) {
+        SmartDashboard.putNumber("Input X", input.x)
+        SmartDashboard.putNumber("Input Y", input.y)
+        SmartDashboard.putNumber("Input Twist", inputTwist)
+
         if (input == Vector2() && inputTwist == 0.0) {
             swerveConfiguration.preserveWheelAngles()
             return

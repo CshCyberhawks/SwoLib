@@ -68,6 +68,7 @@ class Robot : TimedRobot() {
     val swo = SwerveOdometry(swerveDriveTrain, gyro, 3.9)
 
     val joystick = Joystick(0)
+    val joystick2 = Joystick(1)
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -128,7 +129,7 @@ class Robot : TimedRobot() {
             gyro.setYawOffset()
         }
 
-        swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick.twist)
+        swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick2.x)
         swo.updatePosition()
 
         SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
