@@ -1,10 +1,7 @@
 package cshcyberhawks.swolib.swerve
 
-import cshcyberhawks.swolib.math.Coordinate
-import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.math.sqrt
 
 
 class SwerveDriveTrainTest {
