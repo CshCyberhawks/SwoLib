@@ -1,7 +1,5 @@
 package cshcyberhawks.swolib.math
 
-import kotlin.math.abs
-
 /**
  * A collection of methods for calculations related to angles.
  */

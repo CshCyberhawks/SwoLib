@@ -1,40 +1,43 @@
 package cshcyberhawks.swolib.autonomous
 
-import cshcyberhawks.swolib.hardware.GenericGyro
-import cshcyberhawks.swolib.math.*
-import cshcyberhawks.swolib.swerve.SwerveOdometry
+import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
+import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.FieldPosition
+import cshcyberhawks.swolib.math.MiscCalculations
+import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveDriveTrain
+import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
 
 class SwerveAuto(
-        val xPID: PIDController,
-        val yPID: PIDController,
-        val twistPID: PIDController,
-        val trapConstraints: TrapezoidProfile.Constraints,
-        val angleDeadzone: Double,
-        val positionDeadzone: Double,
-        val swo: SwerveOdometry,
-        val swerveSystem: SwerveDriveTrain,
-        val gyro: GenericGyro
+    val xPID: PIDController,
+    val yPID: PIDController,
+    val twistPID: PIDController,
+    val trapConstraints: TrapezoidProfile.Constraints,
+    val angleDeadzone: Double,
+    val positionDeadzone: Double,
+    val swo: SwerveOdometry,
+    val swerveSystem: SwerveDriveTrain,
+    val gyro: GenericGyro
 ) {
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
 
     private var trapXCurrentState: TrapezoidProfile.State =
-            TrapezoidProfile.State(
-                    swo.fieldPosition.x,
-                    swo.getVelocity().x
-            )
+        TrapezoidProfile.State(
+            swo.fieldPosition.x,
+            swo.getVelocity().x
+        )
     private var trapXDesiredState: TrapezoidProfile.State =
-            TrapezoidProfile.State(desiredPosition.x, 0.0)
+        TrapezoidProfile.State(desiredPosition.x, 0.0)
     private var trapYCurrentState: TrapezoidProfile.State =
-            TrapezoidProfile.State(
-                    swo.fieldPosition.y,
-                    swo.getVelocity().y
-            )
+        TrapezoidProfile.State(
+            swo.fieldPosition.y,
+            swo.getVelocity().y
+        )
     private var trapYDesiredState: TrapezoidProfile.State =
-            TrapezoidProfile.State(desiredPosition.y, 0.0)
+        TrapezoidProfile.State(desiredPosition.y, 0.0)
 
     private var prevTime: Double = 0.0
 
@@ -75,15 +78,15 @@ class SwerveAuto(
         val trapYOutput = trapYProfile.calculate(trapTime)
 
         val xPIDOutput =
-                xPID.calculate(
-                        swo.fieldPosition.x,
-                        trapXOutput.position
-                )
+            xPID.calculate(
+                swo.fieldPosition.x,
+                trapXOutput.position
+            )
         val yPIDOutput =
-                yPID.calculate(
-                        swo.fieldPosition.y,
-                        trapYOutput.position
-                )
+            yPID.calculate(
+                swo.fieldPosition.y,
+                trapYOutput.position
+            )
         val xVel = (trapXOutput.velocity + xPIDOutput)
         val yVel = (trapYOutput.velocity + yPIDOutput)
 
@@ -96,20 +99,20 @@ class SwerveAuto(
 
     private fun isAtDesiredAngle(): Boolean {
         return MiscCalculations.calculateDeadzone(
-                AngleCalculations.wrapAroundAngles(gyro.getYaw()) -
-                        AngleCalculations.wrapAroundAngles(desiredPosition.angle),
-                this.angleDeadzone
+            AngleCalculations.wrapAroundAngles(gyro.getYaw()) -
+                    AngleCalculations.wrapAroundAngles(desiredPosition.angle),
+            this.angleDeadzone
         ) == 0.0
     }
 
     private fun isAtDesiredPosition(): Boolean {
         return (MiscCalculations.calculateDeadzone(
-                desiredPosition.x - swo.fieldPosition.x,
-                positionDeadzone
+            desiredPosition.x - swo.fieldPosition.x,
+            positionDeadzone
         ) == 0.0 &&
                 MiscCalculations.calculateDeadzone(
-                        desiredPosition.y - swo.fieldPosition.y,
-                        positionDeadzone
+                    desiredPosition.y - swo.fieldPosition.y,
+                    positionDeadzone
                 ) == 0.0)
     }
 

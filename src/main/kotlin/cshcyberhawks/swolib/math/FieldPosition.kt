@@ -1,8 +1,5 @@
 package cshcyberhawks.swolib.math
 
-import kotlin.math.cos
-import kotlin.math.sin
-
 class FieldPosition(var position: Vector2, var angle: Double) {
 
     constructor(x: Double, y: Double, angle: Double) : this(Vector2(x, y), angle)

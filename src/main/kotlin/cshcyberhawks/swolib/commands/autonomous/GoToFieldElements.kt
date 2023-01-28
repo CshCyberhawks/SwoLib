@@ -2,14 +2,13 @@ package cshcyberhawks.swolib.commands.autonomous
 
 import cshcyberhawks.swolib.autonomous.FieldElement
 import cshcyberhawks.swolib.autonomous.SwerveAuto
-import cshcyberhawks.swolib.math.FieldPosition
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToFieldElements(val swerveAuto: SwerveAuto, val fieldElements: List<FieldElement>) :
-        CommandBase() {
+    CommandBase() {
     constructor(
-            swerveAuto: SwerveAuto,
-            vararg fieldElements: FieldElement
+        swerveAuto: SwerveAuto,
+        vararg fieldElements: FieldElement
     ) : this(swerveAuto, fieldElements.toList())
 
     private lateinit var posCommand: GoToPosition
@@ -24,7 +23,7 @@ class GoToFieldElements(val swerveAuto: SwerveAuto, val fieldElements: List<Fiel
                 val next = fieldElements.first()
                 posCommand = GoToPosition(swerveAuto, next.position)
                 fieldElements.drop(1)
-                posCommand.schedule();
+                posCommand.schedule()
             }
         }
     }

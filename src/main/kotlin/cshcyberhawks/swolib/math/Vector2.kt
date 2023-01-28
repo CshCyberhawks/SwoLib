@@ -5,7 +5,8 @@ import kotlin.math.sin
 
 class Vector2(var x: Double = 0.0, var y: Double = 0.0) {
     companion object {
-        fun fromPolar(cord: Polar): Vector2 = Vector2(cord.r * cos(Math.toRadians(cord.theta)), cord.r * sin(Math.toRadians(cord.theta)))
+        fun fromPolar(cord: Polar): Vector2 =
+            Vector2(cord.r * cos(Math.toRadians(cord.theta)), cord.r * sin(Math.toRadians(cord.theta)))
     }
 
     operator fun plus(other: Vector2): Vector2 = Vector2(x + other.x, y + other.y)
