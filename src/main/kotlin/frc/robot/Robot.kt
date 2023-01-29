@@ -69,9 +69,10 @@ class Robot : TimedRobot() {
 
     val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
 
-    val swo = SwerveOdometry(swerveDriveTrain, gyro, 3.9)
+    val swo = SwerveOdometry(swerveDriveTrain, gyro, 1.0)
 
-    val auto = SwerveAuto(PIDController(0.5, 0.0, 0.05), PIDController(0.5, 0.0, 0.05), PIDController(5.0, 0.0, 0.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.0, 0.1, swo, swerveDriveTrain, gyro)
+    val autoPid = PIDController(1.0, 0.0, 0.05)
+    val auto = SwerveAuto(autoPid, autoPid, PIDController(5.0, 0.0, 0.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.0, 0.05, swo, swerveDriveTrain, gyro)
 
     val joystick = Joystick(0)
     val joystick2 = Joystick(1)
@@ -125,7 +126,7 @@ class Robot : TimedRobot() {
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
     override fun autonomousInit() {
-        GoToPosition(auto, FieldPosition(-0.5, 0.0, 180.0)).schedule()
+        GoToPosition(auto, FieldPosition(-0.5, 0.0, 0.0)).andThen(GoToPosition(auto, FieldPosition(0.0, 0.0, 0.0))).schedule()
     }
 
     /**

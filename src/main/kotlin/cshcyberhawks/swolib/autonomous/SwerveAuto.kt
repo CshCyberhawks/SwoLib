@@ -56,6 +56,7 @@ class SwerveAuto(
         var translation: Vector2 = Vector2(0.0, 0.0)
         var twist: Double = 0.0
 
+        SmartDashboard.putBoolean("At Desired Pos", isAtDesiredPosition())
         if (!isAtDesiredPosition()) {
             translation = calculateTranslation()
         }
@@ -63,7 +64,6 @@ class SwerveAuto(
         SmartDashboard.putNumber("Auto Translation X", translation.x)
         SmartDashboard.putNumber("Auto Translation Y", translation.y)
 
-        //TODO: Fix twist
         val atDesiredAngle = isAtDesiredAngle()
         SmartDashboard.putBoolean("At Desired Angle", atDesiredAngle)
         if (!atDesiredAngle) {
