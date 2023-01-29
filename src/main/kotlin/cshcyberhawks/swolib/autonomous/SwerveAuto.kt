@@ -19,6 +19,7 @@ class SwerveAuto(
     val trapConstraints: TrapezoidProfile.Constraints,
     val angleDeadzone: Double,
     val positionDeadzone: Double,
+    val twistFeedForward: Double,
     val swo: SwerveOdometry,
     val swerveSystem: SwerveDriveTrain,
     val gyro: GenericGyro
@@ -48,7 +49,7 @@ class SwerveAuto(
     private var prevTime: Double = 0.0
 
     init {
-        twistPID.enableContinuousInput(0.0, 360.0)
+        twistPID.enableContinuousInput(0.0, 1.0)
     }
 
     // twists and translates
@@ -78,7 +79,11 @@ class SwerveAuto(
     }
 
     private fun calculateTwist(desiredAngle: Double): Double {
-        return twistPID.calculate(gyro.getYaw(), desiredAngle) / 360
+
+        //ryan suggested this
+        val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
+        val twistFF = if (pidVal > 0) twistFeedForward else -twistFeedForward
+        return pidVal + twistFF
     }
 
     private fun calculateTranslation(): Vector2 {

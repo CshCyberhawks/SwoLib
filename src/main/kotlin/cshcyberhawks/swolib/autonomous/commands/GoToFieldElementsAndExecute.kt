@@ -36,11 +36,11 @@ class GoToFieldElementsAndExecute(
     }
 
     private fun isPieceDone(cond: GoToPositionAndExecute.FinishCondition): Boolean {
-        when (cond) {
-            GoToPositionAndExecute.FinishCondition.POSITION -> return swerveAuto.isFinishedMoving()
-            GoToPositionAndExecute.FinishCondition.COMMAND -> return command.isFinished
-            GoToPositionAndExecute.FinishCondition.BOTH -> return swerveAuto.isFinishedMoving() && command.isFinished
-            GoToPositionAndExecute.FinishCondition.EITHER -> return swerveAuto.isFinishedMoving() || command.isFinished
+        return when (cond) {
+            GoToPositionAndExecute.FinishCondition.POSITION -> swerveAuto.isFinishedMoving()
+            GoToPositionAndExecute.FinishCondition.COMMAND -> command.isFinished
+            GoToPositionAndExecute.FinishCondition.BOTH -> swerveAuto.isFinishedMoving() && command.isFinished
+            GoToPositionAndExecute.FinishCondition.EITHER -> swerveAuto.isFinishedMoving() || command.isFinished
         }
 
     }

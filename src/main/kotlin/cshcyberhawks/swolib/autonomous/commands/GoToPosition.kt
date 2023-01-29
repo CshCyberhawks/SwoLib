@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToPosition(val swerveAuto: SwerveAuto, val desiredPosition: FieldPosition) : CommandBase() {
-    init {
-    }
-
     constructor (swerveAuto: SwerveAuto, pos: Vector2) : this(swerveAuto, FieldPosition(pos.x, pos.y, 0.0))
 
     override fun initialize() {
