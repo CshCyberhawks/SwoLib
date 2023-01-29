@@ -11,7 +11,7 @@ import kotlin.math.sin
 class SwerveOdometry(
     private var swerveDriveTrain: SwerveDriveTrain,
     private var gyro: GenericGyro,
-    val swoToMeters: Double
+    private val swoToMeters: Double
 ) {
     var fieldPosition = Vector3()
     var lastTime = MiscCalculations.getCurrentTime()

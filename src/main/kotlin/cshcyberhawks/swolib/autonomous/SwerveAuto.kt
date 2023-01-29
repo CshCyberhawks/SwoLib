@@ -10,6 +10,7 @@ import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 class SwerveAuto(
     val xPID: PIDController,
@@ -23,6 +24,11 @@ class SwerveAuto(
     val gyro: GenericGyro
 ) {
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
+        set(value) {
+            trapXDesiredState = TrapezoidProfile.State(value.x, 0.0)
+            trapYDesiredState = TrapezoidProfile.State(value.y, 0.0)
+            field = value
+        }
 
     private var trapXCurrentState: TrapezoidProfile.State =
         TrapezoidProfile.State(
@@ -54,17 +60,25 @@ class SwerveAuto(
             translation = calculateTranslation()
         }
 
-        if (!isAtDesiredAngle()) {
+        SmartDashboard.putNumber("Auto Translation X", translation.x)
+        SmartDashboard.putNumber("Auto Translation Y", translation.y)
+
+        //TODO: Fix twist
+        val atDesiredAngle = isAtDesiredAngle()
+        SmartDashboard.putBoolean("At Desired Angle", atDesiredAngle)
+        if (!atDesiredAngle) {
             twist = calculateTwist(desiredPosition.angle)
         }
+
+        SmartDashboard.putNumber("Desired Angle", desiredPosition.angle)
+
+        SmartDashboard.putNumber("Auto Twist", twist)
 
         swerveSystem.drive(translation, twist)
     }
 
     private fun calculateTwist(desiredAngle: Double): Double {
-        val twistVal = twistPID.calculate(gyro.getYaw(), desiredAngle) / 360
-
-        return twistVal
+        return twistPID.calculate(gyro.getYaw(), desiredAngle) / 360
     }
 
     private fun calculateTranslation(): Vector2 {
@@ -99,8 +113,8 @@ class SwerveAuto(
 
     private fun isAtDesiredAngle(): Boolean {
         return MiscCalculations.calculateDeadzone(
-            AngleCalculations.wrapAroundAngles(gyro.getYaw()) -
-                    AngleCalculations.wrapAroundAngles(desiredPosition.angle),
+            AngleCalculations.wrapAroundAngles(gyro.getYaw() -
+                    desiredPosition.angle),
             this.angleDeadzone
         ) == 0.0
     }

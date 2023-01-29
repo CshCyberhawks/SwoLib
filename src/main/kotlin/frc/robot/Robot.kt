@@ -1,9 +1,11 @@
 package frc.robot
 
 import cshcyberhawks.swolib.autonomous.SwerveAuto
+import cshcyberhawks.swolib.autonomous.commands.GoToPosition
 import cshcyberhawks.swolib.hardware.implementations.NavXGyro
 import cshcyberhawks.swolib.hardware.implementations.TalonFXDriveMotor
 import cshcyberhawks.swolib.hardware.implementations.TalonSRXTurnMotor
+import cshcyberhawks.swolib.math.FieldPosition
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import cshcyberhawks.swolib.swerve.configurations.FourWheelSwerveConfiguration
@@ -69,7 +71,7 @@ class Robot : TimedRobot() {
 
     val swo = SwerveOdometry(swerveDriveTrain, gyro, 3.9)
 
-    val auto = SwerveAuto(PIDController(0.5, 0.0, 0.05), PIDController(0.5, 0.0, 0.05), PIDController(10.0, 0.0, 12.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.0, 0.1, swo, swerveDriveTrain, gyro)
+    val auto = SwerveAuto(PIDController(0.5, 0.0, 0.05), PIDController(0.5, 0.0, 0.05), PIDController(5.0, 0.0, 0.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.0, 0.1, swo, swerveDriveTrain, gyro)
 
     val joystick = Joystick(0)
     val joystick2 = Joystick(1)
@@ -98,6 +100,15 @@ class Robot : TimedRobot() {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run()
+        swo.updatePosition()
+
+        SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
+        SmartDashboard.putNumber("Gyro Roll", gyro.getRoll())
+        SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw())
+
+        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
+        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
+        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
@@ -113,7 +124,9 @@ class Robot : TimedRobot() {
     /**
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
-    override fun autonomousInit() {}
+    override fun autonomousInit() {
+        GoToPosition(auto, FieldPosition(-0.5, 0.0, 180.0)).schedule()
+    }
 
     /**
      * This function is called periodically during autonomous.
@@ -134,14 +147,6 @@ class Robot : TimedRobot() {
         }
 
         swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick2.x)
-        swo.updatePosition()
-
-        SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
-        SmartDashboard.putNumber("Gyro Roll", gyro.getRoll())
-
-        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
-        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
-        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
