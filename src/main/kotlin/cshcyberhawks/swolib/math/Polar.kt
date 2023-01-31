@@ -5,7 +5,8 @@ import kotlin.math.sqrt
 
 class Polar(var theta: Double = 0.0, var r: Double = 0.0) {
     companion object {
-        fun fromVector2(cord: Vector2): Polar = Polar(Math.toDegrees(atan2(cord.y, cord.x)), sqrt(cord.x * cord.x + cord.y * cord.y))
+        fun fromVector2(cord: Vector2): Polar =
+            Polar(Math.toDegrees(atan2(cord.y, cord.x)), sqrt(cord.x * cord.x + cord.y * cord.y))
     }
 
     override fun equals(other: Any?): Boolean {

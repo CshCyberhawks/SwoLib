@@ -1,15 +1,13 @@
-package frc.robot.subsystems
+package cshcyberhawks.swolib.autonomous
 
-import cshcyberhawks.swolib.autonomous.FieldElement
-import cshcyberhawks.swolib.autonomous.SwerveAuto
-import cshcyberhawks.swolib.commands.autonomous.GoToFieldElements
+import cshcyberhawks.swolib.autonomous.commands.GoToFieldElements
 import cshcyberhawks.swolib.math.Vector2
 import kotlin.math.abs
 
 class Field(
-        val swerveAuto: SwerveAuto,
-        var elements: ArrayList<FieldElement>,
-        val deadzone: Double
+    val swerveAuto: SwerveAuto,
+    var elements: ArrayList<FieldElement>,
+    val deadzone: Double
 ) {
     fun addElement(element: FieldElement) {
         if (!contains(element)) elements.add(element)
@@ -43,7 +41,7 @@ class Field(
         var list: ArrayList<FieldElement> = ArrayList()
         for (i: FieldElement in elements) {
             if ((abs(pos.x - i.position.x) < deadzone) and (abs(pos.y - i.position.y) < deadzone))
-                    list.add(i)
+                list.add(i)
         }
         return list.toList()
     }
