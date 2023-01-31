@@ -3,6 +3,13 @@ package cshcyberhawks.swolib.hardware
 import com.ctre.phoenix.sensors.Pigeon2
 import cshcyberhawks.swolib.math.AngleCalculations
 
+/**
+ * A wrapper class for the Pigeon2 Gyroscope.
+ *
+ * @property port The port that your Pigeon2 is connected to.
+ *
+ * @constructor Creates a gyro with the specified port.
+ */
 class Pigeon2Gyro(private val port: Int) : GenericGyro {
     val gyro = Pigeon2(port)
     var offsetValue: Double = 0.0

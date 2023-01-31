@@ -1,5 +1,8 @@
 package cshcyberhawks.swolib.hardware
 
+/**
+ * A collection of functions which can be used as a template for other encoder classes
+ */
 interface GenericTurnEncoder {
     val port: Int
 

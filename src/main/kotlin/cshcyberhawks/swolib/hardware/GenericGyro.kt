@@ -1,5 +1,8 @@
 package cshcyberhawks.swolib.hardware
 
+/**
+ * A collection of functions which can be used as a template for another gyro class
+ */
 interface GenericGyro {
     /**
      * Gets the angle the gyro is currently facing.

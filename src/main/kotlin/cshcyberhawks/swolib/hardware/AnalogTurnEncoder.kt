@@ -11,6 +11,13 @@ import edu.wpi.first.wpilibj.AnalogInput
 class AnalogTurnEncoder(override val port: Int, private val offset: Double) : GenericTurnEncoder {
     val encoder: AnalogInput = AnalogInput(port)
 
+    /**
+     * Converts a value in volts to a position in degrees
+     *
+     * @param input The voltage
+     *
+     * @return A position in degrees
+     */
     private fun voltageToDegrees(input: Double): Double = input / (2.5 / 180)
 
     /**
