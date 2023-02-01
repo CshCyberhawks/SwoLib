@@ -125,6 +125,10 @@ class SwerveAuto(
                 ) == 0.0)
     }
 
+    public fun setDesiredAngleRelative(desiredAngle: Double) {
+        desiredPosition = FieldPosition(desiredPosition.x, desiredPosition.y, AngleCalculations.wrapAroundAngles(gyro.getYaw() + desiredAngle))
+    }
+
     fun isFinishedMoving(): Boolean {
         return isAtDesiredAngle() && isAtDesiredPosition()
     }
