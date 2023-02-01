@@ -10,7 +10,6 @@ import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 class SwerveAuto(
     val xPID: PIDController,
@@ -57,23 +56,14 @@ class SwerveAuto(
         var translation: Vector2 = Vector2(0.0, 0.0)
         var twist: Double = 0.0
 
-        SmartDashboard.putBoolean("At Desired Pos", isAtDesiredPosition())
         if (!isAtDesiredPosition()) {
             translation = calculateTranslation()
         }
 
-        SmartDashboard.putNumber("Auto Translation X", translation.x)
-        SmartDashboard.putNumber("Auto Translation Y", translation.y)
-
         val atDesiredAngle = isAtDesiredAngle()
-        SmartDashboard.putBoolean("At Desired Angle", atDesiredAngle)
         if (!atDesiredAngle) {
             twist = calculateTwist(desiredPosition.angle)
         }
-
-        SmartDashboard.putNumber("Desired Angle", desiredPosition.angle)
-
-        SmartDashboard.putNumber("Auto Twist", twist)
 
         swerveSystem.drive(translation, twist)
     }
