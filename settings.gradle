@@ -1,11 +1,10 @@
 import org.gradle.internal.os.OperatingSystem
 
-
 pluginManagement {
     repositories {
         mavenLocal()
         gradlePluginPortal()
-        String frcYear = '2022'
+        String frcYear = '2023'
         File frcHome
         if (OperatingSystem.current().isWindows()) {
             String publicFolder = System.getenv('PUBLIC')
@@ -26,5 +25,3 @@ pluginManagement {
         }
     }
 }
-
-rootProject.name = 'cshcyberhawks.swolib'
