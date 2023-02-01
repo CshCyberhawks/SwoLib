@@ -1,7 +1,6 @@
 package cshcyberhawks.swolib.math
 
-class FieldPosition(var position: Vector2, var angle: Double) {
-
+class FieldPosition(private var position: Vector2, var angle: Double) {
     constructor(x: Double, y: Double, angle: Double) : this(Vector2(x, y), angle)
 
     var x

@@ -15,7 +15,6 @@ class Polar(var theta: Double = 0.0, var r: Double = 0.0) {
 
         other as Polar
 
-        // TODO: Deal with the inverse angle thing
-        return r == other.r && theta == other.theta
+        return (r == other.r && theta == other.theta) || (theta == (other.theta + 180) % 360 && r == -other.r)
     }
 }
