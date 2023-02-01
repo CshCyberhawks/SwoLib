@@ -1,7 +1,5 @@
 package cshcyberhawks.swolib.math
 
-import kotlin.math.abs
-
 /**
  * A collection of methods for calculations related to angles.
  */
@@ -29,9 +27,9 @@ object AngleCalculations {
      * @return The optimized angle.
      */
     fun optimizeAngle(desiredAngle: Double, currentAngle: Double): Double {
-        if (abs(desiredAngle - currentAngle) > 90 && abs(desiredAngle - currentAngle) < 270) {
-            return (desiredAngle + 180) % 360
-        }
-        return desiredAngle
+        val diff = wrapAroundAngles(desiredAngle - currentAngle)
+        return if (diff > 90 && diff < 270) {
+            (desiredAngle + 180) % 360
+        } else desiredAngle
     }
 }

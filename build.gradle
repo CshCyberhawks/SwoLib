@@ -1,9 +1,8 @@
-import edu.wpi.first.gradlerio.deploy.roborio.RoboRIO
-
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2022.4.1"
+    id "edu.wpi.first.GradleRIO" version "2023.2.1"
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
+    id "org.jetbrains.dokka" version "1.7.20"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -49,7 +48,7 @@ wpi.java.debugJni = false
 def includeDesktopSupport = true
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
-// Also defines JUnit 4.
+// Also defines JUnit 5.
 dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
@@ -68,8 +67,14 @@ dependencies {
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
     simulationRelease wpi.sim.enableRelease()
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 // Simulation configuration (e.g. environment variables).
@@ -85,18 +90,18 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
+repositories {
+    mavenCentral()
+}
+
 // Configure jar and deploy tasks
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
 
-allprojects {
-    repositories {
-        mavenCentral()
-        maven {
-            url 'https://www.jitpack.io'
-        }
-    }
+// Configure string concat to always inline compile
+tasks.withType(JavaCompile) {
+    options.compilerArgs.add '-XDstringConcat=inline'
 }
 
 compileKotlin {
