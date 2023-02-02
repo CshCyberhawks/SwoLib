@@ -1,5 +1,6 @@
 package cshcyberhawks.swolib.autonomous.commands
 
+import cshcyberhawks.swolib.autonomous.FinishCondition
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.math.FieldPosition
 import cshcyberhawks.swolib.math.Vector2
@@ -11,14 +12,6 @@ class GoToPositionAndExecute(
     val command: CommandBase,
     val finishCondition: FinishCondition = FinishCondition.BOTH
 ) : CommandBase() {
-
-    enum class FinishCondition {
-        POSITION,
-        COMMAND,
-        BOTH,
-        EITHER
-    }
-
     // TODO: implement the turning to face the object
     constructor(
         swerveAuto: SwerveAuto,

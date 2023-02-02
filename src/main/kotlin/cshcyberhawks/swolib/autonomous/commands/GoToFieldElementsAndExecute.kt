@@ -1,26 +1,16 @@
 package cshcyberhawks.swolib.autonomous.commands
 
 import cshcyberhawks.swolib.autonomous.FieldElement
+import cshcyberhawks.swolib.autonomous.FinishCondition
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToFieldElementsAndExecute(
     val swerveAuto: SwerveAuto,
     val fieldElements: List<FieldElement>,
-    val commands: List<CommandBase>
+    val commands: List<CommandBase>,
+    val finishCondition: List<FinishCondition> = listOf(FinishCondition.BOTH)
 ) : CommandBase() {
-    constructor(
-        swerveAuto: SwerveAuto,
-        elements: List<FieldElement>,
-        commands: List<CommandBase>,
-        finishCondition: List<GoToPositionAndExecute.FinishCondition>
-    ) : this(swerveAuto, elements.toList(), commands) {
-        this.finishCondition = finishCondition
-    }
-
-    private var finishCondition: List<GoToPositionAndExecute.FinishCondition> =
-        listOf(GoToPositionAndExecute.FinishCondition.BOTH)
-
     private lateinit var command: GoToPositionAndExecute
 
     override fun initialize() {
@@ -35,12 +25,12 @@ class GoToFieldElementsAndExecute(
         finishCondition.drop(1)
     }
 
-    private fun isPieceDone(cond: GoToPositionAndExecute.FinishCondition): Boolean {
+    private fun isPieceDone(cond: FinishCondition): Boolean {
         return when (cond) {
-            GoToPositionAndExecute.FinishCondition.POSITION -> swerveAuto.isFinishedMoving()
-            GoToPositionAndExecute.FinishCondition.COMMAND -> command.isFinished
-            GoToPositionAndExecute.FinishCondition.BOTH -> swerveAuto.isFinishedMoving() && command.isFinished
-            GoToPositionAndExecute.FinishCondition.EITHER -> swerveAuto.isFinishedMoving() || command.isFinished
+            FinishCondition.POSITION -> swerveAuto.isFinishedMoving()
+            FinishCondition.COMMAND -> command.isFinished
+            FinishCondition.BOTH -> swerveAuto.isFinishedMoving() && command.isFinished
+            FinishCondition.EITHER -> swerveAuto.isFinishedMoving() || command.isFinished
         }
 
     }
