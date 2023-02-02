@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.NetworkTableInstance
 import kotlin.math.tan
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.FieldPosition
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 
@@ -67,8 +68,26 @@ class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: C
 
     fun getJSON(): ByteArray = limelight.getEntry("json").getRaw(byteArrayOf())
 
-    fun getBotPose(): Array<Number> = limelight.getEntry("botpose").getNumberArray(arrayOf<Number>())
-
+    fun getCamPose(): FieldPosition {
+        val data = limelight.getEntry("campose").getDoubleArray(arrayOf())
+        var pose: Pose3d = Pose3d(0.0,0.0,0.0 ,Rotation3d(0.0,0.0,0.0))
+        if (data.isNotEmpty()) {
+            val translation = Translation3d(data[0], data[1], data[2])
+            val rotation = Rotation3d(data[3], data[4], data[5])
+            pose = Pose3d(translation, rotation)
+        }
+        return FieldPosition(pose.x, pose.y, pose.yaw)
+    }
+    fun getBotPose(): FieldPosition {
+        val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
+        var pose: Pose3d = Pose3d(0.0,0.0,0.0 ,Rotation3d(0.0,0.0,0.0))
+        if (data.isNotEmpty()) {
+            val translation = Translation3d(data[0], data[1], data[2])
+            val rotation = Rotation3d(data[3], data[4], data[5])
+            pose = Pose3d(translation, rotation)
+        }
+        return FieldPosition(pose.x, pose.y, pose.yaw)
+    }
     fun getDetectorClass(): Double = limelight.getEntry("tclass").getDouble(0.0)
 
     fun getColorUnderCrosshair(): Array<Number> = limelight.getEntry("tc").getNumberArray(arrayOf<Number>())
