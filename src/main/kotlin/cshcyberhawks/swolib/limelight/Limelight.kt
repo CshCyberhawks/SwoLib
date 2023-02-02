@@ -1,14 +1,14 @@
 package cshcyberhawks.swolib.limelight
 
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
+import cshcyberhawks.swolib.math.*
 import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
 import kotlin.math.tan
-import cshcyberhawks.swolib.math.Vector2
-import cshcyberhawks.swolib.math.AngleCalculations
-import cshcyberhawks.swolib.math.FieldPosition
-import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.swerve.SwerveOdometry
+import edu.wpi.first.math.geometry.Pose3d
+import edu.wpi.first.math.geometry.Rotation3d
+import edu.wpi.first.math.geometry.Translation3d
 
 class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0), val cameraHeight: Double, val cameraAngle: Double) {
     private val limelight: NetworkTable
@@ -76,17 +76,15 @@ class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: C
             val rotation = Rotation3d(data[3], data[4], data[5])
             pose = Pose3d(translation, rotation)
         }
-        return FieldPosition(pose.x, pose.y, pose.yaw)
+        return FieldPosition(pose.x, pose.y, pose.rotation.z)
     }
-    fun getBotPose(): FieldPosition {
+    fun getBotPose(): Vector3? {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
-        var pose: Pose3d = Pose3d(0.0,0.0,0.0 ,Rotation3d(0.0,0.0,0.0))
-        if (data.isNotEmpty()) {
-            val translation = Translation3d(data[0], data[1], data[2])
-            val rotation = Rotation3d(data[3], data[4], data[5])
-            pose = Pose3d(translation, rotation)
+        if (data.isEmpty()) {
+            return null
         }
-        return FieldPosition(pose.x, pose.y, pose.yaw)
+
+        return Vector3(data[0], data[1], data[2])
     }
     fun getDetectorClass(): Double = limelight.getEntry("tclass").getDouble(0.0)
 
