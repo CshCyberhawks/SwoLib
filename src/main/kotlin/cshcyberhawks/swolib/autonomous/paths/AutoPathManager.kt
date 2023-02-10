@@ -7,10 +7,8 @@ class AutoPathManager() {
     val paths: HashMap<String, AutoPath> = hashMapOf()
 
     init {
-        SmartDashboard.putNumber("Init", 1.0)
-        Filesystem.getDeployDirectory().resolve("/paths/").listFiles()!!.forEach {
-            SmartDashboard.putNumber(it.name, 1.0)
-            paths[it.name] = AutoPath(it)
+        Filesystem.getDeployDirectory().resolve("./paths/").listFiles()?.forEach {
+            paths[it.name.substring(0, it.name.indexOf("."))] = AutoPath(it)
         }
     }
 }
