@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/deploy/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPath.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui-ds.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui-ds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/frc/robot/Robot.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,9 +27,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="JUnit5 Test Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
       </list>
     </option>
@@ -66,6 +67,7 @@
       <recent name="" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="cshcyberhawks.swolib.autonomous.paths" />
       <recent name="cshcyberhawks.swolib.autonomous.commands" />
       <recent name="cshcyberhawks.swolib.hardware.implementations" />
       <recent name="cshcyberhawks.swolib.hardware.enums" />

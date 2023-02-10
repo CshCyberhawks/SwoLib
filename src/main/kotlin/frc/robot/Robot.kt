@@ -22,6 +22,7 @@ import cshcyberhawks.swolib.swerve.SwerveWheel
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import java.io.File
 import com.beust.klaxon.Klaxon
+import edu.wpi.first.wpilibj.Filesystem
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -158,15 +159,9 @@ class Robot : TimedRobot() {
     /**
      * This function is called once when test mode is enabled.
      */
-    data class JSONObject(val hello: String)
-
     override fun testInit() {
         // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll()
-
-        val obj = Klaxon().parse<JSONObject>(File("test.json").bufferedReader().use { it.readText() })
-
-        print(obj?.hello)
     }
 
     /**
