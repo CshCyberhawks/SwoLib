@@ -22,6 +22,7 @@ import cshcyberhawks.swolib.swerve.SwerveWheel
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import java.io.File
 import com.beust.klaxon.Klaxon
+import cshcyberhawks.swolib.autonomous.paths.AutoPathManager
 import edu.wpi.first.wpilibj.Filesystem
 
 /**
@@ -162,6 +163,12 @@ class Robot : TimedRobot() {
     override fun testInit() {
         // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll()
+
+        val manager = AutoPathManager()
+
+        for ((i, v) in manager.paths.entries) {
+            SmartDashboard.putString(i, v.toString())
+        }
     }
 
     /**

@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.Filesystem
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 class AutoPathManager() {
-    val paths: MutableList<AutoPath> = mutableListOf()
+    val paths: HashMap<String, AutoPath> = hashMapOf()
 
     init {
-        Filesystem.getDeployDirectory().resolve("/paths").listFiles()?.forEach {
-            paths.add(AutoPath(it))
+        SmartDashboard.putNumber("Init", 1.0)
+        Filesystem.getDeployDirectory().resolve("/paths/").listFiles()!!.forEach {
+            SmartDashboard.putNumber(it.name, 1.0)
+            paths[it.name] = AutoPath(it)
         }
     }
 }
