@@ -21,7 +21,6 @@ import cshcyberhawks.swolib.swerve.SwerveDriveTrain
 import cshcyberhawks.swolib.swerve.SwerveWheel
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import java.io.File
-import com.beust.klaxon.Klaxon
 import edu.wpi.first.wpilibj.Filesystem
 
 /**
