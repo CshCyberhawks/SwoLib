@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/SwerveAuto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/SwerveAuto.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +25,8 @@
         <option value="Kotlin Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Kotlin Enum" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -105,7 +107,8 @@
       <workItem from="1675987166925" duration="1086000" />
       <workItem from="1675995121063" duration="664000" />
       <workItem from="1676069861595" duration="2059000" />
-      <workItem from="1676076200287" duration="45000" />
+      <workItem from="1676076200287" duration="875000" />
+      <workItem from="1676079675075" duration="3065000" />
     </task>
     <servers />
   </component>
