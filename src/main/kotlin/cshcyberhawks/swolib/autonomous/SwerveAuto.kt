@@ -30,6 +30,11 @@ class SwerveAuto(
             field = value
         }
 
+    fun setDesiredEndVelocity(velo: Vector2) {
+        this.trapXDesiredState = TrapezoidProfile.State(trapXDesiredState.position, velo.x)
+        this.trapYDesiredState = TrapezoidProfile.State(trapYDesiredState.position, velo.y)
+    }
+
     private var trapXCurrentState: TrapezoidProfile.State =
         TrapezoidProfile.State(
             swo.fieldPosition.x,
