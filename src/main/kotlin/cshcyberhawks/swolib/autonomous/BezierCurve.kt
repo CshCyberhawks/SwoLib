@@ -18,7 +18,10 @@ class BezierCurve(private val startPoint: Vector2, private val modPoint: Vector2
         )
     }
 
-    private val points: List<Vector2> = (0..resolution.toInt()).map { getPoint(it / resolution) }
+    val points: List<Vector2> = (0..resolution.toInt()).map { getPoint(it / resolution) }
+    var nextPoint: Int = 1
+
+    fun getNextPoint(): Vector2 = points[nextPoint++]
 
     private fun getTotalDistance(): Double {
         var dist = 0.0
