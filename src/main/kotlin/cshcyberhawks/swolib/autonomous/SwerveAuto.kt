@@ -25,8 +25,14 @@ class SwerveAuto(
 ) {
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
         set(value) {
-            trapXDesiredState = TrapezoidProfile.State(value.x, 0.0)
-            trapYDesiredState = TrapezoidProfile.State(value.y, 0.0)
+            trapXDesiredState = TrapezoidProfile.State(value.x, desiredVelocity.x)
+            trapYDesiredState = TrapezoidProfile.State(value.y, desiredVelocity.y)
+            field = value
+        }
+    var desiredVelocity: Vector2 = Vector2()
+        set(value) {
+            trapXDesiredState = TrapezoidProfile.State(desiredPosition.x, value.x)
+            trapYDesiredState = TrapezoidProfile.State(desiredPosition.x, value.y)
             field = value
         }
 
