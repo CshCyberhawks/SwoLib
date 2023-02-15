@@ -1,20 +1,22 @@
 package cshcyberhawks.swolib.autonomous
 
 import cshcyberhawks.swolib.math.Vector2
+import kotlin.math.pow
 import kotlin.math.sqrt
 
-class BezierCurve(private val startPoint: Vector2, private val modPoint: Vector2, private val endPoint: Vector2, private val resolution: Double) {
-    private fun getChange(num1: Double, num2: Double, time: Double): Double = num1 + (num2 - num1) * time
-
+class BezierCurve(private val startPoint: Vector2, private val controlPoint1: Vector2, private val controlPoint2: Vector2, private val endPoint: Vector2, private val resolution: Double) {
     private fun getPoint(time: Double): Vector2 {
-        val tanXA = getChange(startPoint.x, modPoint.x, time)
-        val tanXB = getChange(modPoint.x, endPoint.x, time)
-        val tanYA = getChange(startPoint.y, modPoint.y, time)
-        val tanYB = getChange(modPoint.y, endPoint.y, time)
-
+        // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Cubic_B%C3%A9zier_curves
+        // This is just the wikipedia Cubic Bezier with some operations unrolled to make it run faster
         return Vector2(
-            getChange(tanXA, tanXB, time),
-            getChange(tanYA, tanYB, time)
+            (1 - time) * (1 - time) * (1 - time) * startPoint.x +
+                    3 * (1 - time) * (1 - time) * time * controlPoint1.x +
+                    3 * (1 - time) * time * time * controlPoint2.x +
+                    time * time * time * endPoint.x,
+            (1 - time) * (1 - time) * (1 - time) * startPoint.y +
+                    3 * (1 - time) * (1 - time) * time * controlPoint1.y +
+                    3 * (1 - time) * time * time * controlPoint2.y +
+                    time * time * time * endPoint.y
         )
     }
 
