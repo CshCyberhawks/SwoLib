@@ -1,6 +1,5 @@
-package cshcyberhawks.swolib.autonomous
+package cshcyberhawks.swolib.math
 
-import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
@@ -16,8 +15,7 @@ class BezierCurve(
         private val resolution: Double
 ) {
     private fun getPoint(time: Double): Vector2 {
-        // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Cubic_B%C3%A9zier_curves
-        // This is just the wikipedia Cubic Bezier with some operations unrolled to make it run faster
+        // https://en.wikipedia.org/wiki/Bézier_curve
         return Vector2(
             (1 - time) * (1 - time) * (1 - time) * startPoint.x +
                     3 * (1 - time) * (1 - time) * time * controlPoint1.x +

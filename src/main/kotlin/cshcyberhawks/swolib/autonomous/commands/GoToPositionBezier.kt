@@ -1,6 +1,6 @@
 package cshcyberhawks.swolib.autonomous.commands
 
-import cshcyberhawks.swolib.autonomous.BezierCurve
+import cshcyberhawks.swolib.math.BezierCurve
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.math.FieldPosition
 import edu.wpi.first.wpilibj2.command.CommandBase
