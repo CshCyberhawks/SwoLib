@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.run/Launch Shuffleboard.run.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.run/Launch SmartDashboard.run.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
@@ -19,6 +20,10 @@
       <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.run/Clean.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean.run.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/commands/GoToPositionBezier.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 772312c0d1ee88237db1193f2e22aeb23f74523b
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +141,8 @@
       <workItem from="1675995121063" duration="664000" />
       <workItem from="1676069861595" duration="2059000" />
       <workItem from="1676076200287" duration="875000" />
-      <workItem from="1676079675075" duration="3065000" />
+      <workItem from="1676079675075" duration="3429000" />
+      <workItem from="1676217597244" duration="932000" />
     </task>
     <servers />
   </component>
