@@ -28,7 +28,7 @@ class BezierCurve(
         )
     }
 
-    val points: List<Vector2> = (0..resolution.toInt()).map { getPoint(it.toDouble() / resolution) }
+    val points: List<Vector2> = (0..resolution.toInt()).map { getPoint(it / resolution) }
     var nextPoint: Int = 1
 
     private var trapXCurrentState: TrapezoidProfile.State =
