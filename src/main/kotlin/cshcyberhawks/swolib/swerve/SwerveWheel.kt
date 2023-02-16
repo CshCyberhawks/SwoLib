@@ -24,7 +24,7 @@ class SwerveWheel(
 
     init {
         driveMotor.setNeutralMode(MotorNeutralMode.Brake)
-        turnPID.setTolerance(4.0)
+        turnPID.setTolerance(.4)
         turnPID.enableContinuousInput(0.0, 360.0)
     }
 
@@ -37,7 +37,7 @@ class SwerveWheel(
         return rotationsPerSecondToMetersPerSecond(driveVelocity)
     }
 
-    private fun getTurnValue(): Double {
+    fun getTurnValue(): Double {
         return AngleCalculations.wrapAroundAngles(turnMotor.get())
     }
 
@@ -60,9 +60,10 @@ class SwerveWheel(
         val drivePIDOutput = drivePID.calculate(getCurrentDriveSpeed(), speed)
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
+        SmartDashboard.putNumber("angle in wheel for " + this.turnMotor.encoderPort, angle)
 
         driveMotor.setPercentOutput(MathUtil.clamp(speed / configuration.maxSpeed + drivePIDOutput, -1.0, 1.0))
-        if (abs(turnValue - angle) >= 4.0) {
+        if (abs(turnValue - angle) >= .4) {
             turnMotor.setPercentOutput(MathUtil.clamp(-turnPIDOutput, -1.0, 1.0))
         }
     }

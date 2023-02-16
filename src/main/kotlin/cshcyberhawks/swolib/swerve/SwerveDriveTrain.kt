@@ -115,10 +115,21 @@ class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, pr
             arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
         wheelSpeeds = normalizeWheelSpeeds(wheelSpeeds, 1.0)
 
+        SmartDashboard.putNumber("front right angle: ", frontRightAngle)
+        SmartDashboard.putNumber("front left angle: ", frontLeftAngle)
+        SmartDashboard.putNumber("back right angle: ", backRightAngle)
+        SmartDashboard.putNumber("back left angle: ", backLeftAngle)
+
+
         swerveConfiguration.backRight.drive(wheelSpeeds[2], backRightAngle)
         swerveConfiguration.backLeft.drive(wheelSpeeds[3], backLeftAngle)
         swerveConfiguration.frontRight.drive(wheelSpeeds[0], frontRightAngle)
         swerveConfiguration.frontLeft.drive(wheelSpeeds[1], frontLeftAngle)
+    }
+
+    fun debug() {
+        logEncoderValues()
+        //put debug stuff here
     }
 
     fun logEncoderValues() {

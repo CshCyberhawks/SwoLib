@@ -33,39 +33,49 @@ import edu.wpi.first.wpilibj.Filesystem
 class Robot : TimedRobot() {
     val swerveConfiguration: SwerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
 
-    val drivePID = PIDController(0.01, 0.0, 0.0)
-    val turnPID = PIDController(0.001, 0.0, 0.0)
+    val drivePIDBackLeft = PIDController(0.01, 0.0, 0.0)
+    val turnPIDBackLeft = PIDController(.012, 0.0, 0.0002)
+
+    val drivePIDBackRight = PIDController(0.01, 0.0, 0.0)
+    val turnPIDBackRight = PIDController(.012, 0.0, 0.0002)
+
+    val drivePIDFrontLeft = PIDController(0.01, 0.0, 0.0)
+    val turnPIDFrontLeft = PIDController(.012, 0.0, 0.0002)
+
+    val drivePIDFrontRight = PIDController(0.01, 0.0, 0.0)
+    val turnPIDFrontRight = PIDController(.012, 0.0, 0.0002)
+
 
     var backLeft: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.backLeftDriveMotor),
             SparkMaxTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder - 10]),
-            drivePID,
-            turnPID,
+            drivePIDBackLeft,
+            turnPIDBackLeft,
             swerveConfiguration
         )
     var backRight: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.backRightDriveMotor),
             SparkMaxTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder - 10]),
-            drivePID,
-            turnPID,
+            drivePIDBackRight,
+            turnPIDBackRight,
             swerveConfiguration
         )
     var frontLeft: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.frontLeftDriveMotor),
             SparkMaxTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder - 10]),
-            drivePID,
-            turnPID,
+            drivePIDFrontLeft,
+            turnPIDFrontLeft,
             swerveConfiguration
         )
     var frontRight: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.frontRightDriveMotor),
             SparkMaxTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder - 10]),
-            drivePID,
-            turnPID,
+            drivePIDFrontRight,
+            turnPIDFrontRight,
             swerveConfiguration
         )
 
@@ -154,6 +164,12 @@ class Robot : TimedRobot() {
         }
 
         swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick2.x)
+        SmartDashboard.putNumber("back left encoder: ", backLeft.getTurnValue());
+        SmartDashboard.putNumber("back right encoder: ", backRight.getTurnValue());
+        SmartDashboard.putNumber("front left encoder: ", frontLeft.getTurnValue());
+        SmartDashboard.putNumber("front right encoder: ", frontRight.getTurnValue());
+
+
     }
 
     /**
