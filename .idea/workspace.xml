@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/Launch Shuffleboard.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/Launch SmartDashboard.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot for Debugging.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot for Debugging.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Run Simulate Java.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Run Simulate Java.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Build Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build Robot.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot for Debugging.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot for Debugging.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.run/Clean.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +126,7 @@
       <workItem from="1676079675075" duration="3429000" />
       <workItem from="1676217597244" duration="932000" />
       <workItem from="1676506671707" duration="98000" />
+      <workItem from="1676513645663" duration="30000" />
     </task>
     <servers />
   </component>
