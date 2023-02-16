@@ -6,12 +6,12 @@ import com.revrobotics.CANSparkMaxLowLevel
 import cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor
 import cshcyberhawks.swolib.math.AngleCalculations
 
-class SparkMaxTurnMotor(deviceId: Int, encoderId: Int, val offset: Double, canBus: String = "") : GenericTurnMotor {
+class SparkMaxTurnMotor(deviceId: Int, override val encoderPort: Int, val offset: Double, canBus: String = "") : GenericTurnMotor {
     val motor = CANSparkMax(deviceId, CANSparkMaxLowLevel.MotorType.kBrushless)
-    val encoder = CANCoder(encoderId, canBus)
+    val encoder = CANCoder(encoderPort, canBus)
     override fun get(): Double = getRaw() - offset
 
-    override fun getRaw(): Double = AngleCalculations.wrapAroundAngles(encoder.position / 4096)
+    override fun getRaw(): Double = AngleCalculations.wrapAroundAngles(encoder.position)
 
     override fun setPercentOutput(percent: Double) {
         motor.set(percent)

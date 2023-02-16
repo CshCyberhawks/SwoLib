@@ -3,6 +3,7 @@ package frc.robot
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.autonomous.commands.GoToPositionAndExecute
 import cshcyberhawks.swolib.hardware.implementations.NavXGyro
+import cshcyberhawks.swolib.hardware.implementations.SparkMaxTurnMotor
 import cshcyberhawks.swolib.hardware.implementations.TalonFXDriveMotor
 import cshcyberhawks.swolib.hardware.implementations.TalonSRXTurnMotor
 import cshcyberhawks.swolib.math.FieldPosition
@@ -33,12 +34,12 @@ class Robot : TimedRobot() {
     val swerveConfiguration: SwerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
 
     val drivePID = PIDController(0.01, 0.0, 0.0)
-    val turnPID = PIDController(0.01, 0.0, 0.0)
+    val turnPID = PIDController(0.001, 0.0, 0.0)
 
     var backLeft: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.backLeftDriveMotor),
-            TalonSRXTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder]),
+            SparkMaxTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder - 10]),
             drivePID,
             turnPID,
             swerveConfiguration
@@ -46,7 +47,7 @@ class Robot : TimedRobot() {
     var backRight: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.backRightDriveMotor),
-            TalonSRXTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder]),
+            SparkMaxTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder - 10]),
             drivePID,
             turnPID,
             swerveConfiguration
@@ -54,7 +55,7 @@ class Robot : TimedRobot() {
     var frontLeft: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.frontLeftDriveMotor),
-            TalonSRXTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder]),
+            SparkMaxTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder - 10]),
             drivePID,
             turnPID,
             swerveConfiguration
@@ -62,7 +63,7 @@ class Robot : TimedRobot() {
     var frontRight: SwerveWheel =
         SwerveWheel(
             TalonFXDriveMotor(Constants.frontRightDriveMotor),
-            TalonSRXTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder]),
+            SparkMaxTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder - 10]),
             drivePID,
             turnPID,
             swerveConfiguration

@@ -9,8 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import kotlin.math.abs
 
-class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, private val gyro: GenericGyro) :
-    SubsystemBase() {
+class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, private val gyro: GenericGyro) : SubsystemBase() {
     companion object {
         fun normalizeWheelSpeeds(wheelVectors: Array<Double>, distanceFromZero: Double): Array<Double> {
             var max = abs(wheelVectors[0])
