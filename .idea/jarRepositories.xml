@@ -61,5 +61,10 @@
       <option name="name" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
       <option name="url" value="https://dev.studica.com/maven/release/2023/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPILocal" />
+      <option name="name" value="WPILocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../Users/Public/wpilib/2023/maven" />
+    </remote-repository>
   </component>
 </project>

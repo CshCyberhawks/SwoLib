@@ -1,6 +1,5 @@
-package cshcyberhawks.swolib.autonomous
+package cshcyberhawks.swolib.math
 
-import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
@@ -10,20 +9,23 @@ class BezierCurve(
         private val swo: SwerveOdometry,
         private val trapConstraints: TrapezoidProfile.Constraints,
         private val startPoint: Vector2,
-        private val modPoint: Vector2,
+        private val controlPoint1: Vector2,
+        private val controlPoint2: Vector2,
         private val endPoint: Vector2,
         private val resolution: Double
 ) {
-    private fun getChange(num1: Double, num2: Double, time: Double): Double =
-            num1 + (num2 - num1) * time
-
     private fun getPoint(time: Double): Vector2 {
-        val tanXA = getChange(startPoint.x, modPoint.x, time)
-        val tanXB = getChange(modPoint.x, endPoint.x, time)
-        val tanYA = getChange(startPoint.y, modPoint.y, time)
-        val tanYB = getChange(modPoint.y, endPoint.y, time)
-
-        return Vector2(getChange(tanXA, tanXB, time), getChange(tanYA, tanYB, time))
+        // https://en.wikipedia.org/wiki/Bézier_curve
+        return Vector2(
+            (1 - time) * (1 - time) * (1 - time) * startPoint.x +
+                    3 * (1 - time) * (1 - time) * time * controlPoint1.x +
+                    3 * (1 - time) * time * time * controlPoint2.x +
+                    time * time * time * endPoint.x,
+            (1 - time) * (1 - time) * (1 - time) * startPoint.y +
+                    3 * (1 - time) * (1 - time) * time * controlPoint1.y +
+                    3 * (1 - time) * time * time * controlPoint2.y +
+                    time * time * time * endPoint.y
+        )
     }
 
     val points: List<Vector2> = (0..resolution.toInt()).map { getPoint(it / resolution) }
