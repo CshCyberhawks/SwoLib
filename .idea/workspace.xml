@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/commands/LimeLightAuto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/CameraMode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/LedMode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/Limelight.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/SnapshotMode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/StreamMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/SwerveAuto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/SwerveAuto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/limelight/blank.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/FieldPosition.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/math/FieldPosition.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/Launch Shuffleboard.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/Launch SmartDashboard.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot for Debugging.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot for Debugging.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Deploy Robot.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Build &amp; Run Simulate Java.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build &amp; Run Simulate Java.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Build Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Build Robot.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot for Debugging.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot for Debugging.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Deploy Robot.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build &amp; Run Simulate Java.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean Build Robot.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/Clean.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/BezierCurve.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +37,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Enum" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Kotlin Enum" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="dn07f0yf" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,28 +62,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Code/Robotics/Sweaters&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="cshcyberhawks.swolib.autonomous.paths" />
       <recent name="cshcyberhawks.swolib.autonomous.commands" />
       <recent name="cshcyberhawks.swolib.hardware.implementations" />
       <recent name="cshcyberhawks.swolib.hardware.enums" />
@@ -78,13 +95,22 @@
       <recent name="cshcyberhawks.swolib.math" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Clean">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="cshcyberhawks.swolib" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.Build &amp; Deploy Robot">
+    <list>
+      <item itemvalue="Gradle.Build &amp; Deploy Robot" />
+      <item itemvalue="Gradle.Build &amp; Deploy Robot for Debugging" />
+      <item itemvalue="Gradle.Build &amp; Run Simulate Java" />
+      <item itemvalue="Gradle.Build Robot" />
+      <item itemvalue="Gradle.Clean" />
+      <item itemvalue="Gradle.Clean Build &amp; Deploy Robot" />
+      <item itemvalue="Gradle.Clean Build &amp; Deploy Robot for Debugging" />
+      <item itemvalue="Gradle.Clean Build &amp; Run Simulate Java" />
+      <item itemvalue="Gradle.Clean Build Robot" />
+      <item itemvalue="JAR Application.Launch Shuffleboard" />
+      <item itemvalue="JAR Application.Launch SmartDashboard" />
+      <item itemvalue="Remote JVM Debug.Debug Robot via IP" />
+      <item itemvalue="Remote JVM Debug.Debug Robot via USB" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -108,6 +134,14 @@
       <workItem from="1675122775040" duration="434000" />
       <workItem from="1675291805821" duration="84000" />
       <workItem from="1675291990490" duration="825000" />
+      <workItem from="1675378840333" duration="3441000" />
+      <workItem from="1675987166925" duration="1086000" />
+      <workItem from="1675995121063" duration="664000" />
+      <workItem from="1676069861595" duration="2059000" />
+      <workItem from="1676076200287" duration="875000" />
+      <workItem from="1676079675075" duration="3429000" />
+      <workItem from="1676217597244" duration="932000" />
+      <workItem from="1676506671707" duration="98000" />
     </task>
     <servers />
   </component>
@@ -127,5 +161,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WpiLibVersionService">
+    <option name="lastChecked" value="20230214202051" />
   </component>
 </project>

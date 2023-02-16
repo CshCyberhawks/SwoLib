@@ -1,5 +1,12 @@
 package cshcyberhawks.swolib.math
 
+/**
+ * A class to represent a 3D coordinate
+ *
+ * @param x The value on the x-axis
+ * @param y The value on the y-axis
+ * @param z The value on the z-axis
+ */
 class Vector3(var x: Double = 0.0, var y: Double = 0.0, var z: Double = 0.0) {
     operator fun plusAssign(other: Vector3) {
         x += other.x

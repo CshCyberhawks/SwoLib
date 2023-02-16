@@ -1,6 +1,7 @@
 package cshcyberhawks.swolib.swerve
 
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
+import cshcyberhawks.swolib.limelight.Limelight
 import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.math.Vector2
@@ -11,7 +12,8 @@ import kotlin.math.sin
 class SwerveOdometry(
     private var swerveDriveTrain: SwerveDriveTrain,
     private var gyro: GenericGyro,
-    private val swoToMeters: Double
+    private val swoToMeters: Double,
+    private val limelight: Limelight? = null
 ) {
     var fieldPosition = Vector3()
     var lastTime = MiscCalculations.getCurrentTime()
@@ -39,6 +41,14 @@ class SwerveOdometry(
 
     fun updatePosition() {
         fieldPosition += getVelocity() * (MiscCalculations.getCurrentTime() - lastTime)
+
+        if (limelight != null) {
+            val limelightPosition = limelight.getBotPose()
+            if (limelightPosition != null) {
+                fieldPosition = limelightPosition
+            }
+        }
+
         lastTime = MiscCalculations.getCurrentTime()
     }
 }

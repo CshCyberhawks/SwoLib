@@ -3,6 +3,8 @@ package cshcyberhawks.swolib.hardware.implementations
 import com.kauailabs.navx.frc.AHRS
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.Vector2
+import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.wpilibj.SPI
 
 /**
@@ -25,6 +27,10 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
     override fun getPitch(): Double = gyro.pitch.toDouble()
 
     override fun getRoll(): Double = gyro.roll.toDouble()
+
+    override fun mergePitchRoll(): Vector2 {
+        return Vector2.fromPolar(Polar(0.0, getPitch())) + Vector2.fromPolar(Polar(90.0, getRoll()))
+    }
 
     /**
      * Sets the angle offset of the gyro to the current direction.

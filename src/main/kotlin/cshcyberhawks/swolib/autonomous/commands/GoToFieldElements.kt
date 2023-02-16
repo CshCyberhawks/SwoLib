@@ -6,11 +6,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToFieldElements(val swerveAuto: SwerveAuto, val fieldElements: List<FieldElement>) :
     CommandBase() {
-    constructor(
-        swerveAuto: SwerveAuto,
-        vararg fieldElements: FieldElement
-    ) : this(swerveAuto, fieldElements.toList())
-
     private lateinit var posCommand: GoToPosition
 
     override fun initialize() {
