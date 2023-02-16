@@ -3,6 +3,8 @@ package cshcyberhawks.swolib.hardware.implementations
 import com.ctre.phoenix.sensors.Pigeon2
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.Vector2
+import cshcyberhawks.swolib.math.Polar
 
 class Pigeon2Gyro(private val port: Int) : GenericGyro {
     val gyro = Pigeon2(port)
@@ -17,6 +19,9 @@ class Pigeon2Gyro(private val port: Int) : GenericGyro {
     override fun getPitch(): Double = gyro.pitch
     override fun getRoll(): Double = gyro.roll
 
+    override fun mergePitchRoll(): Vector2 {
+        return Vector2.fromPolar(Polar(0.0, getPitch())) + Vector2.fromPolar(Polar(90.0, getRoll()))
+    }
     /**
      * Sets the angle offset of the gyro to the current direction.
      *

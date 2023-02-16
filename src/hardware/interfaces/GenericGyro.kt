@@ -1,5 +1,7 @@
 package cshcyberhawks.swolib.hardware.interfaces
 
+import cshcyberhawks.swolib.math.Vector2
+
 interface GenericGyro {
     /**
      * Gets the angle the gyro is currently facing.
@@ -11,6 +13,8 @@ interface GenericGyro {
     fun getPitch(): Double
 
     fun getRoll(): Double
+
+    fun mergePitchRoll(): Vector2
 
     /**
      * Sets the angle offset of the gyro to the current direction.

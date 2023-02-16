@@ -55,6 +55,6 @@ class Field(
     }
 
     fun goToElementCommand(name: String): GoToFieldElements {
-        return GoToFieldElements(swerveAuto, getElement(name))
+        return GoToFieldElements(swerveAuto, listOf(getElement(name)))
     }
 }

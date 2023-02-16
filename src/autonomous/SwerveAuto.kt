@@ -30,6 +30,11 @@ class SwerveAuto(
             field = value
         }
 
+    fun setDesiredEndVelocity(velo: Vector2) {
+        this.trapXDesiredState = TrapezoidProfile.State(trapXDesiredState.position, velo.x)
+        this.trapYDesiredState = TrapezoidProfile.State(trapYDesiredState.position, velo.y)
+    }
+
     private var trapXCurrentState: TrapezoidProfile.State =
         TrapezoidProfile.State(
             swo.fieldPosition.x,
@@ -74,6 +79,17 @@ class SwerveAuto(
         val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
         val twistFF = if (pidVal > 0) twistFeedForward else -twistFeedForward
         return pidVal + twistFF
+    }
+
+    private fun calculateCurveTranslation(): Vector2 {
+        val timeNow = WPIUtilJNI.now() * 1.0e-6
+        val trapTime: Double = if (prevTime == 0.0) 0.0 else timeNow - prevTime
+
+
+
+        prevTime = timeNow
+
+        return Vector2()
     }
 
     private fun calculateTranslation(): Vector2 {

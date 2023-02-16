@@ -3,8 +3,21 @@ package cshcyberhawks.swolib.math
 import kotlin.math.cos
 import kotlin.math.sin
 
+/**
+ * A class to represent a cartesian vector
+ *
+ * @param x The value on the x-axis
+ * @param y The value on the y-axis
+ */
 class Vector2(var x: Double = 0.0, var y: Double = 0.0) {
     companion object {
+        /**
+         * A function to construct a vector2 2 from a polar vector
+         *
+         * @param cord The polar vector input
+         *
+         * @return The equivalent polar vector
+         */
         fun fromPolar(cord: Polar): Vector2 =
             Vector2(cord.r * cos(Math.toRadians(cord.theta)), cord.r * sin(Math.toRadians(cord.theta)))
     }
