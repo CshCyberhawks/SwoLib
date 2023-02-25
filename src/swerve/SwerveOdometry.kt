@@ -10,12 +10,13 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class SwerveOdometry(
-    private var swerveDriveTrain: SwerveDriveTrain,
-    private var gyro: GenericGyro,
-    private val swoToMeters: Double,
-    private val limelight: Limelight? = null
+        private var swerveDriveTrain: SwerveDriveTrain,
+        private var gyro: GenericGyro,
+        private val swoToMeters: Double,
+        private val startingPosition: Vector3 = Vector3(0.0, 0.0, 0.0),
+        private val limelight: Limelight? = null
 ) {
-    var fieldPosition = Vector3()
+    var fieldPosition = Vector3() + startingPosition
     var lastTime = MiscCalculations.getCurrentTime()
 
     fun getVelocity(): Vector3 {
@@ -35,7 +36,9 @@ class SwerveOdometry(
         // Pitch and roll might be flipped
         val x = total.x * cos(Math.toRadians(gyro.getPitch())) / swoToMeters
         val y = total.y * cos(Math.toRadians(gyro.getRoll())) / swoToMeters
-        val z = (total.x * sin(Math.toRadians(gyro.getPitch())) + total.y * sin(Math.toRadians(gyro.getRoll()))) / swoToMeters
+        val z =
+                (total.x * sin(Math.toRadians(gyro.getPitch())) +
+                        total.y * sin(Math.toRadians(gyro.getRoll()))) / swoToMeters
         return Vector3(x, y, z)
     }
 
@@ -45,7 +48,7 @@ class SwerveOdometry(
         if (limelight != null) {
             val limelightPosition = limelight.getBotPose()
             if (limelightPosition != null) {
-                fieldPosition = limelightPosition
+                fieldPosition = (limelightPosition + startingPosition)
             }
         }
 
