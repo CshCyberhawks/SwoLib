@@ -4,10 +4,13 @@ import cshcyberhawks.swolib.hardware.enums.MotorNeutralMode
 import cshcyberhawks.swolib.hardware.interfaces.GenericDriveMotor
 import cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.swerve.configurations.SwerveModuleConfiguration
 import edu.wpi.first.math.MathUtil
 import edu.wpi.first.math.controller.PIDController
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import kotlin.math.abs
 
 
 class SwerveWheel(
@@ -21,7 +24,7 @@ class SwerveWheel(
 
     init {
         driveMotor.setNeutralMode(MotorNeutralMode.Brake)
-        turnPID.setTolerance(1.0)
+        turnPID.setTolerance(.4)
         turnPID.enableContinuousInput(0.0, 360.0)
     }
 
@@ -34,7 +37,7 @@ class SwerveWheel(
         return rotationsPerSecondToMetersPerSecond(driveVelocity)
     }
 
-    private fun getTurnValue(): Double {
+    fun getTurnValue(): Double {
         return AngleCalculations.wrapAroundAngles(turnMotor.get())
     }
 
@@ -57,10 +60,11 @@ class SwerveWheel(
         val drivePIDOutput = drivePID.calculate(getCurrentDriveSpeed(), speed)
 
         val turnPIDOutput = turnPID.calculate(turnValue, angle)
+        SmartDashboard.putNumber("angle in wheel for " + this.turnMotor.encoderPort, angle)
 
         driveMotor.setPercentOutput(MathUtil.clamp(speed / configuration.maxSpeed + drivePIDOutput, -1.0, 1.0))
-        if (!turnPID.atSetpoint()) {
-            turnMotor.setPercentOutput(MathUtil.clamp(turnPIDOutput, -1.0, 1.0))
+        if (abs(turnValue - angle) >= .4) {
+            turnMotor.setPercentOutput(MathUtil.clamp(-turnPIDOutput, -1.0, 1.0))
         }
     }
 
