@@ -78,7 +78,7 @@ class SwerveAuto(
         //ryan suggested this
         val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
         val twistFF = if (pidVal > 0) twistFeedForward else -twistFeedForward
-        return pidVal + twistFF
+        return -(pidVal + twistFF)
     }
 
     private fun calculateCurveTranslation(): Vector2 {
