@@ -14,7 +14,7 @@ class SwerveOdometry(
         private var gyro: GenericGyro,
         private val swoToMeters: Double,
         private val startingPosition: Vector3 = Vector3(0.0, 0.0, 0.0),
-        // private val limelight: Limelight? = null
+        private val limelight: Limelight? = null
 ) {
     var fieldPosition = Vector3() + startingPosition
     var lastTime = MiscCalculations.getCurrentTime()
@@ -45,12 +45,12 @@ class SwerveOdometry(
     fun updatePosition() {
         fieldPosition += getVelocity() * (MiscCalculations.getCurrentTime() - lastTime)
 
-        // if (limelight != null) {
-        //     val limelightPosition = limelight.getBotPose()
-        //     if (limelightPosition != null) {
-        //         fieldPosition = (limelightPosition + startingPosition)
-        //     }
-        // }
+        if (limelight != null) {
+            val limelightPosition = limelight.getBotPose()
+            if (limelightPosition != null) {
+                fieldPosition = (limelightPosition + startingPosition)
+            }
+        }
 
         lastTime = MiscCalculations.getCurrentTime()
     }
