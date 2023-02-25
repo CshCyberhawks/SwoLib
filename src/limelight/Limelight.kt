@@ -10,7 +10,7 @@ import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 
-class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0), val cameraHeight: Double, val cameraAngle: Double) {
+class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0)) {
     private val limelight: NetworkTable
 
     init {
@@ -107,5 +107,11 @@ class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: C
         ret += Vector2(swo.fieldPosition.x, swo.fieldPosition.y)
 
         return ret
+    }
+    fun setPipeline(pipeline: Int) {
+        if (pipeline < 0 || pipeline > 9)
+            error("Invalid pipeline value")
+        else
+            limelight.getEntry("pipeline").setNumber(pipeline)
     }
 }
