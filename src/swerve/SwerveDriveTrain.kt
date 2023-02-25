@@ -36,7 +36,7 @@ class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, pr
 
     fun fieldOriented(input: Vector2, gyroAngle: Double): Vector2 {
         val polar = Polar.fromVector2(input)
-        polar.theta += gyroAngle
+        polar.theta -= gyroAngle
         return Vector2.fromPolar(polar)
     }
 
