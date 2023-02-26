@@ -1,7 +1,12 @@
 package cshcyberhawks.swolib.autonomous.paths
 
-data class AutoPathNode(
+data class AutoPathFieldPosition(
     val x: Double,
     val y: Double,
-    val rotation: Double
+    val angle: Double
+)
+
+data class AutoPathNode(
+    val startPosition: AutoPathFieldPosition,
+    val positions: List<AutoPathFieldPosition>
 )

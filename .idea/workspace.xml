@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simgui-ds.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui-ds.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simgui.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/paths/TestPath.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/paths/TestPath.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPath.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPath.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/autonomous/paths/AutoPathNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/NavXGyro.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/NavXGyro.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/Pigeon2Gyro.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/Pigeon2Gyro.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/interfaces/GenericGyro.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/interfaces/GenericGyro.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +142,8 @@
       <workItem from="1676514700059" duration="1976000" />
       <workItem from="1676577403824" duration="4320000" />
       <workItem from="1677431319552" duration="2137000" />
-      <workItem from="1677433521072" duration="3093000" />
+      <workItem from="1677433521072" duration="3827000" />
+      <workItem from="1677441881468" duration="1523000" />
     </task>
     <servers />
   </component>

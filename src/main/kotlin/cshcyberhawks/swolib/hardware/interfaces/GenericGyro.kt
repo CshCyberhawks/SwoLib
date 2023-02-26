@@ -21,5 +21,5 @@ interface GenericGyro {
      *
      * This exists because the built-in offset was refusing to work.
      */
-    fun setYawOffset()
+    fun setYawOffset(currentPos: Double = 0.0)
 }
