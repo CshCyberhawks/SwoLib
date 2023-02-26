@@ -23,4 +23,8 @@ class LimeLightAuto(val swerveAuto: SwerveAuto, val limelight: Limelight, val ta
     override fun isFinished(): Boolean {
         return swerveAuto.isFinishedMoving()
     }
+
+    override fun end(int: Boolean) {
+        swerveAuto.kill();
+    }
 }

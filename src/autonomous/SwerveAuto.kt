@@ -81,17 +81,6 @@ class SwerveAuto(
         return -(pidVal + twistFF)
     }
 
-    private fun calculateCurveTranslation(): Vector2 {
-        val timeNow = WPIUtilJNI.now() * 1.0e-6
-        val trapTime: Double = if (prevTime == 0.0) 0.0 else timeNow - prevTime
-
-
-
-        prevTime = timeNow
-
-        return Vector2()
-    }
-
     private fun calculateTranslation(): Vector2 {
         val timeNow = WPIUtilJNI.now() * 1.0e-6
         val trapTime: Double = if (prevTime == 0.0) 0.0 else timeNow - prevTime
@@ -147,5 +136,9 @@ class SwerveAuto(
 
     fun isFinishedMoving(): Boolean {
         return isAtDesiredAngle() && isAtDesiredPosition()
+    }
+
+    public fun kill() {
+        swerveSystem.drive(Vector2(0.0, 0.0), 0.0);
     }
 }
