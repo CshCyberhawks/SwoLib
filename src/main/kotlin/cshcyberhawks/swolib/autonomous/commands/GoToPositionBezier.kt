@@ -1,7 +1,7 @@
 package cshcyberhawks.swolib.autonomous.commands
 
-import cshcyberhawks.swolib.math.BezierCurve
 import cshcyberhawks.swolib.autonomous.SwerveAuto
+import cshcyberhawks.swolib.math.BezierCurve
 import cshcyberhawks.swolib.math.FieldPosition
 import edu.wpi.first.wpilibj2.command.CommandBase
 
@@ -25,5 +25,8 @@ class GoToPositionBezier(private val swerveAuto: SwerveAuto, private val curve: 
     override fun isFinished(): Boolean {
         return swerveAuto.isFinishedMoving() && curve.nextPoint == curve.points.size
     }
-}
 
+    override fun end(int: Boolean) {
+        swerveAuto.kill()
+    }
+}

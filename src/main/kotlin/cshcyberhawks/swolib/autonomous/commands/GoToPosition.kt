@@ -21,4 +21,8 @@ class GoToPosition(val swerveAuto: SwerveAuto, val desiredPosition: FieldPositio
         SmartDashboard.putBoolean("Go To Pos Finished", swerveAuto.isFinishedMoving())
         return swerveAuto.isFinishedMoving()
     }
+
+    override fun end(int: Boolean) {
+        swerveAuto.kill();
+    }
 }

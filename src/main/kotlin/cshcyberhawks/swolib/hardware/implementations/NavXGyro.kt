@@ -33,6 +33,7 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
         return Vector2.fromPolar(Polar(0.0, getPitch())) + Vector2.fromPolar(Polar(90.0, getRoll()))
     }
 
+
     /**
      * Sets the angle offset of the gyro to the current direction.
      *

@@ -9,8 +9,9 @@ import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 
-class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0), val cameraHeight: Double, val cameraAngle: Double) {
+class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0)) {
     private val limelight: NetworkTable
 
     init {
@@ -26,6 +27,19 @@ class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: C
         limelight.getEntry("stream").setNumber(streamMode.ordinal)
         limelight.getEntry("snapshot").setNumber(snapshotMode.ordinal)
         limelight.getEntry("crop").setNumberArray(crop)
+
+
+        val tab = Shuffleboard.getTab("Limelight: " + name)
+        tab.add("Has Target", this::hasTarget)
+        tab.add("Horizontal Offset", this::getHorizontalOffset)
+        tab.add("Vertical Offset", this::getVerticalOffset)
+        tab.add("Area", this::getArea)
+        tab.add("Rotation", this::getRotation)
+        tab.add("Current Pipeline", this::getCurrentPipeline)
+        tab.add("Target 3D", this::getTarget3D)
+        tab.add("Target ID", this::getTargetID)
+        tab.add("Cam Pose", this::getCamPose)
+        tab.add("Bot Pose", this::getBotPose)
     }
 
     /**
@@ -107,5 +121,11 @@ class Limelight(name: String, ledMode: LedMode = LedMode.Pipeline, cameraMode: C
         ret += Vector2(swo.fieldPosition.x, swo.fieldPosition.y)
 
         return ret
+    }
+    fun setPipeline(pipeline: Int) {
+        if (pipeline < 0 || pipeline > 9)
+            error("Invalid pipeline value")
+        else
+            limelight.getEntry("pipeline").setNumber(pipeline)
     }
 }
