@@ -10,6 +10,7 @@ import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 
 class SwerveAuto(
     val xPID: PIDController,
@@ -21,7 +22,8 @@ class SwerveAuto(
     val twistFeedForward: Double,
     val swo: SwerveOdometry,
     val swerveSystem: SwerveDriveTrain,
-    val gyro: GenericGyro
+    val gyro: GenericGyro,
+    val debugLogging: Boolean = false
 ) {
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
         set(value) {
@@ -52,6 +54,19 @@ class SwerveAuto(
 
     private var prevTime: Double = 0.0
 
+    val autoShuffleboardTab = Shuffleboard.getTab("Auto")
+
+    //make all the shuffleboard items entries
+    val xPIDShuffleboard = autoShuffleboardTab.add("X PID", xPID)
+    val yPIDShuffleboard = autoShuffleboardTab.add("Y PID", yPID)
+    val twistPIDShuffleboard = autoShuffleboardTab.add("Twist PID", twistPID)
+    val trapXOutputShuffleboard = autoShuffleboardTab.add("Trap X Output", 0.0).entry
+    val trapYOutputShuffleboard = autoShuffleboardTab.add("Trap Y Output", 0.0).entry
+    
+    val translationXShuffleboard = autoShuffleboardTab.add("Translation X", 0.0).entry
+    val translationYShuffleboard = autoShuffleboardTab.add("Translation Y", 0.0).entry
+    val translationTwistShuffleboard = autoShuffleboardTab.add("Translation Twist", 0.0).entry
+
     init {
         twistPID.enableContinuousInput(0.0, 1.0)
     }
@@ -70,6 +85,10 @@ class SwerveAuto(
             twist = calculateTwist(desiredPosition.angle)
         }
 
+        if (debugLogging) {
+            translationTwistShuffleboard.setDouble(twist)
+        }
+
         swerveSystem.drive(translation, twist)
     }
 
@@ -77,19 +96,9 @@ class SwerveAuto(
 
         //ryan suggested this
         val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
+        
         val twistFF = if (pidVal > 0) twistFeedForward else -twistFeedForward
-        return pidVal + twistFF
-    }
-
-    private fun calculateCurveTranslation(): Vector2 {
-        val timeNow = WPIUtilJNI.now() * 1.0e-6
-        val trapTime: Double = if (prevTime == 0.0) 0.0 else timeNow - prevTime
-
-
-
-        prevTime = timeNow
-
-        return Vector2()
+        return -(pidVal + twistFF)
     }
 
     private fun calculateTranslation(): Vector2 {
@@ -119,6 +128,13 @@ class SwerveAuto(
         trapYCurrentState = trapYOutput
         prevTime = timeNow
 
+        if (debugLogging) {
+            trapXOutputShuffleboard.setDouble(trapXOutput.velocity)
+            trapYOutputShuffleboard.setDouble(trapYOutput.velocity)
+            translationXShuffleboard.setDouble(xVel)
+            translationYShuffleboard.setDouble(yVel)
+        }
+
         return Vector2(xVel, yVel)
     }
 
@@ -147,5 +163,9 @@ class SwerveAuto(
 
     fun isFinishedMoving(): Boolean {
         return isAtDesiredAngle() && isAtDesiredPosition()
+    }
+
+    public fun kill() {
+        swerveSystem.drive(Vector2(0.0, 0.0), 0.0);
     }
 }
