@@ -27,8 +27,8 @@ class Pigeon2Gyro(private val port: Int) : GenericGyro {
      *
      * This exists because the built-in offset was refusing to work.
      */
-    override fun setYawOffset() {
-        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw)
+    override fun setYawOffset(currentPos: Double) {
+        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw - currentPos)
     }
 
 
