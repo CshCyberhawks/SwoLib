@@ -3,6 +3,7 @@ package cshcyberhawks.swolib.hardware.implementations
 import com.kauailabs.navx.frc.AHRS
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.FieldPosition
 import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.math.Polar
 import edu.wpi.first.wpilibj.SPI
@@ -37,7 +38,7 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
      *
      * This exists because the built-in offset was refusing to work.
      */
-    override fun setYawOffset() {
-        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble())
+    override fun setYawOffset(currentPos: Double) {
+        offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble() - currentPos)
     }
 }
