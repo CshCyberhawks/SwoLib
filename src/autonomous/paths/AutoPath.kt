@@ -11,7 +11,7 @@ import cshcyberhawks.swolib.math.Vector3
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class AutoPath(inputFile: File, val swerveAuto: SwerveAuto, val gyro: GenericGyro) : CommandBase() {
-    val jsonData: AutoPathNode = Klaxon().parseArray<AutoPathNode>(inputFile)!![0]
+    val jsonData: AutoPathNode = Klaxon().parse<AutoPathNode>(inputFile)!!
     val positions = jsonData.positions.map {
         FieldPosition(Vector2(it.x, it.y), it.angle)
     }
