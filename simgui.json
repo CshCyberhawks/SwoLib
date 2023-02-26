@@ -8,7 +8,10 @@
       "/LiveWindow/Ungrouped/PIDController[3]": "PIDController",
       "/LiveWindow/Ungrouped/PIDController[4]": "PIDController",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
-      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro"
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
+      "/Shuffleboard/Auto/Twist PID": "PIDController",
+      "/Shuffleboard/Auto/X PID": "PIDController",
+      "/Shuffleboard/Auto/Y PID": "PIDController"
     }
   },
   "NetworkTables": {

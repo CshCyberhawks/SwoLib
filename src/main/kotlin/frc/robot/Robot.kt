@@ -2,6 +2,7 @@ package frc.robot
 
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.autonomous.commands.GoToPositionAndExecute
+import cshcyberhawks.swolib.autonomous.paths.AutoPathManager
 import cshcyberhawks.swolib.hardware.implementations.NavXGyro
 import cshcyberhawks.swolib.hardware.implementations.SparkMaxTurnMotor
 import cshcyberhawks.swolib.hardware.implementations.TalonFXDriveMotor
@@ -91,6 +92,8 @@ class Robot : TimedRobot() {
     val joystick = Joystick(0)
     val joystick2 = Joystick(1)
 
+    val autoPathManager = AutoPathManager(auto, gyro)
+
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -143,6 +146,7 @@ class Robot : TimedRobot() {
 //        GoToPosition(auto, FieldPosition(-0.5, 0.0, 0.0)).andThen(GoToPosition(auto, FieldPosition(0.0, 0.0, 0.0))).schedule()
         swo.fieldPosition = Vector3()
 //        GoToPositionAndExecute(auto, FieldPosition(-0.5, 0.0, 0.0), TestCommand(), GoToPositionAndExecute.FinishCondition.POSITION).schedule()
+        autoPathManager.paths["TestPath"]!!.schedule()
     }
 
     /**
