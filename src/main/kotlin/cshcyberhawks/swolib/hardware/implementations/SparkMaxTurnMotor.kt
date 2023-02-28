@@ -10,14 +10,9 @@ class SparkMaxTurnMotor(deviceId: Int, override val encoderPort: Int, val offset
     val motor = CANSparkMax(deviceId, CANSparkMaxLowLevel.MotorType.kBrushless)
     val encoder = CANCoder(encoderPort, canBus)
 
-    init {
-        encoder.setPositionToAbsolute()
-        encoder.configMagnetOffset(offset)
-    }
+    override fun get(): Double = AngleCalculations.wrapAroundAngles(encoder.absolutePosition)
 
-    override fun get(): Double = AngleCalculations.wrapAroundAngles(encoder.position)
-
-    override fun getRaw(): Double = AngleCalculations.wrapAroundAngles(encoder.position - offset)
+    override fun getRaw(): Double = AngleCalculations.wrapAroundAngles(encoder.absolutePosition - offset)
 
     override fun setPercentOutput(percent: Double) {
         motor.set(percent)
