@@ -36,7 +36,7 @@ class SwerveOdometry(
         total /= wheelVectors.size
 
         val polar = Polar.fromVector2(total)
-        polar.theta -= gyro.getYaw()
+        polar.theta += gyro.getYaw()
         total = Vector2.fromPolar(polar)
 
         // Pitch and roll might be flipped
@@ -45,7 +45,8 @@ class SwerveOdometry(
         val z =
                 (total.x * sin(Math.toRadians(gyro.getPitch())) +
                         total.y * sin(Math.toRadians(gyro.getRoll()))) / swoToMeters
-        return Vector3(x, y, z)
+//        return Vector3(x, y, z)
+        return Vector3(total.x, total.y, 0.0)
     }
 
     fun updatePosition() {

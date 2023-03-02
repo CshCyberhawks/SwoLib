@@ -11,16 +11,16 @@ import cshcyberhawks.swolib.math.Vector3
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class AutoPath(inputFile: File, val swerveAuto: SwerveAuto, val gyro: GenericGyro) : CommandBase() {
-    val jsonData: AutoPathNode = Klaxon().parse<AutoPathNode>(inputFile)!!
-    val positions = jsonData.positions.map {
-        FieldPosition(Vector2(it.x, it.y), it.angle)
-    }
+    val nodes: List<AutoPathNode> = Klaxon().parseArray(inputFile)!!
+    val positions = nodes.map { Vector2(it.point.x, it.point.y) }
     var currentCommand: GoToPosition? = null
-    var currentIndex = 0
+    var currentIndex = 1
 
-    init {
-        swerveAuto.swo.fieldPosition = Vector3(jsonData.startPosition.x, jsonData.startPosition.y, 0.0)
-        gyro.setYawOffset(jsonData.startPosition.angle)
+    override fun initialize() {
+        swerveAuto.swo.fieldPosition = Vector3(positions[0].x, positions[0].y, 0.0)
+        gyro.setYawOffset()
+        currentCommand = null
+        currentIndex = 1
     }
 
     override fun execute() {

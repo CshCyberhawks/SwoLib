@@ -7,6 +7,5 @@ data class AutoPathFieldPosition(
 )
 
 data class AutoPathNode(
-    val startPosition: AutoPathFieldPosition,
-    val positions: List<AutoPathFieldPosition>
+    val point: AutoPathFieldPosition,
 )
