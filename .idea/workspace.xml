@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dc30b7ee-fdf5-4dde-b6b1-9cffd3c504f5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cshcyberhawks/swolib/hardware/implementations/SparkMaxTurnMotor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +139,8 @@
       <workItem from="1677433521072" duration="3827000" />
       <workItem from="1677441881468" duration="1523000" />
       <workItem from="1677546610343" duration="221000" />
-      <workItem from="1677549466019" duration="11000" />
+      <workItem from="1677549466019" duration="118000" />
+      <workItem from="1677710943501" duration="7000" />
     </task>
     <servers />
   </component>
