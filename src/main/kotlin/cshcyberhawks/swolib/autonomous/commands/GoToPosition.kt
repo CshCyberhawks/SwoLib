@@ -11,6 +11,8 @@ class GoToPosition(val swerveAuto: SwerveAuto, val desiredPosition: FieldPositio
 
     override fun initialize() {
         swerveAuto.desiredPosition = desiredPosition
+        SmartDashboard.putNumber("Desired X", desiredPosition.x)
+        SmartDashboard.putNumber("Desired Y", desiredPosition.y)
     }
 
     override fun execute() {
@@ -23,6 +25,6 @@ class GoToPosition(val swerveAuto: SwerveAuto, val desiredPosition: FieldPositio
     }
 
     override fun end(int: Boolean) {
-        swerveAuto.kill();
+        swerveAuto.swerveSystem.swerveConfiguration.preserveWheelAngles()
     }
 }

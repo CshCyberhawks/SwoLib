@@ -72,5 +72,9 @@ class SwerveWheel(
         drive(0.0, oldAngle)
     }
 
+    fun kill() {
+        drive(0.0, 0.0)
+    }
+
     fun getRawEncoder(): Double = turnMotor.getRaw()
 }
