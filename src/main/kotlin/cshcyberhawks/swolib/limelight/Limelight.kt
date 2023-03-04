@@ -45,14 +45,6 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         tab.add("$name Target ID", this.getTargetID())
         tab.add("$name Cam Pose", this.getCamDebug())
         tab.add("$name Bot Pose", this.getBotDebug())
-        var feed: HttpCamera?
-        if (name == "limelight-front") {
-            feed = HttpCamera("Limelight Feed-Front", "http://10.28.75.11:5800")
-        }
-        else /* (name == "limelight-back") */ {
-            feed = HttpCamera("Limelight Feed-Back", "http://10.28.75.13:5800")
-        } 
-        tab.add("LLFeed $name", feed).withPosition(2,2).withSize(8, 4)
    }
     fun openCamera(sizeX: Int, sizeY: Int) {
         var feed: HttpCamera
