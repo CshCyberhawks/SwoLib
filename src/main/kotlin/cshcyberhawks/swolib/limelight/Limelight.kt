@@ -10,7 +10,6 @@ import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
-import java.util.Optional
 
 class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0)) {
     private val limelight: NetworkTable
@@ -29,17 +28,18 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         limelight.getEntry("snapshot").setNumber(snapshotMode.ordinal)
         limelight.getEntry("crop").setNumberArray(crop)
 
-        val tab = Shuffleboard.getTab("Limelight: $name")
-        tab.add("$name Has Target", this.hasTarget())
-        tab.add("$name Horizontal Offset", this.getHorizontalOffset())
-        tab.add("$name Vertical Offset", this.getVerticalOffset())
-        tab.add("$name Area", this.getArea())
-        tab.add("$name Rotation", this.getRotation())
-        tab.add("$name Current Pipeline", this.getCurrentPipeline())
-        tab.add("$name Target 3D", this.getTarget3D())
-        tab.add("$name Target ID", this.getTargetID())
-       tab.add("$name Cam Pose", this.getCamDebug())
-       tab.add("$name Bot Pose", this.getBotPose())
+
+//        val tab = Shuffleboard.getTab("Limelight: " + name)
+//        tab.add("Has Target", this::hasTarget)
+//        tab.add("Horizontal Offset", this::getHorizontalOffset)
+//        tab.add("Vertical Offset", this::getVerticalOffset)
+//        tab.add("Area", this::getArea)
+//        tab.add("Rotation", this::getRotation)
+//        tab.add("Current Pipeline", this::getCurrentPipeline)
+//        tab.add("Target 3D", this::getTarget3D)
+//        tab.add("Target ID", this::getTargetID)
+//        tab.add("Cam Pose", this::getCamPose)
+//        tab.add("Bot Pose", this::getBotPose)
     }
 
     /**
@@ -82,32 +82,16 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
 
     fun getJSON(): ByteArray = limelight.getEntry("json").getRaw(byteArrayOf())
 
-    fun getCamPose(): Optional<FieldPosition> {
+    fun getCamPose(): FieldPosition {
         val data = limelight.getEntry("campose").getDoubleArray(arrayOf())
-        var pose: Pose3d? = null
+        var pose: Pose3d = Pose3d(0.0,0.0,0.0 ,Rotation3d(0.0,0.0,0.0))
         if (data.isNotEmpty()) {
             val translation = Translation3d(data[0], data[1], data[2])
             val rotation = Rotation3d(data[3], data[4], data[5])
             pose = Pose3d(translation, rotation)
         }
-        if (pose != null) {
-            val fieldPosition = FieldPosition(pose.x, pose.y, pose.rotation.z)
-            return Optional.of(fieldPosition)
-        }
-        else {
-            return Optional.empty()
-        }
+        return FieldPosition(pose.x, pose.y, pose.rotation.z)
     }
-    fun getCamDebug(): Pose3d? {
-        val data = limelight.getEntry("campose").getDoubleArray(arrayOf())
-        var pose: Pose3d? = null
-        if (data.isNotEmpty()) {
-            val translation = Translation3d(data[0], data[1], data[2])
-            val rotation = Rotation3d(data[3], data[4], data[5])
-            pose = Pose3d(translation, rotation)
-        }
-        return pose
-      }
     fun getBotPose(): Vector3? {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
         if (data.isEmpty()) {

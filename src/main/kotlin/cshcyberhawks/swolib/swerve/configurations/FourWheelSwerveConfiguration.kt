@@ -38,11 +38,4 @@ class FourWheelSwerveConfiguration(
         backRight.getWheelVector(),
         backLeft.getWheelVector()
     )
-
-    fun kill() {
-        frontRight.kill()
-        frontLeft.kill()
-        backRight.kill()
-        backLeft.kill()
-    }
 }
