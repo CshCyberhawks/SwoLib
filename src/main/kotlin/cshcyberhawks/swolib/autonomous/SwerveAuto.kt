@@ -112,6 +112,8 @@ class SwerveAuto(
         if (debugLogging) {
             twistPIDOutputShuffle.setDouble(pidVal);
         }
+
+        // TODO: Fix this for other gyros
         return -(pidVal + twistFF)
     }
 
