@@ -26,6 +26,7 @@ class SwerveAuto(
     val gyro: GenericGyro,
     val debugLogging: Boolean = false
 ) {
+
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
         set(value) {
             trapXDesiredState = TrapezoidProfile.State(value.x, 0.0)
