@@ -32,67 +32,67 @@ import edu.wpi.first.wpilibj.Filesystem
  * project.
  */
 class Robot : TimedRobot() {
-    val swerveConfiguration: SwerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
+    // val swerveConfiguration: SwerveModuleConfiguration = SwerveModuleConfiguration(4.0, 0.0505, 7.0)
+    //
+    // val drivePIDBackLeft = PIDController(0.01, 0.0, 0.0)
+    // val turnPIDBackLeft = PIDController(.012, 0.0, 0.0002)
+    //
+    // val drivePIDBackRight = PIDController(0.01, 0.0, 0.0)
+    // val turnPIDBackRight = PIDController(.012, 0.0, 0.0002)
+    //
+    // val drivePIDFrontLeft = PIDController(0.01, 0.0, 0.0)
+    // val turnPIDFrontLeft = PIDController(.012, 0.0, 0.0002)
+    //
+    // val drivePIDFrontRight = PIDController(0.01, 0.0, 0.0)
+    // val turnPIDFrontRight = PIDController(.012, 0.0, 0.0002)
 
-    val drivePIDBackLeft = PIDController(0.01, 0.0, 0.0)
-    val turnPIDBackLeft = PIDController(.012, 0.0, 0.0002)
 
-    val drivePIDBackRight = PIDController(0.01, 0.0, 0.0)
-    val turnPIDBackRight = PIDController(.012, 0.0, 0.0002)
-
-    val drivePIDFrontLeft = PIDController(0.01, 0.0, 0.0)
-    val turnPIDFrontLeft = PIDController(.012, 0.0, 0.0002)
-
-    val drivePIDFrontRight = PIDController(0.01, 0.0, 0.0)
-    val turnPIDFrontRight = PIDController(.012, 0.0, 0.0002)
-
-
-    var backLeft: SwerveWheel =
-        SwerveWheel(
-            TalonFXDriveMotor(Constants.backLeftDriveMotor),
-            SparkMaxTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder - 10]),
-            drivePIDBackLeft,
-            turnPIDBackLeft,
-            swerveConfiguration
-        )
-    var backRight: SwerveWheel =
-        SwerveWheel(
-            TalonFXDriveMotor(Constants.backRightDriveMotor),
-            SparkMaxTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder - 10]),
-            drivePIDBackRight,
-            turnPIDBackRight,
-            swerveConfiguration
-        )
-    var frontLeft: SwerveWheel =
-        SwerveWheel(
-            TalonFXDriveMotor(Constants.frontLeftDriveMotor),
-            SparkMaxTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder - 10]),
-            drivePIDFrontLeft,
-            turnPIDFrontLeft,
-            swerveConfiguration
-        )
-    var frontRight: SwerveWheel =
-        SwerveWheel(
-            TalonFXDriveMotor(Constants.frontRightDriveMotor),
-            SparkMaxTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder - 10]),
-            drivePIDFrontRight,
-            turnPIDFrontRight,
-            swerveConfiguration
-        )
-
-    val gyro = NavXGyro(SPI.Port.kMXP)
-
-    val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
-
-    val swo = SwerveOdometry(swerveDriveTrain, gyro, 1.0)
-
-    val autoPid = PIDController(1.0, 0.0, 0.05)
-    val auto = SwerveAuto(autoPid, autoPid, PIDController(1.0, 0.0, 0.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.6, 0.05, .135, swo, swerveDriveTrain, gyro)
-
-    val joystick = Joystick(0)
-    val joystick2 = Joystick(1)
-
-    val autoPathManager = AutoPathManager(auto, gyro)
+    // var backLeft: SwerveWheel =
+    //     SwerveWheel(
+    //         TalonFXDriveMotor(Constants.backLeftDriveMotor),
+    //         SparkMaxTurnMotor(Constants.backLeftTurnMotor, Constants.backLeftEncoder, Constants.turnEncoderOffsets[Constants.backLeftEncoder - 10]),
+    //         drivePIDBackLeft,
+    //         turnPIDBackLeft,
+    //         swerveConfiguration
+    //     )
+    // var backRight: SwerveWheel =
+    //     SwerveWheel(
+    //         TalonFXDriveMotor(Constants.backRightDriveMotor),
+    //         SparkMaxTurnMotor(Constants.backRightTurnMotor, Constants.backRightEncoder, Constants.turnEncoderOffsets[Constants.backRightEncoder - 10]),
+    //         drivePIDBackRight,
+    //         turnPIDBackRight,
+    //         swerveConfiguration
+    //     )
+    // var frontLeft: SwerveWheel =
+    //     SwerveWheel(
+    //         TalonFXDriveMotor(Constants.frontLeftDriveMotor),
+    //         SparkMaxTurnMotor(Constants.frontLeftTurnMotor, Constants.frontLeftEncoder, Constants.turnEncoderOffsets[Constants.frontLeftEncoder - 10]),
+    //         drivePIDFrontLeft,
+    //         turnPIDFrontLeft,
+    //         swerveConfiguration
+    //     )
+    // var frontRight: SwerveWheel =
+    //     SwerveWheel(
+    //         TalonFXDriveMotor(Constants.frontRightDriveMotor),
+    //         SparkMaxTurnMotor(Constants.frontRightTurnMotor, Constants.frontRightEncoder, Constants.turnEncoderOffsets[Constants.frontRightEncoder - 10]),
+    //         drivePIDFrontRight,
+    //         turnPIDFrontRight,
+    //         swerveConfiguration
+    //     )
+    //
+    // val gyro = NavXGyro(SPI.Port.kMXP)
+    //
+    // val swerveDriveTrain = SwerveDriveTrain(FourWheelSwerveConfiguration(frontRight, frontLeft, backRight, backLeft), gyro)
+    //
+    // val swo = SwerveOdometry(swerveDriveTrain, gyro, 1.0)
+    //
+    // val autoPid = PIDController(1.0, 0.0, 0.05)
+    // val auto = SwerveAuto(autoPid, autoPid, PIDController(1.0, 0.0, 0.0), TrapezoidProfile.Constraints(4.0, 1.5), 1.6, 0.05, .135, swo, swerveDriveTrain, gyro)
+    //
+    // val joystick = Joystick(0)
+    // val joystick2 = Joystick(1)
+    //
+    // val autoPathManager = AutoPathManager(auto, gyro)
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -101,7 +101,7 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
-        gyro.setYawOffset()
+        // gyro.setYawOffset()
     }
 
     /**
@@ -117,16 +117,16 @@ class Robot : TimedRobot() {
         // commands, running already-scheduled commands, removing finished or interrupted commands,
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
-        CommandScheduler.getInstance().run()
-        swo.updatePosition()
-
-        SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
-        SmartDashboard.putNumber("Gyro Roll", gyro.getRoll())
-        SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw())
-
-        SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
-        SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
-        SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
+        // CommandScheduler.getInstance().run()
+        // swo.updatePosition()
+        //
+        // SmartDashboard.putNumber("Gyro Pitch", gyro.getPitch())
+        // SmartDashboard.putNumber("Gyro Roll", gyro.getRoll())
+        // SmartDashboard.putNumber("Gyro Yaw", gyro.getYaw())
+        //
+        // SmartDashboard.putNumber("Field Pos X", swo.fieldPosition.x)
+        // SmartDashboard.putNumber("Field Pos Y", swo.fieldPosition.y)
+        // SmartDashboard.putNumber("Field Pos Z", swo.fieldPosition.z)
     }
 
     /**
@@ -144,9 +144,9 @@ class Robot : TimedRobot() {
      */
     override fun autonomousInit() {
 //        GoToPosition(auto, FieldPosition(-0.5, 0.0, 0.0)).andThen(GoToPosition(auto, FieldPosition(0.0, 0.0, 0.0))).schedule()
-        swo.fieldPosition = Vector3()
+        // swo.fieldPosition = Vector3()
 //        GoToPositionAndExecute(auto, FieldPosition(-0.5, 0.0, 0.0), TestCommand(), GoToPositionAndExecute.FinishCondition.POSITION).schedule()
-        autoPathManager.paths["TestPath"]!!.schedule()
+        // autoPathManager.paths["TestPath"]!!.schedule()
     }
 
     /**
@@ -163,17 +163,17 @@ class Robot : TimedRobot() {
      * This function is called periodically during operator control.
      */
     override fun teleopPeriodic() {
-        if (joystick.trigger) {
-            gyro.setYawOffset()
-        }
-
-        swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick2.x)
-        SmartDashboard.putNumber("back left encoder: ", backLeft.getTurnValue());
-        SmartDashboard.putNumber("back right encoder: ", backRight.getTurnValue());
-        SmartDashboard.putNumber("front left encoder: ", frontLeft.getTurnValue());
-        SmartDashboard.putNumber("front right encoder: ", frontRight.getTurnValue());
-
-
+        // if (joystick.trigger) {
+        //     gyro.setYawOffset()
+        // }
+        //
+        // swerveDriveTrain.drive(Vector2(joystick.y, joystick.x), joystick2.x)
+        // SmartDashboard.putNumber("back left encoder: ", backLeft.getTurnValue());
+        // SmartDashboard.putNumber("back right encoder: ", backRight.getTurnValue());
+        // SmartDashboard.putNumber("front left encoder: ", frontLeft.getTurnValue());
+        // SmartDashboard.putNumber("front right encoder: ", frontRight.getTurnValue());
+        //
+        //
     }
 
     /**
@@ -181,7 +181,7 @@ class Robot : TimedRobot() {
      */
     override fun testInit() {
         // Cancels all running commands at the start of test mode.
-        CommandScheduler.getInstance().cancelAll()
+        // CommandScheduler.getInstance().cancelAll()
     }
 
     /**
@@ -201,6 +201,6 @@ class Robot : TimedRobot() {
 //        )
 //
 //        SmartDashboard.putString("Encoder Values", encoderValues.joinToString(", "))
-        swerveDriveTrain.logEncoderValues()
+        // swerveDriveTrain.logEncoderValues()
     }
 }
