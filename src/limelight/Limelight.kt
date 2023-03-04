@@ -64,7 +64,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
             ip = "http://10.28.75.13:5800"
         }
         feed = HttpCamera(camName, ip)
-        tab.add("LLFeed $camName", feed).withSize(sizeX, sizeY))
+        tab.add("LLFeed $camName", feed).withSize(sizeX, sizeY)
       }
     /**
      * @return Whether the limelight has any valid targets.
