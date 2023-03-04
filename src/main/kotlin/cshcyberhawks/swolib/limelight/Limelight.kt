@@ -39,7 +39,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         tab.add("$name Target 3D", this.getTarget3D())
         tab.add("$name Target ID", this.getTargetID())
         tab.add("$name Cam Pose", this.getCamDebug())
-        tab.add("$name Bot Pose", this.getBotPose())      
+        tab.add("$name Bot Pose", this.getBotDebug())      
 //        val tab = Shuffleboard.getTab("Limelight: " + name)
 //        tab.add("Has Target", this::hasTarget)
 //        tab.add("Horizontal Offset", this::getHorizontalOffset)
@@ -52,7 +52,20 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
 //        tab.add("Cam Pose", this::getCamPose)
 //        tab.add("Bot Pose", this::getBotPose)
     }
-
+    
+    fun updateDash() {
+        val tab = Shuffleboard.getTab("Limelight: $this.name")
+        tab.add("$this.name Has Target", this.hasTarget())
+        tab.add("$this.name Horizontal Offset", this.getHorizontalOffset())
+        tab.add("$this.name Vertical Offset", this.getVerticalOffset())
+        tab.add("$this.name Area", this.getArea())
+        tab.add("$this.name Rotation", this.getRotation())
+        tab.add("$this.name Current Pipeline", this.getCurrentPipeline())
+        tab.add("$this.name Target 3D", this.getTarget3D())
+        tab.add("$this.name Target ID", this.getTargetID())
+        tab.add("$this.name Cam Pose", this.getCamDebug())
+        tab.add("$this.name Bot Pose", this.getBotDebug())      
+      }
     /**
      * @return Whether the limelight has any valid targets.
      */
@@ -117,7 +130,10 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
             val rotation = Rotation3d(data[3], data[4], data[5])
             pose = Pose3d(translation, rotation)
         }
-        return arrayOf(pose!!.x, pose.y, pose.rotation.z)
+        if (pose == null) {
+            return arrayOf(0.0, 0.0, 0.0)
+        }
+        return arrayOf(pose.x, pose.y, pose.rotation.z)
       }
     fun getBotPose(): Vector3? {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
