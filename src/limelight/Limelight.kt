@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab
 import edu.wpi.first.cscore.HttpCamera
 import edu.wpi.first.net.PortForwarder
 import java.util.Optional
@@ -17,7 +18,8 @@ import kotlin.collections.Map
 
 class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0)) {
     private val limelight: NetworkTable
-
+    private val tab: ShuffleboardTab
+    private val camName: String = name
     init {
         if (pipeline < 0 || pipeline > 9)
             error("Invalid pipeline value")
@@ -32,7 +34,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         limelight.getEntry("snapshot").setNumber(snapshotMode.ordinal)
         limelight.getEntry("crop").setNumberArray(crop)
 
-        val tab = Shuffleboard.getTab("Limelight: $name")
+        tab = Shuffleboard.getTab("Limelight: $name")
         tab.add("$name Has Target", this.hasTarget())
         tab.add("$name Horizontal Offset", this.getHorizontalOffset())
         tab.add("$name Vertical Offset", this.getVerticalOffset())
@@ -50,9 +52,20 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         else /* (name == "limelight-back") */ {
             feed = HttpCamera("Limelight Feed-Back", "http://10.28.75.13:5800")
         } 
-        tab.add("LLFeed $name", feed).withPosition(0, 0).withSize(8, 4)
-        PortForwarder.add(5800, "limelight.local", 5800)
+        tab.add("LLFeed $name", feed).withPosition(2,2).withSize(8, 4)
    }
+    fun openCamera(sizeX: Int, sizeY: Int) {
+        var feed: HttpCamera
+        val ip: String 
+        if (camName == "limelight-front") {
+            ip = "http://10.28.75.11:5800"
+          }
+        else /* (name == "limelight-back") */ {
+            ip = "http://10.28.75.13:5800"
+        }
+        feed = HttpCamera(camName, ip)
+        tab.add("LLFeed $camName", feed).withSize(sizeX, sizeY))
+      }
     /**
      * @return Whether the limelight has any valid targets.
      */
