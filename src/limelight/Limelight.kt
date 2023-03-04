@@ -135,10 +135,10 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         }
         return arrayOf(pose.x, pose.y, pose.rotation.z)
       }
-    fun getBotPose(): Vector3? {
+    fun getBotPose(): Vector3 {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
         if (data.isEmpty()) {
-            return null
+            return Vector3(0.0, 0.0, 0.0)
         }
 
         return Vector3(data[0], data[1], data[2])
