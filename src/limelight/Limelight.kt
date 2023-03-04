@@ -28,7 +28,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         limelight.getEntry("snapshot").setNumber(snapshotMode.ordinal)
         limelight.getEntry("crop").setNumberArray(crop)
 
-
+       
 //        val tab = Shuffleboard.getTab("Limelight: " + name)
 //        tab.add("Has Target", this::hasTarget)
 //        tab.add("Horizontal Offset", this::getHorizontalOffset)
