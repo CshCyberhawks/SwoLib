@@ -10,7 +10,9 @@ import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
+import edu.wpi.first.cscore.HttpCamera
 import java.util.Optional
+import kotlin.collections.Map
 
 class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double, ledMode: LedMode = LedMode.Pipeline, cameraMode: CameraMode = CameraMode.VisionProcessor, pipeline: Int = 0, streamMode: StreamMode = StreamMode.Standard, snapshotMode: SnapshotMode = SnapshotMode.Reset, crop: Array<Number> = arrayOf(0, 0, 0, 0)) {
     private val limelight: NetworkTable
@@ -39,33 +41,16 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         tab.add("$name Target 3D", this.getTarget3D())
         tab.add("$name Target ID", this.getTargetID())
         tab.add("$name Cam Pose", this.getCamDebug())
-        tab.add("$name Bot Pose", this.getBotDebug())      
-//        val tab = Shuffleboard.getTab("Limelight: " + name)
-//        tab.add("Has Target", this::hasTarget)
-//        tab.add("Horizontal Offset", this::getHorizontalOffset)
-//        tab.add("Vertical Offset", this::getVerticalOffset)
-//        tab.add("Area", this::getArea)
-//        tab.add("Rotation", this::getRotation)
-//        tab.add("Current Pipeline", this::getCurrentPipeline)
-//        tab.add("Target 3D", this::getTarget3D)
-//        tab.add("Target ID", this::getTargetID)
-//        tab.add("Cam Pose", this::getCamPose)
-//        tab.add("Bot Pose", this::getBotPose)
+        tab.add("$name Bot Pose", this.getBotDebug())
+        var feed: HttpCamera?
+        if (name == "limelight-front") {
+            feed = HttpCamera("Limelight Feed-Front", "http://10.28.75.11:5800")
+        }
+        else /* (name == "limelight-back") */ {
+            feed = HttpCamera("Limelight Feed-Back", "http://10.28.75.13:5800")
+        } 
+        tab.add("LLFeed $name", feed).withPosition(0, 0).withSize(8, 4)
     }
-    
-    fun updateDash() {
-        val tab = Shuffleboard.getTab("Limelight: $this.name")
-        tab.add("$this.name Has Target", this.hasTarget())
-        tab.add("$this.name Horizontal Offset", this.getHorizontalOffset())
-        tab.add("$this.name Vertical Offset", this.getVerticalOffset())
-        tab.add("$this.name Area", this.getArea())
-        tab.add("$this.name Rotation", this.getRotation())
-        tab.add("$this.name Current Pipeline", this.getCurrentPipeline())
-        tab.add("$this.name Target 3D", this.getTarget3D())
-        tab.add("$this.name Target ID", this.getTargetID())
-        tab.add("$this.name Cam Pose", this.getCamDebug())
-        tab.add("$this.name Bot Pose", this.getBotDebug())      
-      }
     /**
      * @return Whether the limelight has any valid targets.
      */
@@ -140,11 +125,13 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         if (data.isEmpty()) {
             return Vector3(0.0, 0.0, 0.0)
         }
-
         return Vector3(data[0], data[1], data[2])
     }
     fun getBotDebug(): Array<Double> {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
+        if (data.isEmpty()) {
+            return arrayOf(0.0, 0.0, 0.0)
+        }
         return arrayOf(data[0], data[1], data[2])
     }
     fun getDetectorClass(): Double = limelight.getEntry("tclass").getDouble(0.0)
