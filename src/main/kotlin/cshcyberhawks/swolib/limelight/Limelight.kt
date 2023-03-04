@@ -34,7 +34,8 @@ class Limelight(
         private val viewTab: ShuffleboardTab = Shuffleboard.getTab("Limelight View")
         private var currentFeed: HttpCamera? = null
 
-        fun openCamera(feed: HttpCamera, sizeX: Int = 3, sizeY: Int = 3) {
+        fun openCamera(ll: Limelight, sizeX: Int = 3, sizeY: Int = 3) {
+            val feed = ll.feed
             if (feed == currentFeed) return
             viewTab.add("LLFeed", feed).withSize(sizeX, sizeY)
             currentFeed = feed
