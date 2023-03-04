@@ -11,6 +11,7 @@ import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import edu.wpi.first.cscore.HttpCamera
+import edu.wpi.first.net.PortForwarder
 import java.util.Optional
 import kotlin.collections.Map
 
@@ -50,7 +51,8 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
             feed = HttpCamera("Limelight Feed-Back", "http://10.28.75.13:5800")
         } 
         tab.add("LLFeed $name", feed).withPosition(0, 0).withSize(8, 4)
-    }
+        PortForwarder.add(5800, "limelight.local", 5800)
+   }
     /**
      * @return Whether the limelight has any valid targets.
      */
