@@ -11,8 +11,6 @@ import edu.wpi.first.math.controller.PIDController
 import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.util.WPIUtilJNI
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
-import kotlin.math.abs
 
 class SwerveAuto(
     val xPID: PIDController,
@@ -22,7 +20,6 @@ class SwerveAuto(
     val angleDeadzone: Double,
     val positionDeadzone: Double,
     val twistFeedForward: Double,
-    val twistFeedForwardThreshold: Double,
     val swo: SwerveOdometry,
     val swerveSystem: SwerveDriveTrain,
     val gyro: GenericGyro,
@@ -32,10 +29,7 @@ class SwerveAuto(
         set(value) {
             trapXDesiredState = TrapezoidProfile.State(value.x, 0.0)
             trapYDesiredState = TrapezoidProfile.State(value.y, 0.0)
-            trapXCurrentState = TrapezoidProfile.State(swo.fieldPosition.x, swo.getVelocity().x)
-            trapYCurrentState = TrapezoidProfile.State(swo.fieldPosition.y, swo.getVelocity().y)
-            prevTime = 0.0
-            field = FieldPosition(value.x, value.y, -value.angle)
+            field = value
         }
 
     fun setDesiredEndVelocity(velo: Vector2) {
@@ -77,12 +71,6 @@ class SwerveAuto(
     val yPIDOutputShuffle = autoShuffleboardTab.add("Y PID OUT", 0.0).entry
     val twistPIDOutputShuffle = autoShuffleboardTab.add("Twist PID OUT", 0.0).entry
 
-    val desiredXShuffleboard = autoShuffleboardTab.add("Desired X", 0.0).entry
-    val desiredYShuffleboard = autoShuffleboardTab.add("Desired Y", 0.0).entry
-    val swoXShuffleboard = autoShuffleboardTab.add("SWO X", 0.0).entry
-    val swoYShuffleboard = autoShuffleboardTab.add("SWO Y", 0.0).entry
-
-
 
     init {
         twistPID.enableContinuousInput(0.0, 1.0)
@@ -104,10 +92,6 @@ class SwerveAuto(
 
         if (debugLogging) {
             translationTwistShuffleboard.setDouble(twist)
-            desiredXShuffleboard.setDouble(desiredPosition.x)
-            desiredYShuffleboard.setDouble(desiredPosition.y)
-            translationXShuffleboard.setDouble(translation.x)
-            translationYShuffleboard.setDouble(translation.y)
         }
 
         swerveSystem.drive(translation, twist)
@@ -116,14 +100,14 @@ class SwerveAuto(
     private fun calculateTwist(desiredAngle: Double): Double {
 
         //ryan suggested this
-        val pidVal = -twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
+        val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
         
-        val twistFF = if (pidVal > twistFeedForwardThreshold) twistFeedForward else -twistFeedForward
+        val twistFF = if (pidVal > 0.1) twistFeedForward else -twistFeedForward
 
         if (debugLogging) {
             twistPIDOutputShuffle.setDouble(pidVal);
         }
-        return pidVal + twistFF
+        return -(pidVal + twistFF)
     }
 
     private fun calculateTranslation(): Vector2 {
@@ -156,17 +140,21 @@ class SwerveAuto(
         if (debugLogging) {
             trapXOutputShuffleboard.setDouble(trapXOutput.velocity)
             trapYOutputShuffleboard.setDouble(trapYOutput.velocity)
+            translationXShuffleboard.setDouble(xVel)
+            translationYShuffleboard.setDouble(yVel)
             xPIDOutputShuffle.setDouble(xPIDOutput)
             yPIDOutputShuffle.setDouble(yPIDOutput)
-            swoXShuffleboard.setDouble(swo.fieldPosition.x)
-            swoYShuffleboard.setDouble(swo.fieldPosition.y)
         }
 
         return Vector2(xVel, yVel)
     }
 
     private fun isAtDesiredAngle(): Boolean {
-        return abs(gyro.getYaw() - desiredPosition.angle) < angleDeadzone || 360 - abs(gyro.getYaw() - desiredPosition.angle) < angleDeadzone // WHY DID THIS NOT ACCOUNT FOR 355 BEING 5 AWAY FROM 0
+        return MiscCalculations.calculateDeadzone(
+            AngleCalculations.wrapAroundAngles(gyro.getYaw() -
+                    desiredPosition.angle),
+            this.angleDeadzone
+        ) == 0.0
     }
 
     private fun isAtDesiredPosition(): Boolean {
@@ -185,8 +173,6 @@ class SwerveAuto(
     }
 
     fun isFinishedMoving(): Boolean {
-        SmartDashboard.putBoolean("At desired angle", isAtDesiredAngle())
-        SmartDashboard.putBoolean("At desired position", isAtDesiredPosition())
         return isAtDesiredAngle() && isAtDesiredPosition()
     }
 
