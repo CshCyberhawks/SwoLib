@@ -109,7 +109,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
             return Optional.empty()
         }
     }
-    fun getCamDebug(): Pose3d? {
+    fun getCamDebug(): Array<Double> {
         val data = limelight.getEntry("campose").getDoubleArray(arrayOf())
         var pose: Pose3d? = null
         if (data.isNotEmpty()) {
@@ -117,7 +117,7 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
             val rotation = Rotation3d(data[3], data[4], data[5])
             pose = Pose3d(translation, rotation)
         }
-        return pose
+        return arrayOf(pose!!.x, pose.y, pose.rotation.z)
       }
     fun getBotPose(): Vector3? {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
@@ -126,6 +126,10 @@ class Limelight(name: String, val cameraHeight: Double, val cameraAngle: Double,
         }
 
         return Vector3(data[0], data[1], data[2])
+    }
+    fun getBotDebug(): Array<Double> {
+        val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
+        return arrayOf(data[0], data[1], data[2])
     }
     fun getDetectorClass(): Double = limelight.getEntry("tclass").getDouble(0.0)
 
