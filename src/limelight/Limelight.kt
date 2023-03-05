@@ -39,8 +39,7 @@ class Limelight(
         public var viewTab: ShuffleboardTab = Shuffleboard.getTab("Limelight View")
         private var currentFeed: HttpCamera? = null
         private var server = CameraServer.addSwitchedCamera("LimeLight Feed")
-        public var widget = viewTab.add("LLFeed", server)
-
+        public var widget = viewTab.add("LLFeed", server.getSource())
 
         fun openCamera(ll: Limelight, sizeX: Int = 3, sizeY: Int = 3) {
             val feed = ll.feed
