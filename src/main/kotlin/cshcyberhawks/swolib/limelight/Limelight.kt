@@ -31,7 +31,7 @@ class Limelight(
     private val feed: HttpCamera
 
     companion object {
-        private val viewTab: ShuffleboardTab = Shuffleboard.getTab("Limelight View")
+        public var viewTab: ShuffleboardTab = Shuffleboard.getTab("Limelight View")
         private var currentFeed: HttpCamera? = null
 
         fun openCamera(ll: Limelight, sizeX: Int = 3, sizeY: Int = 3) {
