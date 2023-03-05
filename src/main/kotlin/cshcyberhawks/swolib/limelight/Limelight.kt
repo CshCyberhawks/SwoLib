@@ -9,8 +9,13 @@ import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation3d
 import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
+import edu.wpi.first.networktables.GenericEntry
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget
+import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper
+import edu.wpi.first.util.sendable.SendableBuilder
+import edu.wpi.first.cameraserver.CameraServer
 import java.util.Optional
 import kotlin.math.tan
 
@@ -33,11 +38,14 @@ class Limelight(
     companion object {
         public var viewTab: ShuffleboardTab = Shuffleboard.getTab("Limelight View")
         private var currentFeed: HttpCamera? = null
+        private var server = CameraServer.addSwitchedCamera("LimeLight Feed")
+        public var widget = viewTab.add("LLFeed", server)
+
 
         fun openCamera(ll: Limelight, sizeX: Int = 3, sizeY: Int = 3) {
             val feed = ll.feed
             if (feed == currentFeed) return
-            viewTab.add("LLFeed", feed).withSize(sizeX, sizeY)
+            server.setSource(feed)
             currentFeed = feed
         }
     }
