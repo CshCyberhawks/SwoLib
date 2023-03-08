@@ -26,7 +26,6 @@ class SwerveAuto(
     val gyro: GenericGyro,
     val debugLogging: Boolean = false
 ) {
-
     var desiredPosition: FieldPosition = FieldPosition(0.0, 0.0, 0.0)
         set(value) {
             trapXDesiredState = TrapezoidProfile.State(value.x, 0.0)
@@ -73,9 +72,6 @@ class SwerveAuto(
     val yPIDOutputShuffle = autoShuffleboardTab.add("Y PID OUT", 0.0).entry
     val twistPIDOutputShuffle = autoShuffleboardTab.add("Twist PID OUT", 0.0).entry
 
-    val xDesiredShuffle = autoShuffleboardTab.add("Desired Pos X", 0.0).entry
-    val yDesiredShuffle = autoShuffleboardTab.add("Desired Pos Y", 0.0).entry
-    val angleDesiredShuffle = autoShuffleboardTab.add("Desired Pos Angle", 0.0).entry
 
     init {
         twistPID.enableContinuousInput(0.0, 1.0)
@@ -97,9 +93,6 @@ class SwerveAuto(
 
         if (debugLogging) {
             translationTwistShuffleboard.setDouble(twist)
-            xDesiredShuffle.setDouble(desiredPosition.x)
-            yDesiredShuffle.setDouble(desiredPosition.y)
-            angleDesiredShuffle.setDouble(desiredPosition.angle)
         }
 
         swerveSystem.drive(translation, twist)
@@ -110,7 +103,7 @@ class SwerveAuto(
         //ryan suggested this
         val pidVal = twistPID.calculate(gyro.getYaw() / 360, desiredAngle / 360)
 
-        if (abs(pidVal) < 0.01) {
+        if (abs(pidVal) < 0.1) {
             return -pidVal
         }
 
