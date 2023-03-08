@@ -1,5 +1,6 @@
 package cshcyberhawks.swolib.swerve
 
+
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.math.Vector2
@@ -8,15 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import kotlin.math.abs
 
-class SwerveDriveTrain(
-        val swerveConfiguration: FourWheelSwerveConfiguration,
-        private val gyro: GenericGyro
-) : SubsystemBase() {
+class SwerveDriveTrain(val swerveConfiguration: FourWheelSwerveConfiguration, private val gyro: GenericGyro) : SubsystemBase() {
     companion object {
-        fun normalizeWheelSpeeds(
-                wheelVectors: Array<Double>,
-                distanceFromZero: Double
-        ): Array<Double> {
+        fun normalizeWheelSpeeds(wheelVectors: Array<Double>, distanceFromZero: Double): Array<Double> {
             var max = abs(wheelVectors[0])
 
             for (wheelVector in wheelVectors) {
@@ -46,76 +41,68 @@ class SwerveDriveTrain(
     }
 
     fun calculateDrive(
-            driveCord: Vector2,
-            twistCord: Vector2,
-            disableFieldOrientation: Boolean = false
+        driveCord: Vector2,
+        twistCord: Vector2,
     ): Polar {
-        var driveCoordinate = driveCord
-        if (!disableFieldOrientation) {
-            driveCoordinate = fieldOriented(driveCord, gyro.getYaw())
-        }
+        val driveCoordinate = fieldOriented(driveCord, gyro.getYaw())
 
         return Polar.fromVector2(
-                Vector2(driveCoordinate.x + twistCord.x, driveCoordinate.y + twistCord.y)
+            Vector2(
+                driveCoordinate.x + twistCord.x,
+                driveCoordinate.y + twistCord.y
+            )
         )
     }
 
-    fun drive(input: Vector2, inputTwist: Double, disableFieldOrientation: Boolean = false) {
+    fun drive(
+        input: Vector2,
+        inputTwist: Double,
+    ) {
         if (input == Vector2() && inputTwist == 0.0) {
             swerveConfiguration.preserveWheelAngles()
             return
         }
 
         val frontRightVector =
-                calculateDrive(
-                        input,
-                        Vector2.fromPolar(
-                                Polar(
-                                        swerveConfiguration.angleConfiguration.frontRight,
-                                        inputTwist *
-                                                swerveConfiguration.speedConfiguration.frontRight
-                                )
-                        ),
-                        disableFieldOrientation
-
+            calculateDrive(
+                input,
+                Vector2.fromPolar(
+                    Polar(
+                        swerveConfiguration.angleConfiguration.frontRight,
+                        inputTwist * swerveConfiguration.speedConfiguration.frontRight
+                    )
                 )
+            )
         val frontLeftVector =
-                calculateDrive(
-                        input,
-                        Vector2.fromPolar(
-                                Polar(
-                                        swerveConfiguration.angleConfiguration.frontLeft,
-                                        inputTwist *
-                                                swerveConfiguration.speedConfiguration.frontLeft
-                                )
-                        ),
-                        disableFieldOrientation
-
+            calculateDrive(
+                input,
+                Vector2.fromPolar(
+                    Polar(
+                        swerveConfiguration.angleConfiguration.frontLeft,
+                        inputTwist * swerveConfiguration.speedConfiguration.frontLeft
+                    )
                 )
+            )
         val backRightVector =
-                calculateDrive(
-                        input,
-                        Vector2.fromPolar(
-                                Polar(
-                                        swerveConfiguration.angleConfiguration.backRight,
-                                        inputTwist *
-                                                swerveConfiguration.speedConfiguration.backRight
-                                )
-                        ),
-                        disableFieldOrientation
-
+            calculateDrive(
+                input,
+                Vector2.fromPolar(
+                    Polar(
+                        swerveConfiguration.angleConfiguration.backRight,
+                        inputTwist * swerveConfiguration.speedConfiguration.backRight
+                    )
                 )
+            )
         val backLeftVector =
-                calculateDrive(
-                        input,
-                        Vector2.fromPolar(
-                                Polar(
-                                        swerveConfiguration.angleConfiguration.backLeft,
-                                        inputTwist * swerveConfiguration.speedConfiguration.backLeft
-                                )
-                        ),
-                        disableFieldOrientation
+            calculateDrive(
+                input,
+                Vector2.fromPolar(
+                    Polar(
+                        swerveConfiguration.angleConfiguration.backLeft,
+                        inputTwist * swerveConfiguration.speedConfiguration.backLeft
+                    )
                 )
+            )
         val frontRightSpeed = frontRightVector.r
         val frontLeftSpeed = frontLeftVector.r
         val backRightSpeed = backRightVector.r
@@ -124,11 +111,13 @@ class SwerveDriveTrain(
         val frontLeftAngle = frontLeftVector.theta
         val backRightAngle = backRightVector.theta
         val backLeftAngle = backLeftVector.theta
-        var wheelSpeeds = arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
+        var wheelSpeeds =
+            arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
         wheelSpeeds = normalizeWheelSpeeds(wheelSpeeds, 1.0)
 
         SmartDashboard.putNumber("Drive in x", input.x)
         SmartDashboard.putNumber("Drive in y", input.y)
+
 
         swerveConfiguration.backRight.drive(wheelSpeeds[2], backRightAngle)
         swerveConfiguration.backLeft.drive(wheelSpeeds[3], backLeftAngle)
@@ -138,17 +127,16 @@ class SwerveDriveTrain(
 
     fun debug() {
         logEncoderValues()
-        // put debug stuff here
+        //put debug stuff here
     }
 
     fun logEncoderValues() {
-        val vals =
-                arrayOf(
-                        swerveConfiguration.frontRight.getRawEncoder(),
-                        swerveConfiguration.frontLeft.getRawEncoder(),
-                        swerveConfiguration.backLeft.getRawEncoder(),
-                        swerveConfiguration.backRight.getRawEncoder()
-                )
+        val vals = arrayOf(
+            swerveConfiguration.frontRight.getRawEncoder(),
+            swerveConfiguration.frontLeft.getRawEncoder(),
+            swerveConfiguration.backLeft.getRawEncoder(),
+            swerveConfiguration.backRight.getRawEncoder()
+        )
         SmartDashboard.putString("Encoder values", vals.joinToString(", "))
     }
 }
