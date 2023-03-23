@@ -4,67 +4,58 @@ import com.beust.klaxon.Klaxon
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.autonomous.commands.GoToPosition
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
-import cshcyberhawks.swolib.limelight.AttachedCommandType
-import cshcyberhawks.swolib.math.Vector2
-import cshcyberhawks.swolib.math.Vector3
+import cshcyberhawks.swolib.math.AngleCalculations
+import cshcyberhawks.swolib.math.FieldPosition
+import edu.wpi.first.wpilibj.DriverStation
+import edu.wpi.first.wpilibj.DriverStation.Alliance
 import edu.wpi.first.wpilibj2.command.CommandBase
 import java.io.File
 
 class AutoPath(
-        inputFile: File,
-        val swerveAuto: SwerveAuto,
-        val gyro: GenericGyro,
-        val commandsIn: HashMap<Int, Pair<CommandBase, AttachedCommandType>> = HashMap()
+    inputFile: File,
+    val swerveAuto: SwerveAuto,
+    val gyro: GenericGyro,
+    private val commandsList: HashMap<Int, CommandBase> = HashMap()
 ) : CommandBase() {
-    var commandsToRun: List<CommandBase>
+    private var positions: List<FieldPosition>
 
-    val positions =
-            Klaxon().parseArray<AutoPathNode>(inputFile)!!.map { Vector2(it.point.x, it.point.y) }
-
-    var currentCommand: CommandBase? = null
-    var currentIndex = 1
+    private var currentCommand: CommandBase? = null
+    private var attachedCommand: CommandBase? = null
+    private var currentIndex = 0
 
     init {
-        commandsToRun =
-                Klaxon().parseArray<AutoPathNode>(inputFile)!!.map {
-                    GoToPosition(swerveAuto, Vector2(it.point.x, it.point.y))
-                }
+        if (DriverStation.getAlliance() == Alliance.Blue) {
+            this.positions = Klaxon().parseArray<AutoPathNode>(inputFile)!!.map {
+                FieldPosition(-it.point.y, it.point.x, AngleCalculations.wrapAroundAngles(it.point.angle))
+            }
+        } else {
+            this.positions = Klaxon().parseArray<AutoPathNode>(inputFile)!!.map {
+                FieldPosition(it.point.y, it.point.x, AngleCalculations.wrapAroundAngles(it.point.angle))
+            }
+        }
 
-        swerveAuto.swo.fieldPosition = Vector3(positions[0].x, positions[0].y, 0.0)
-        // if (commandsIn.size != 0) {
-        //     commandsIn.forEach { (key, (cmd, typ)) ->
-        //         if (key < commandsToRun.size) commandsToRun.add(cmd, key)
-        //     }
-        // }
-        //        gyro.setYawOffset(jsonData.startPosition.angle)
+    }
+
+    override fun initialize() {
+        gyro.setYawOffset(positions[0].angle)
+//        swerveAuto.swo.fieldPosition =
+//            Vector3(positions[0].x, positions[0].y, AngleCalculations.wrapAroundAngles(positions[0].angle + 180))
     }
 
     override fun execute() {
-        if ((currentCommand == null || currentCommand?.isFinished == true) &&
-                        currentIndex < positions.size
-        ) {
-            if (commandsIn.containsKey(currentIndex + 1)) {
-                val pair = commandsIn[currentIndex + 1]
-                if (pair != null) {
-                    val (cmd, typ) = pair
-
-                    when (typ) {
-                        AttachedCommandType.SYNC -> {
-                            currentCommand = cmd
-                            currentCommand?.schedule()
-                        }
-                        AttachedCommandType.ASYNC -> {
-                            cmd.schedule()
-                        }
-                    }
-                    return
-                }
+        if ((currentCommand == null || currentCommand?.isFinished == true) && (attachedCommand == null || attachedCommand?.isFinished == false) && currentIndex < positions.size) {
+            attachedCommand = null
+            if (commandsList.containsKey(currentIndex) && commandsList[currentIndex] != null) {
+                attachedCommand = commandsList[currentIndex]!!
+                attachedCommand?.schedule()
             }
 
-            currentCommand = commandsToRun[currentIndex++]
+            val pos = positions[currentIndex++]
+            currentCommand = GoToPosition(swerveAuto, FieldPosition(pos.x, pos.y, pos.angle))
             currentCommand?.schedule()
         }
     }
 
-    override fun isFinished(): Boolean = currentIndex == commandsToRun.size
+
+    override fun isFinished(): Boolean = currentIndex == positions.size
 }

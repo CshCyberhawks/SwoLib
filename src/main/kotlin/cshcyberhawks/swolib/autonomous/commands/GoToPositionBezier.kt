@@ -6,7 +6,7 @@ import cshcyberhawks.swolib.math.FieldPosition
 import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToPositionBezier(private val swerveAuto: SwerveAuto, private val curve: BezierCurve) :
-        CommandBase() {
+    CommandBase() {
     override fun initialize() {
         val (point, velo) = curve.getNextPoint()
         swerveAuto.desiredPosition = FieldPosition(point, 0.0)

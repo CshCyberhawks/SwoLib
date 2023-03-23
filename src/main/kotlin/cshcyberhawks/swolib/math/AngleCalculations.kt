@@ -7,12 +7,12 @@ object AngleCalculations {
     /**
      * A function that changes an angle range from -180-180 to 0-360.
      *
-     * @param angle The angle you want to convert.
+     * @param inputAngle The angle you want to convert.
      *
      * @return The converted angle.
      */
-    fun wrapAroundAngles(angle: Double): Double {
-        val angle = angle % 360
+    fun wrapAroundAngles(inputAngle: Double): Double {
+        val angle = inputAngle % 360
         return if (angle < 0) {
             angle + 360
         } else angle

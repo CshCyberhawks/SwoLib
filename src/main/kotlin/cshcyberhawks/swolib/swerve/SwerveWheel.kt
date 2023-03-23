@@ -4,7 +4,6 @@ import cshcyberhawks.swolib.hardware.enums.MotorNeutralMode
 import cshcyberhawks.swolib.hardware.interfaces.GenericDriveMotor
 import cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor
 import cshcyberhawks.swolib.math.AngleCalculations
-import cshcyberhawks.swolib.math.MiscCalculations
 import cshcyberhawks.swolib.math.Polar
 import cshcyberhawks.swolib.swerve.configurations.SwerveModuleConfiguration
 import edu.wpi.first.math.MathUtil
@@ -14,11 +13,11 @@ import kotlin.math.abs
 
 
 class SwerveWheel(
-    val driveMotor: GenericDriveMotor,
-    val turnMotor: GenericTurnMotor,
-    val drivePID: PIDController,
-    val turnPID: PIDController,
-    val configuration: SwerveModuleConfiguration
+    private val driveMotor: GenericDriveMotor,
+    private val turnMotor: GenericTurnMotor,
+    private val drivePID: PIDController,
+    private val turnPID: PIDController,
+    private val configuration: SwerveModuleConfiguration
 ) {
     private var oldAngle = 0.0
 
@@ -37,15 +36,15 @@ class SwerveWheel(
         return rotationsPerSecondToMetersPerSecond(driveVelocity)
     }
 
-    fun getTurnValue(): Double {
+    private fun getTurnValue(): Double {
         return AngleCalculations.wrapAroundAngles(turnMotor.get())
     }
 
     fun getWheelVector(): Polar = Polar(getTurnValue(), getCurrentDriveSpeed())
 
-    fun drive(speed: Double, angle: Double) {
-        var speed = speed
-        var angle = AngleCalculations.wrapAroundAngles(angle)
+    fun drive(inputSpeed: Double, inputAngle: Double) {
+        var speed = inputSpeed
+        var angle = AngleCalculations.wrapAroundAngles(inputAngle)
         oldAngle = angle
 
         val turnValue = getTurnValue()

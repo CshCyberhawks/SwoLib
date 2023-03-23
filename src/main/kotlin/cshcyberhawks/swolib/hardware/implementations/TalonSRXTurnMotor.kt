@@ -5,7 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor
 import edu.wpi.first.wpilibj.AnalogInput
 
-class TalonSRXTurnMotor(val deviceId: Int, override val encoderPort: Int, private val offset: Double) : GenericTurnMotor {
+class TalonSRXTurnMotor(deviceId: Int, override val encoderPort: Int, private val offset: Double) :
+    GenericTurnMotor {
     private val motor = TalonSRX(deviceId)
     private val encoder: AnalogInput = AnalogInput(encoderPort)
 

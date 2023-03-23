@@ -5,12 +5,13 @@ import cshcyberhawks.swolib.autonomous.SwerveAuto
 import cshcyberhawks.swolib.math.FieldPosition
 import cshcyberhawks.swolib.math.Vector2
 import edu.wpi.first.wpilibj2.command.CommandBase
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 class GoToPositionAndExecute(
     val swerveAuto: SwerveAuto,
-    val desiredPosition: FieldPosition,
+    private val desiredPosition: FieldPosition,
     val command: CommandBase,
-    val finishCondition: FinishCondition = FinishCondition.BOTH
+    private val finishCondition: FinishCondition = FinishCondition.BOTH
 ) : CommandBase() {
     // TODO: implement the turning to face the object
     constructor(
@@ -30,10 +31,12 @@ class GoToPositionAndExecute(
     }
 
     override fun end(interrupted: Boolean) {
-        swerveAuto.kill();
+        swerveAuto.kill()
         command.cancel()
     }
+
     override fun isFinished(): Boolean {
+        SmartDashboard.putBoolean("ExecuteCommand if finished", command.isFinished())
         return when (finishCondition) {
             FinishCondition.POSITION -> swerveAuto.isFinishedMoving()
             FinishCondition.COMMAND -> command.isFinished

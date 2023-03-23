@@ -3,9 +3,9 @@ package cshcyberhawks.swolib.hardware.implementations
 import com.kauailabs.navx.frc.AHRS
 import cshcyberhawks.swolib.hardware.interfaces.GenericGyro
 import cshcyberhawks.swolib.math.AngleCalculations
-import cshcyberhawks.swolib.math.FieldPosition
-import cshcyberhawks.swolib.math.Vector2
 import cshcyberhawks.swolib.math.Polar
+import cshcyberhawks.swolib.math.Vector2
+import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.wpilibj.SPI
 
 /**
@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.SPI
  */
 class NavXGyro(private val port: SPI.Port) : GenericGyro {
     val gyro: AHRS = AHRS(port)
-    var offsetValue: Double = 0.0
+    private var offsetValue: Double = 0.0
 
     /**
      * Gets the angle the gyro is currently facing.
@@ -41,5 +41,9 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
      */
     override fun setYawOffset(currentPos: Double) {
         offsetValue = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble() - currentPos)
+    }
+
+    override fun getYawRotation2d(): Rotation2d {
+        return gyro.rotation2d
     }
 }

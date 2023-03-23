@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase
 
 class GoToFieldElementsAndExecute(
     val swerveAuto: SwerveAuto,
-    val fieldElements: List<FieldElement>,
+    private val fieldElements: List<FieldElement>,
     val commands: List<CommandBase>,
-    val finishCondition: List<FinishCondition> = listOf(FinishCondition.BOTH)
+    private val finishCondition: List<FinishCondition> = listOf(FinishCondition.BOTH)
 ) : CommandBase() {
     private lateinit var command: GoToPositionAndExecute
 
@@ -36,19 +36,17 @@ class GoToFieldElementsAndExecute(
     }
 
     override fun execute() {
-        if (isPieceDone(finishCondition.first())) {
-            if (fieldElements.isNotEmpty()) {
-                command = GoToPositionAndExecute(
-                    swerveAuto,
-                    fieldElements.first().position,
-                    commands.first(),
-                    finishCondition.first()
-                )
-                commands.drop(1)
-                fieldElements.drop(1)
-                finishCondition.drop(1)
-                command.schedule()
-            }
+        if (isPieceDone(finishCondition.first()) && fieldElements.isNotEmpty()) {
+            command = GoToPositionAndExecute(
+                swerveAuto,
+                fieldElements.first().position,
+                commands.first(),
+                finishCondition.first()
+            )
+            commands.drop(1)
+            fieldElements.drop(1)
+            finishCondition.drop(1)
+            command.schedule()
         }
     }
 

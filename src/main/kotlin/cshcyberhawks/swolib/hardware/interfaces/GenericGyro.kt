@@ -1,6 +1,7 @@
 package cshcyberhawks.swolib.hardware.interfaces
 
 import cshcyberhawks.swolib.math.Vector2
+import edu.wpi.first.math.geometry.Rotation2d
 
 interface GenericGyro {
     /**
@@ -15,6 +16,8 @@ interface GenericGyro {
     fun getRoll(): Double
 
     fun mergePitchRoll(): Vector2
+
+    fun getYawRotation2d(): Rotation2d
 
     /**
      * Sets the angle offset of the gyro to the current direction.
