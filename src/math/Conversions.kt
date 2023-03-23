@@ -26,5 +26,6 @@ object Conversions {
      *
      * @return The speed in meters per second
      */
-    fun rotationsPerSecondToMetersPerSecond(rotations: Double, radius: Double): Double = rotationsPerSecondToMetersPerSecond(rotations, radius, 1.0)
+    fun rotationsPerSecondToMetersPerSecond(rotations: Double, radius: Double): Double =
+        rotationsPerSecondToMetersPerSecond(rotations, radius, 1.0)
 }

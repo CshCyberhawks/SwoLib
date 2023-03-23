@@ -39,13 +39,13 @@ class SwerveDriveTrain(
         gyro.setYawOffset()
     }
 
-    fun fieldOriented(input: Vector2, gyroAngle: Double): Vector2 {
+    private fun fieldOriented(input: Vector2, gyroAngle: Double): Vector2 {
         val polar = Polar.fromVector2(input)
         polar.theta -= gyroAngle
         return Vector2.fromPolar(polar)
     }
 
-    fun calculateDrive(
+    private fun calculateDrive(
         driveCord: Vector2,
         twistCord: Vector2,
         disableFieldOrientation: Boolean = false
@@ -141,7 +141,7 @@ class SwerveDriveTrain(
         // put debug stuff here
     }
 
-    fun logEncoderValues() {
+    private fun logEncoderValues() {
         val vals =
             arrayOf(
                 swerveConfiguration.frontRight.getRawEncoder(),

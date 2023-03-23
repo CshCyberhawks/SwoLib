@@ -6,13 +6,13 @@ import edu.wpi.first.util.WPIUtilJNI
 import kotlin.math.sqrt
 
 class BezierCurve(
-        private val swo: SwerveOdometry,
-        private val trapConstraints: TrapezoidProfile.Constraints,
-        private val startPoint: Vector2,
-        private val controlPoint1: Vector2,
-        private val controlPoint2: Vector2,
-        private val endPoint: Vector2,
-        private val resolution: Double
+    swo: SwerveOdometry,
+    private val trapConstraints: TrapezoidProfile.Constraints,
+    private val startPoint: Vector2,
+    private val controlPoint1: Vector2,
+    private val controlPoint2: Vector2,
+    private val endPoint: Vector2,
+    private val resolution: Double
 ) {
     private fun getPoint(time: Double): Vector2 {
         // https://en.wikipedia.org/wiki/Bézier_curve
@@ -32,13 +32,13 @@ class BezierCurve(
     var nextPoint: Int = 1
 
     private var trapXCurrentState: TrapezoidProfile.State =
-            TrapezoidProfile.State(swo.fieldPosition.x, swo.getVelocity().x)
+        TrapezoidProfile.State(swo.fieldPosition.x, swo.getVelocity().x)
     private var trapXDesiredState: TrapezoidProfile.State =
-            TrapezoidProfile.State(getTotalDistance(), 0.0)
+        TrapezoidProfile.State(getTotalDistance(), 0.0)
     private var trapYCurrentState: TrapezoidProfile.State =
-            TrapezoidProfile.State(swo.fieldPosition.y, swo.getVelocity().y)
+        TrapezoidProfile.State(swo.fieldPosition.y, swo.getVelocity().y)
     private var trapYDesiredState: TrapezoidProfile.State =
-            TrapezoidProfile.State(getTotalDistance(), 0.0)
+        TrapezoidProfile.State(getTotalDistance(), 0.0)
 
     private var prevTime: Double = 0.0
 

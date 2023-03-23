@@ -33,4 +33,10 @@ class Vector2(var x: Double = 0.0, var y: Double = 0.0) {
 
         return x == other.x && y == other.y
     }
+
+    override fun hashCode(): Int {
+        var result = x.hashCode()
+        result = 31 * result + y.hashCode()
+        return result
+    }
 }
