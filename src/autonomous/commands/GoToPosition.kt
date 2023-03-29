@@ -27,7 +27,7 @@ class GoToPosition(
     }
 
     override fun isFinished(): Boolean {
-        SmartDashboard.putBoolean("Go To Pos Finished", swerveAuto.isFinishedMoving())
+        // SmartDashboard.putBoolean("Go To Pos Finished", swerveAuto.isFinishedMoving())
         return swerveAuto.isFinishedMoving()
     }
 

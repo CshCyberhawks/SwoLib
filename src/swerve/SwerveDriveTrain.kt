@@ -8,6 +8,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import kotlin.math.abs
 
+/**
+ * The class to control the entire swerve drive train. This can be thought of as the "conductor" for the individual modules.
+ * @param swerveConfiguration The configuration for the swerve drive train
+ * @param gyro The gyro object
+*/
+
+
 class SwerveDriveTrain(
     val swerveConfiguration: FourWheelSwerveConfiguration,
     private val gyro: GenericGyro
@@ -59,6 +66,13 @@ class SwerveDriveTrain(
             Vector2(driveCoordinate.x + twistCord.x, driveCoordinate.y + twistCord.y)
         )
     }
+
+    /**
+      * The function to control/coordinate the individual modules to DRIVE in A DIRECTION!!! HOW COOL?
+      * @param input The input vector to drive in (ie joystick x and y)
+      * @param inputTwist The input twist to drive in (ie joystick twist)
+      * @param disableFieldOrientation Whether or not to disable field orientation (defaults to false)
+    */
 
     fun drive(input: Vector2, inputTwist: Double, disableFieldOrientation: Boolean = false) {
         if (input == Vector2() && inputTwist == 0.0) {
@@ -127,9 +141,6 @@ class SwerveDriveTrain(
         var wheelSpeeds = arrayOf(frontRightSpeed, frontLeftSpeed, backRightSpeed, backLeftSpeed)
         wheelSpeeds = normalizeWheelSpeeds(wheelSpeeds, 1.0)
 
-        SmartDashboard.putNumber("Drive in x", input.x)
-        SmartDashboard.putNumber("Drive in y", input.y)
-
         swerveConfiguration.backRight.drive(wheelSpeeds[2], backRightAngle)
         swerveConfiguration.backLeft.drive(wheelSpeeds[3], backLeftAngle)
         swerveConfiguration.frontRight.drive(wheelSpeeds[0], frontRightAngle)
@@ -149,6 +160,5 @@ class SwerveDriveTrain(
                 swerveConfiguration.backLeft.getRawEncoder(),
                 swerveConfiguration.backRight.getRawEncoder()
             )
-        SmartDashboard.putString("Encoder values", vals.joinToString(", "))
     }
 }

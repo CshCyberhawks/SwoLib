@@ -12,6 +12,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import kotlin.math.abs
 
 
+/**
+ * A class representing a single swerve wheel (module). This contains the turning and driving motors.
+ * @param driveMotor The motor to use for driving
+ * @param turnMotor The motor to use for turning
+ * @param drivePID The PID controller to use for driving
+ * @param turnPID The PID controller to use for turning
+ * @param configuration The configuration for this module
+ * @see GenericDriveMotor
+ * @see GenericTurnMotor
+ * @see SwerveModuleConfiguration
+*/
+
 class SwerveWheel(
     private val driveMotor: GenericDriveMotor,
     private val turnMotor: GenericTurnMotor,

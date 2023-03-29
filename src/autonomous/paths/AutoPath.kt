@@ -11,6 +11,18 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance
 import edu.wpi.first.wpilibj2.command.CommandBase
 import java.io.File
 
+
+
+/**
+ * A class that represents a path that the robot can follow. These paths are defined in JSON files and generated from the custom Cshcyberhawks pathplanner.
+ * @param inputFile The file that contains the path.
+ * @param swerveAuto The SwerveAuto object that the robot is using.
+ * @param gyro The gyro that the robot is using.
+ * @param commandsList A HashMap of commands that the robot can execute at certain points in the path. The key is the index of points at which the command should be executed. These attached commands will run concurrently with the robot point movement in a blocking way. 
+ * @constructor Creates a new AutoPath object.
+ * 
+*/
+
 class AutoPath(
     inputFile: File,
     val swerveAuto: SwerveAuto,

@@ -11,26 +11,43 @@ import cshcyberhawks.swolib.swerve.SwerveOdometry
 import edu.wpi.first.cscore.HttpCamera
 import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
-import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab
 import java.util.Optional
 import kotlin.math.abs
 import kotlin.math.tan
 
+/**
+ * A wrapper class for the Limelight camera.
+ * @param name The name of the Limelight.
+ * @param cameraHeight The height of the camera above the ground.
+ * @param cameraAngle The angle of the camera above the ground.
+ * @param cameraDistance The distance of the camera from the center of the robot.
+ * @param aprilTagHeight The height of the AprilTag above the ground.
+ * @param ledMode The LED mode of the Limelight.
+ * @param cameraMode The camera mode of the Limelight.
+ * @param pipeline The pipeline of the Limelight.
+ * @param streamMode The stream mode of the Limelight.
+ * @param snapshotMode The snapshot mode of the Limelight.
+ * @param crop The crop values of the Limelight.
+ * @param ip The IP address of the Limelight.
+ * @param fiducialPipeline The pipeline of the Limelight that is used for the Fiducial.
+ */
+
 class Limelight(
-    public val name: String,
-    private val cameraHeight: Double,
-    var cameraAngle: Double = 0.0,
-    private val cameraDistance: Double = 0.0,
-    private val aprilTagHeight: Double = 0.0,
-    ledMode: LedMode = LedMode.Pipeline,
-    cameraMode: CameraMode = CameraMode.VisionProcessor,
-    pipeline: Int = 0,
-    streamMode: StreamMode = StreamMode.Standard,
-    snapshotMode: SnapshotMode = SnapshotMode.Reset,
-    crop: Array<Number> = arrayOf(0, 0, 0, 0),
-    val fiducialPipeline: Int = 0
+        public val name: String,
+        private val cameraHeight: Double,
+        var cameraAngle: Double = 0.0,
+        private val cameraDistance: Double = 0.0,
+        private val aprilTagHeight: Double = 0.0,
+        ledMode: LedMode = LedMode.Pipeline,
+        cameraMode: CameraMode = CameraMode.VisionProcessor,
+        pipeline: Int = 0,
+        streamMode: StreamMode = StreamMode.Standard,
+        snapshotMode: SnapshotMode = SnapshotMode.Reset,
+        crop: Array<Number> = arrayOf(0, 0, 0, 0),
+        ip: String,
+        val fiducialPipeline: Int = 0
 ) {
     private val limelight: NetworkTable
     private val tab: ShuffleboardTab = Shuffleboard.getTab("Limelight: $name")
@@ -82,18 +99,14 @@ class Limelight(
         putToTab("$name Area", this.getArea())
         tab.add("$name Current Pipeline", pipeline)
         tab.add("$name Target 3D", this.getTarget3D())
-//        tab.add("$name Cam Pose", this.getCamDebug())
+        //        tab.add("$name Cam Pose", this.getCamDebug())
         putToTab("$name Target ID", this.getTargetID())
         tab.add("$name Bot Pose", this.getBotDebug())
 
-        feed = if (name == "limelight-front") {
-            HttpCamera("Limelight Feed-Front", "http://10.28.75.11:5800")
-        } else /* (name == "limelight-back") */ {
-            HttpCamera("Limelight Feed-Back", "http://10.28.75.74:5800")
-        }
+        feed = HttpCamera(name, ip)
 
-//        tab.add("LLFeed $name", feed).withPosition(0, 0).withSize(8, 4)
-//        PortForwarder.add(5800, "limelight.local", 5800)
+        //        tab.add("LLFeed $name", feed).withPosition(0, 0).withSize(8, 4)
+        //        PortForwarder.add(5800, "limelight.local", 5800)
     }
 
     /** @return Whether the limelight has any valid targets. */
@@ -142,7 +155,8 @@ class Limelight(
         return if (!out.isNaN()) Optional.of(out) else Optional.empty()
     }
 
-    fun getTarget3D(): Array<Number> = limelight.getEntry("camtran").getNumberArray(arrayOf<Number>())
+    fun getTarget3D(): Array<Number> =
+            limelight.getEntry("camtran").getNumberArray(arrayOf<Number>())
 
     private fun getTargetID(): Optional<Double> {
         val out = limelight.getEntry("tid").getDouble(Double.NaN)
@@ -175,7 +189,11 @@ class Limelight(
         }
         val position = positionOptional.get()
         val rotation = rotationOptional.get()
-        return Optional.of(Field2d.fromWPILIBFieldPosition(FieldPosition(Vector2(position.x, position.y), rotation)))
+        return Optional.of(
+                Field2d.fromWPILIBFieldPosition(
+                        FieldPosition(Vector2(position.x, position.y), rotation)
+                )
+        )
     }
 
     fun getBotYaw(): Optional<Double> {
@@ -185,7 +203,6 @@ class Limelight(
         }
         return Optional.of(data[5])
     }
-
 
     private fun getBotDebug(): Array<Double> {
         val data = limelight.getEntry("botpose").getDoubleArray(arrayOf())
@@ -201,20 +218,25 @@ class Limelight(
     }
 
     fun getColorUnderCrosshair(): Array<Number> =
-        limelight.getEntry("tc").getNumberArray(arrayOf<Number>())
+            limelight.getEntry("tc").getNumberArray(arrayOf<Number>())
 
     /** @return Distance from target (meters). */
     private fun findTargetDistance(ballHeight: Double): Optional<Double> {
         val vOffset = getVerticalOffset()
-        return if (vOffset.isEmpty || !hasTarget()) Optional.empty() else Optional.of(
-            (abs(cameraHeight - ballHeight)) / tan(
-                Math.toRadians(vOffset.get() + cameraAngle)
-            )
-        )
+        return if (vOffset.isEmpty || !hasTarget()) Optional.empty()
+        else
+                Optional.of(
+                        (abs(cameraHeight - ballHeight)) /
+                                tan(Math.toRadians(vOffset.get() + cameraAngle))
+                )
     }
 
     fun getColor(): Array<Number> = limelight.getEntry("tc").getNumberArray(arrayOf())
 
+
+    /**
+        * Get the position of the limelight's current target WITHOUT using limelight 3d positioning. Instead, this is done based on the limelight vertical and horizontal offsets.
+    */
     fun getPosition(swo: SwerveOdometry, ballHeight: Double, gyro: GenericGyro): Optional<Vector2> {
         val optDistance = findTargetDistance(ballHeight) // .639
         if (optDistance.isEmpty) {
@@ -222,9 +244,14 @@ class Limelight(
         }
         val distance = optDistance.get()
         val angle: Double =
-            AngleCalculations.wrapAroundAngles(getHorizontalOffset().get() + gyro.getYaw()) // 357
+                AngleCalculations.wrapAroundAngles(
+                        getHorizontalOffset().get() + gyro.getYaw()
+                ) // 357
 
-        return Optional.of(Vector2.fromPolar(Polar(angle, distance)) + Vector2(swo.fieldPosition.x, swo.fieldPosition.y))
+        return Optional.of(
+                Vector2.fromPolar(Polar(angle, distance)) +
+                        Vector2(swo.fieldPosition.x, swo.fieldPosition.y)
+        )
     }
 
     public fun setLED(mode: LedMode) {
