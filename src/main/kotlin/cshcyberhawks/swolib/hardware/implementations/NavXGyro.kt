@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.SPI
  * A wrapper class for the NavX Gyroscope.
  *
  * @property port The port that your NavX is connected to.
+ * @property pitchOffset The offset of the pitch axis.
+ * @property rollOffset The offset of the roll axis.
  *
  * @constructor Creates a gyro with the specified port.
  */
-class NavXGyro(private val port: SPI.Port) : GenericGyro {
+class NavXGyro(private val port: SPI.Port, val pitchOffset: Double, val rollOffset: Double) : GenericGyro {
     val gyro: AHRS = AHRS(port)
     private var offsetValue: Double = 0.0
 
@@ -24,13 +26,13 @@ class NavXGyro(private val port: SPI.Port) : GenericGyro {
      *
      * @return The current angle.
      */
-    override fun getYaw(): Double = AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble() - offsetValue)
+    override fun getYaw(): Double = -AngleCalculations.wrapAroundAngles(gyro.yaw.toDouble() - offsetValue)
     override fun getPitch(): Double = gyro.pitch.toDouble()
 
     override fun getRoll(): Double = gyro.roll.toDouble()
 
     override fun mergePitchRoll(): Vector2 {
-        return Vector2.fromPolar(Polar(0.0, getPitch())) + Vector2.fromPolar(Polar(90.0, getRoll()))
+        return Vector2.fromPolar(Polar(pitchOffset, getPitch())) + Vector2.fromPolar(Polar(rollOffset, getRoll()))
     }
 
 
