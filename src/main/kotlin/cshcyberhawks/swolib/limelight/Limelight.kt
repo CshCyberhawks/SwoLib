@@ -33,10 +33,10 @@ import kotlin.math.tan
  * @param ip The IP address of the Limelight.
  * @param fiducialPipeline The pipeline of the Limelight that is used for the Fiducial.
  */
-
 class Limelight(
         public val name: String,
         private val cameraHeight: Double,
+        ip: String,
         var cameraAngle: Double = 0.0,
         private val cameraDistance: Double = 0.0,
         private val aprilTagHeight: Double = 0.0,
@@ -46,7 +46,6 @@ class Limelight(
         streamMode: StreamMode = StreamMode.Standard,
         snapshotMode: SnapshotMode = SnapshotMode.Reset,
         crop: Array<Number> = arrayOf(0, 0, 0, 0),
-        ip: String,
         val fiducialPipeline: Int = 0
 ) {
     private val limelight: NetworkTable
@@ -226,17 +225,17 @@ class Limelight(
         return if (vOffset.isEmpty || !hasTarget()) Optional.empty()
         else
                 Optional.of(
-                        (abs(cameraHeight - ballHeight)) /
+                        (abs(ballHeight - cameraHeight)) /
                                 tan(Math.toRadians(vOffset.get() + cameraAngle))
                 )
     }
 
     fun getColor(): Array<Number> = limelight.getEntry("tc").getNumberArray(arrayOf())
 
-
     /**
-        * Get the position of the limelight's current target WITHOUT using limelight 3d positioning. Instead, this is done based on the limelight vertical and horizontal offsets.
-    */
+     * Get the position of the limelight's current target WITHOUT using limelight 3d positioning.
+     * Instead, this is done based on the limelight vertical and horizontal offsets.
+     */
     fun getPosition(swo: SwerveOdometry, ballHeight: Double, gyro: GenericGyro): Optional<Vector2> {
         val optDistance = findTargetDistance(ballHeight) // .639
         if (optDistance.isEmpty) {
