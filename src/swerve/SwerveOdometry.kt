@@ -85,71 +85,56 @@ class SwerveOdometry(
         //        return Vector3(total.x, total.y, 0.0)
     }
 
-    /** Updates the position of the robot (optionally using the limelight and fiducials) */
-    fun updatePosition(
-            resetFieldOrientationLimelight: Boolean = false,
-            limelightFieldRotation: Double = 0.0
-    ) {
-        fieldPosition += getVelocity() * (MiscCalculations.getCurrentTime() - lastTime)
-
+    private fun resetAngleLL(limelightFieldRotation: Double = 0.0) {
         for (limelight in limelightList) {
-            val limelightPosition = limelight.getBotPosition()
-            //            if (!limelightPosition.isEmpty) {
-            //                val position = limelightPosition.get()
-            //                val vectorPosition = if (DriverStation.getAlliance() ==
-            // DriverStation.Alliance.Blue) {
-            //                    Vector3(-position.x, -position.y, position.z)
-            //                } else {
-            //                    Vector3(-(position.x) - 16.54, -position.y, position.z)
-            //                }
+            val limelightRotation = limelight.getBotYaw()
+            if (!limelightRotation.isEmpty &&
+                            MiscCalculations.getCurrentTime() - lastYawLLTime > 0.3
+            ) {
+                SmartDashboard.putNumber("ll rotation", limelightRotation.get())
+                val rotation =
+                        AngleCalculations.wrapAroundAngles(
+                                if (DriverStation.getAlliance() == Alliance.Red) {
+                                    limelightRotation.get()
+                                } else {
+                                    limelightRotation.get() + 180
+                                }
+                        )
 
-            //                fieldPosition = vectorPosition
-            //            }
-
-            if (resetFieldOrientationLimelight) {
-                val limelightRotation = limelight.getBotYaw()
-                if (!limelightRotation.isEmpty &&
-                                MiscCalculations.getCurrentTime() - lastYawLLTime > 0.3
-                ) {
-                    SmartDashboard.putNumber("ll rotation", limelightRotation.get())
-                    val rotation =
-                            AngleCalculations.wrapAroundAngles(
-                                    if (DriverStation.getAlliance() == Alliance.Red) {
-                                        limelightRotation.get()
-                                    } else {
-                                        limelightRotation.get() + 180
-                                    }
-                            )
-
-                    val limeRot = limelightFieldRotation
-                    if (limeRot > 0) {
-                        val offset = limelight.getBotYaw()
-                        if (offset.isPresent) {
-                            gyro.setYawOffset(limeRot - offset.get())
-                        }
+                val limeRot = limelightFieldRotation
+                if (limeRot > 0) {
+                    val offset = limelight.getBotYaw()
+                    if (offset.isPresent) {
+                        gyro.setYawOffset(limeRot - offset.get())
                     }
-
-                    lastYawLLTime = MiscCalculations.getCurrentTime()
-                    gyro.setYawOffset(rotation)
                 }
+
+                lastYawLLTime = MiscCalculations.getCurrentTime()
+                gyro.setYawOffset(rotation)
             }
-            //
-            //            val limelightRotation = limelight.getBotYaw()
-            //            if (!limelightRotation.isEmpty && MiscCalculations.getCurrentTime() -
-            // lastYawLLTime > 0.3) {
-            //                SmartDashboard.putNumber("ll rotation", limelightRotation.get())
-            //                val rotation = AngleCalculations.wrapAroundAngles(if
-            // (DriverStation.getAlliance() == Alliance.Red) {
-            //                    limelightRotation.get()
-            //                } else {
-            //                    limelightRotation.get() + 180
-            //                })
-            //
-            //
-            //                lastYawLLTime = MiscCalculations.getCurrentTime()
-            //                gyro.setYawOffset(rotation)
-            //            }
         }
+    }
+
+    private fun resetOdometryPositionLL() {
+        for (limelight in limelightList) {
+            val position = limelight.getBotFieldPosition()
+
+            if (!position.isEmpty) {
+                val pos = position.get()
+                fieldPosition = Vector3(pos.x, pos.y)
+                break
+            }
+        }
+    }
+
+    fun resetOdometryLL(fieldOrientedAngle: Double = 0.0) {
+        resetAngleLL(fieldOrientedAngle)
+        resetOdometryPositionLL()
+    }
+
+    /** Updates the position of the robot (optionally using the limelight and fiducials) */
+    fun updatePosition() {
+        fieldPosition += getVelocity() * (MiscCalculations.getCurrentTime() - lastTime)
 
         if (debugLogging) {
             xPosition.setDouble(fieldPosition.x)
