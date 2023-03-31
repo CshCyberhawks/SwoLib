@@ -37,6 +37,7 @@ jobs:
       run: |
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
+          sh gradlew dokkaHtml
           mkdir ../temp
           cp -r .git/ ../temp
           cd ../temp
