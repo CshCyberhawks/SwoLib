@@ -14,7 +14,7 @@ jobs:
         uses: CshCyberhawks/Javadoc-publisher.yml@1.0.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: main
+          javadoc-branch: docs
           java-version: 11
           target-folder: .
           project: gradle
