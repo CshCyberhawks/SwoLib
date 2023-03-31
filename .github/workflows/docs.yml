@@ -42,10 +42,9 @@ jobs:
           cd ../temp
           git fetch
           git checkout $TARGET_BRANCH       # checkout to your branch
-          mkdir ../new
+          mv ../SwoLib/$SRC_FOLDER_PATH ../new
           mv .git/ ../new
           cd ../new
-          mv ../SwoLib/$SRC_FOLDER_PATH ./src
           git fetch
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "docs"  # commit to the repository (ignore if no modification)
