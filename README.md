@@ -9,7 +9,7 @@ FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written
 Instruction on how to add this library to your project can be found [here](https://jitpack.io/#CshCyberhawks/SwoLib).
 
 ### Documentation:
-The library is extensively documented with Dokka, a Kotlin-based improved version of JavaDoc. This is hosted [here](https://cshcyberhawks.github.io/SwoLib/) by GitHub Pages. An example demonstrating many of the libraries swerve drive related capabilities can also be found [here](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
+The library is extensively documented with Dokka, a Kotlin-based improved version of JavaDoc. This is hosted [here](https://cshcyberhawks.github.io/SwoLib/) by GitHub Pages. An example demonstrating many of the libraries swerve drive related capabilities can also be found [here](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot). This example exists in both Java and Kotlin. 
 
 
 ## Features:
