@@ -2,19 +2,7 @@
 
 FRC team 2875 Cyberhawks open source Java/Kotlin library
 
-## Installation
 
-Your code needs to be a git repository to install SwoLib. If it is not already a git repository you can create one with the following command.
-
-```
-git init
-```
-
-### Kotlin
-
-```
-git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\kotlin\SwoLib
-```
 
 ## Features:
 
@@ -24,6 +12,25 @@ git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\
 - [Autnomous utilities](#autonomous)
 - [Limelight utilities](#Limelight)
 - [Various quality of life utilities](#QOL)
+
+## Getting Started:
+
+### Installation
+
+Your code needs to be a git repository to install SwoLib. If it is not already a git repository you can create one with the following command.
+
+```
+git init
+```
+
+#### Kotlin
+
+```
+git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\kotlin\SwoLib
+```
+
+### Documentation:
+The library is extensively documented with Dokka, a Kotlin-based improved version of JavaDoc. An example demonstrating many of the libraries swerve drive related capabilities can also be found [here](https://github.com/CshCyberhawks/SwoLib/blob/main/Examples/SwerveBot/Robot.kt)
 
 ### Swerve-drive:
 
