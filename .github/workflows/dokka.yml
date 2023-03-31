@@ -14,8 +14,8 @@ jobs:
         uses: MathieuSoysal/Javadoc-publisher.yml@v2.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: javadoc
-          java-version: 17
-          target-folder: javadoc 
+          javadoc-branch: main
+          java-version: 11
+          target-folder: /build/dokka/html
           project: gradle
-          custom-command: javadoc -d javadoc -sourcepath src/main/java -subpackages .
+          custom-command: gradlew dokkaHtml
