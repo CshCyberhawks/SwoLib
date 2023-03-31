@@ -26,8 +26,8 @@ The library is extensively documented with Dokka, a Kotlin-based improved versio
 
 - None of the swerve-drive utilities use the wpilib swerve drive classes, they are all completely custom
 - Contains a class to wrap the entire swerve drive (swerve drive train)
-- Classes for each individual swerve module (swervewheel). Note: these are currently configured for swerve modules with a single falcon 500 motor (drive) and a single 775 motor (turn). It is also expected to have an analog encoder for wheel turning data
-- Custom odometry - takes in encoder data from each individual wheel and calculates robot position. This is more accurate than an accelerometer, however, cannot detect any external stresses (ie driving into a wall) and thus is recommended to be used solely in autonomous.
+- Classes for each individual swerve module (swervewheel).
+- Custom odometry - takes in encoder data from each individual wheel and calculates robot position. This is more accurate than an accelerometer, however, cannot detect any external stresses (ie driving into a wall) and thus is recommended to be used solely in autonomous. In 2023's game, it is possible to correct this through the use of limelights and AprilTags. SwoLib has the capability to do this, if you choose. 
 - Wheel speed normalization
 - PID based drift correction for both positional and angular drift (using a NavX gyro and our custom position tracking odometry)
 - Integration with Field2d widget to display robot position on the field in Shuffleboard
