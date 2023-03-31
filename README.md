@@ -1,6 +1,6 @@
 # SwoLib
 
-FRC team 2875 Cyberhawks open source Java/Kotlin library
+FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written in Kotlin; however, thanks to Kotlin's perfect Java interoperation, it can be used (without any extra effort) in Java projects as well. 
 
 
 
