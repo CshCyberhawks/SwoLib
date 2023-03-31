@@ -38,12 +38,12 @@ jobs:
           git config --global user.name 'cshrobotics2875'
           git config --global user.email 'cshrobotics@protonmail.com'
           mkdir ../temp
-          mv .git/ ../temp
+          cp -r .git/ ../temp
           cd ../temp
           git fetch
           git checkout $TARGET_BRANCH       # checkout to your branch
-          mv ../SwoLib/$SRC_FOLDER_PATH ../new
-          mv .git/ ../new
+          cp -r ../SwoLib/$SRC_FOLDER_PATH ../new
+          cp -r .git/ ../new
           cd ../new
           git fetch
           git add -A
