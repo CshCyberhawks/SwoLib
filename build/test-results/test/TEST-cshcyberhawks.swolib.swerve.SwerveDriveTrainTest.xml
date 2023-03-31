@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cshcyberhawks.swolib.swerve.SwerveDriveTrainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-31T21:02:33" hostname="green726-laptop" time="0.002">
+  <properties/>
+  <testcase name="normalizeWheelSpeeds()" classname="cshcyberhawks.swolib.swerve.SwerveDriveTrainTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

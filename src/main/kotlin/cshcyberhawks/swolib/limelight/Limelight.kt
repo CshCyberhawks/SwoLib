@@ -17,6 +17,7 @@ import java.util.Optional
 import kotlin.math.abs
 import kotlin.math.tan
 
+
 /**
  * A wrapper class for the Limelight camera.
  * @param name The name of the Limelight.
@@ -33,11 +34,12 @@ import kotlin.math.tan
  * @param ip The IP address of the Limelight.
  * @param fiducialPipeline The pipeline of the Limelight that is used for the Fiducial.
  */
-class Limelight(
+class Limelight
+(
         public val name: String,
         private val cameraHeight: Double,
-        ip: String,
         var cameraAngle: Double = 0.0,
+        ip: String,
         private val cameraDistance: Double = 0.0,
         private val aprilTagHeight: Double = 0.0,
         ledMode: LedMode = LedMode.Pipeline,
