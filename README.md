@@ -2,6 +2,14 @@
 
 FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written in Kotlin; however, thanks to Kotlin's perfect Java interoperation, it can be used (without any extra effort) in Java projects as well. 
 
+## Getting Started:
+
+### Installation
+
+Instruction on how to add this library to your project can be found [here](https://jitpack.io/#CshCyberhawks/SwoLib).
+
+### Documentation:
+The library is extensively documented with Dokka, a Kotlin-based improved version of JavaDoc. An example demonstrating many of the libraries swerve drive related capabilities can also be found [here](https://github.com/CshCyberhawks/SwoLib/blob/main/Examples/SwerveBot/Robot.kt)
 
 
 ## Features:
@@ -13,14 +21,6 @@ FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written
 - [Limelight utilities](#Limelight)
 - [Various quality of life utilities](#QOL)
 
-## Getting Started:
-
-### Installation
-
-Instruction on how to add this library to your project can be found [here](https://jitpack.io/#CshCyberhawks/SwoLib).
-
-### Documentation:
-The library is extensively documented with Dokka, a Kotlin-based improved version of JavaDoc. An example demonstrating many of the libraries swerve drive related capabilities can also be found [here](https://github.com/CshCyberhawks/SwoLib/blob/main/Examples/SwerveBot/Robot.kt)
 
 ### Swerve-drive:
 
