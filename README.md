@@ -19,14 +19,11 @@ git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\
 ## Features:
 
 - [Custom swerve drive utilities](#swerve-drive)
-- [Math utilities](Math)
-- [Motor utilities](Motors)
-
-## Planned features:
-
+- [Math utilities](#Math)
+- [Motor utilities](#Motors)
 - [Autnomous utilities](#autonomous)
-- [Limelight utilities](Limelight)
-- [Various quality of life utilities](QOL)
+- [Limelight utilities](#Limelight)
+- [Various quality of life utilities](#QOL)
 
 ### Swerve-drive:
 
@@ -36,6 +33,8 @@ git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\
 - Custom odometry - takes in encoder data from each individual wheel and calculates robot position. This is more accurate than an accelerometer, however, cannot detect any external stresses (ie driving into a wall) and thus is recommended to be used solely in autonomous.
 - Wheel speed normalization
 - PID based drift correction for both positional and angular drift (using a NavX gyro and our custom position tracking odometry)
+- Integration with Field2d widget to display robot position on the field in Shuffleboard
+- Automatic resetting of odometry with Limelight and AprilTag fiducials
 
 ### Autonomous:
 
@@ -46,3 +45,27 @@ git submodule add -b publish https://github.com/CshCyberhawks/SwoLib .\src\main\
 - Several commands to easily move the robot to positions
 - Limelight integration - use the limelight to track targets (ie balls) and feed positional data for the robot to move to.
 - trajectory generation - through the chaining of go-to-position commands, the robot can be made to follow a set path while still self-correcting
+- [Modified pathplanner](https://github.com/CshCyberhawks/pathplanner) this can be used to draw robot paths and link them together.
+- Fully dynamic - the robot is able to start anywhere on the field and (as long as it can see an april tag with a limelight) can discern its starting position. This means that the robot will automatically correct itself to the first waypoint of the path, regardless of where it starts. This is made possible by our custom swerve drive autonomous utilities which perform most calculations at runtime, in contrast the WPILib where motion profiling is done ahead of time. 
+
+### Limelight:
+ - Limelight wrapper class with null-safety through Kotlin optionals.
+ - Acess to all network-tables limelight values with easy-to-use methods.
+ - Integration throughout the library - dynamic amount of limelights (you can use multiple limelights to reset odometry)
+ - Automatic tracking of objects in 3d space using limelight horizontal and vertical offsets.
+ - Autonomous commands to move towards objects - motion profiled and PID corrected.
+ - Easily manage any number of limelights.
+ 
+### Motors:
+ - Library support for various types of motor controllers ranging from Falcon500's TalonFX to the CANSparkMax
+ - Wrapper classes for encoders
+ 
+### Math:
+ - Various coordinate utilities. These include classes for polar and cartesian coordinates with overloaded operators.
+ - Vector2, Vector3, Vector2 + Angle (Fieldposition) classes
+ - Weighted deadzoning for controllers
+ - Normalization utilities
+ - Bezier curve utilities
+ 
+### QOL:
+ - Wrapper interface for gyros (NavX and Pigeon). This ensures they all behave the same way
