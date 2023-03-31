@@ -161,15 +161,15 @@ public class Robot extends TimedRobot {
 
         limelightRight.setLED(LedMode.ForceOn);
         limelightLeft.setLED(LedMode.ForceOn);
+
+        autoPathManager.getPaths().get("path1").schedule();
     }
 
     /**
      * This function is called periodically during autonomous.
      */
     @Override
-    public void autonomousPeriodic() {
-
-    }
+    public void autonomousPeriodic() {}
 
     /**
      * This function is called once when teleop is enabled.
@@ -178,7 +178,7 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         // NOTE: this will automatically set the field orientation's forward to whichever direction
         // the robot is currently facing
-        gyro.setYawOffset();
+        gyro.setYawOffset(0.0);
 
         limelightRight.setLED(LedMode.ForceOn);
         limelightLeft.setLED(LedMode.ForceOn);
