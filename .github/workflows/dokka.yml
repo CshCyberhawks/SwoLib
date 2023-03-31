@@ -16,6 +16,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           javadoc-branch: main
           java-version: 11
-          target-folder: /build/dokka/html
+          target-folder: .
           project: gradle
           custom-command: ./gradlew dokkaHtml
