@@ -4,8 +4,8 @@ FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written
 
 ## Quick Links:
  * [Docs](https://cshcyberhawks.github.io/SwoLib/)
- * [pathplanner](https://github.com/CshCyberhawks/pathplanner)
- * [examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
+ * [Pathplanner](https://github.com/CshCyberhawks/pathplanner)
+ * [Examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
 
 ## Getting Started:
 
