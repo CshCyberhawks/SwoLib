@@ -6,6 +6,7 @@ FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written
  * [Docs](https://cshcyberhawks.github.io/SwoLib/)
  * [Pathplanner](https://github.com/CshCyberhawks/pathplanner)
  * [Examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
+ * [Dynamic Autonomous Demonstration](https://drive.google.com/file/d/1LDSfABs7DCcXm3MWyoJo69t7WUHQul65/view?usp=sharing)
 
 ## Getting Started:
 
@@ -40,6 +41,8 @@ The library is extensively documented with Dokka, a Kotlin-based improved versio
 
 ### Autonomous:
 
+#### FULLY DYNAMIC!! - The robot is able to start anywhere on the field and (as long as it can see an april tag with a limelight) can discern its starting position. This means that the robot will automatically correct itself to the first waypoint of the path, regardless of where it starts. This is made possible by our custom swerve drive autonomous utilities which perform most calculations at runtime, in contrast the WPILib where motion profiling is done ahead of time. 2875 uses SwoLib's autonomous classes in teleop to perform automatic lineups for placement of cones/cubes and is able to engage this from anywhere on the field! In [this video](https://drive.google.com/file/d/1LDSfABs7DCcXm3MWyoJo69t7WUHQul65/view?usp=sharing), every time the robot drives towards the grid, that is the SwoLib autonomous taking complete control and going to the exact same position (the position was set from our pathplanner). This is done by a `GoToPosition` with a preset desired end location bound to buttons on our joystick. 
+
 - Autonomous swerve drive utilities - custom written - doesn't use any wpilib trajectory generation or swerve classes
 - High and lower level classes - ranging from commands to go to a cerain coordinate to the class that manipulates the swerve drive train
 - PID auto corrected (if the robot drifts off course, it will corerct itself using a PID), and trapezoid motion profiled (gradual acceleration and deceleration so as to not overshoot targets)
@@ -48,7 +51,6 @@ The library is extensively documented with Dokka, a Kotlin-based improved versio
 - Limelight integration - use the limelight to track targets (ie balls) and feed positional data for the robot to move to.
 - trajectory generation - through the chaining of go-to-position commands, the robot can be made to follow a set path while still self-correcting
 - [Modified pathplanner](https://github.com/CshCyberhawks/pathplanner) this can be used to draw robot paths and link them together.
-- Fully dynamic - the robot is able to start anywhere on the field and (as long as it can see an april tag with a limelight) can discern its starting position. This means that the robot will automatically correct itself to the first waypoint of the path, regardless of where it starts. This is made possible by our custom swerve drive autonomous utilities which perform most calculations at runtime, in contrast the WPILib where motion profiling is done ahead of time. 
 
 ### Limelight:
  - Limelight wrapper class with null-safety through Kotlin optionals.
