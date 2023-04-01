@@ -6,7 +6,7 @@ FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written
  * [Docs](https://cshcyberhawks.github.io/SwoLib/)
  * [Pathplanner](https://github.com/CshCyberhawks/pathplanner)
  * [Examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
- * [Dynamic Autonomous Demonstration](https://drive.google.com/file/d/1LDSfABs7DCcXm3MWyoJo69t7WUHQul65/view?usp=sharing)
+ * [Dynamic Autonomous Demonstration](https://drive.google.com/file/d/1a_YoA8lqkqwJuUBnri_qyLccZbWwAqEM/view?usp=sharing)
 
 ## Getting Started:
 
@@ -41,7 +41,7 @@ The library is extensively documented with Dokka, a Kotlin-based improved versio
 
 ### Autonomous:
 
-#### FULLY DYNAMIC!! - The robot is able to start anywhere on the field and (as long as it can see an april tag with a limelight) can discern its starting position. This means that the robot will automatically correct itself to the first waypoint of the path, regardless of where it starts. This is made possible by our custom swerve drive autonomous utilities which perform most calculations at runtime, in contrast the WPILib where motion profiling is done ahead of time. 2875 uses SwoLib's autonomous classes in teleop to perform automatic lineups for placement of cones/cubes and is able to engage this from anywhere on the field! In [this video](https://drive.google.com/file/d/1LDSfABs7DCcXm3MWyoJo69t7WUHQul65/view?usp=sharing), every time the robot drives towards the grid, that is the SwoLib autonomous taking complete control and going to the exact same position (the position was set from our pathplanner). This is done by a `GoToPosition` with a preset desired end location bound to buttons on our joystick. 
+#### FULLY DYNAMIC!! - The robot is able to start anywhere on the field and (as long as it can see an april tag with a limelight) can discern its starting position. This means that the robot will automatically correct itself to the first waypoint of the path, regardless of where it starts. This is made possible by our custom swerve drive autonomous utilities which perform most calculations at runtime, in contrast the WPILib where motion profiling is done ahead of time. 2875 uses SwoLib's autonomous classes in teleop to perform automatic lineups for placement of cones/cubes and is able to engage this from anywhere on the field! In [this video](https://drive.google.com/file/d/1a_YoA8lqkqwJuUBnri_qyLccZbWwAqEM/view?usp=sharing), every time the robot drives towards the grid, that is the SwoLib autonomous taking complete control and going to the exact same position (the position was set from our pathplanner). This is done by a `GoToPosition` with a preset desired end location bound to buttons on our joystick. 
 
 - Autonomous swerve drive utilities - custom written - doesn't use any wpilib trajectory generation or swerve classes
 - High and lower level classes - ranging from commands to go to a cerain coordinate to the class that manipulates the swerve drive train
