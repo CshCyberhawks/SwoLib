@@ -3,9 +3,9 @@
 FRC team 2875 Cyberhawks open source Java/Kotlin library. The library is written in Kotlin; however, thanks to Kotlin's perfect Java interoperation, it can be used (without any extra effort) in Java projects as well. 
 
 ## Quick Links:
-[Docs](https://cshcyberhawks.github.io/SwoLib/)
-[pathplanner](https://github.com/CshCyberhawks/pathplanner)
-[examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
+ * [Docs](https://cshcyberhawks.github.io/SwoLib/)
+ * [pathplanner](https://github.com/CshCyberhawks/pathplanner)
+ * [examples](https://github.com/CshCyberhawks/SwoLib/tree/main/Examples/SwerveBot)
 
 ## Getting Started:
 
