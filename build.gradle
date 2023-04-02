@@ -1,11 +1,23 @@
+buildscript {
+    ext.WPI_VER = "2023.2.1"
+    ext.libName = "cshcyberhawks.swolib"
+    ext.libVersion = "1.0.0"
+}
+
+
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2023.2.1"
     id "org.jetbrains.kotlin.jvm" version "1.6.0"
+    id "org.jetbrains.dokka" version "1.8.10"
+    id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
+
+version = "${libVersion}"
+group = "${libName}"
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
 
@@ -92,6 +104,7 @@ jar {
 
 repositories {
     mavenCentral()
+    maven { url 'https://www.jitpack.io' }
 }
 
 // Configure jar and deploy tasks
@@ -113,5 +126,17 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "11"
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {  
+            groupId = "${libName}"
+            artifactId = "${libName}"
+            version = "${libVersion}"
+
+            from components.java
+        }
     }
 }

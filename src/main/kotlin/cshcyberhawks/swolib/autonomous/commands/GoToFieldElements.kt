@@ -4,7 +4,7 @@ import cshcyberhawks.swolib.autonomous.FieldElement
 import cshcyberhawks.swolib.autonomous.SwerveAuto
 import edu.wpi.first.wpilibj2.command.CommandBase
 
-class GoToFieldElements(val swerveAuto: SwerveAuto, val fieldElements: List<FieldElement>) :
+class GoToFieldElements(val swerveAuto: SwerveAuto, private val fieldElements: List<FieldElement>) :
     CommandBase() {
     private lateinit var posCommand: GoToPosition
 
@@ -13,13 +13,11 @@ class GoToFieldElements(val swerveAuto: SwerveAuto, val fieldElements: List<Fiel
     }
 
     override fun execute() {
-        if (posCommand.isFinished) {
-            if (fieldElements.isNotEmpty()) {
-                val next = fieldElements.first()
-                posCommand = GoToPosition(swerveAuto, next.position)
-                fieldElements.drop(1)
-                posCommand.schedule()
-            }
+        if (posCommand.isFinished && fieldElements.isNotEmpty()) {
+            val next = fieldElements.first()
+            posCommand = GoToPosition(swerveAuto, next.position)
+            fieldElements.drop(1)
+            posCommand.schedule()
         }
     }
 

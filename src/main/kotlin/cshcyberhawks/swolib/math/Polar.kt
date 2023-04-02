@@ -30,4 +30,11 @@ class Polar(var theta: Double = 0.0, var r: Double = 0.0) {
 
         return (r == other.r && theta == other.theta) || (theta == (other.theta + 180) % 360 && r == -other.r)
     }
+
+
+    override fun hashCode(): Int {
+        var result = theta.hashCode()
+        result = 31 * result + r.hashCode()
+        return result
+    }
 }

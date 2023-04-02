@@ -15,14 +15,20 @@ object MiscCalculations {
     fun gToMetersPerSecond(g: Double): Double = g * 9.8066
 
     /**
-     * Deadzones an input so it can not be below a certain value.
+     * Deadzones an input so it can not be below a certain value. This is a weighted deadzone.
      *
      * @param input The input you want to deadzone.
      * @param deadzoneValue The minimum value you will allow.
      *
      * @return The deadzoned value.
      */
-    fun calculateDeadzone(input: Double, deadzoneValue: Double): Double = if (abs(input) > deadzoneValue) input else 0.0
+    fun calculateDeadzone(input: Double, deadzoneValue: Double): Double = if (abs(input) > deadzoneValue) {
+        (input + if (input > 0.0) {
+            -deadzoneValue
+        } else {
+            deadzoneValue
+        }) / (deadzoneValue)
+    } else 0.0
 
     /**
      * A function to get the current time in milliseconds

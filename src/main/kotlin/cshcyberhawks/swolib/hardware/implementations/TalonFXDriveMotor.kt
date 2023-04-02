@@ -12,8 +12,8 @@ class TalonFXDriveMotor(deviceId: Int, canBus: String = "") : GenericDriveMotor 
         motor.inverted = inverted
     }
 
-    override fun setNeutralMode(mode: MotorNeutralMode) {
-        val mode = when (mode) {
+    override fun setNeutralMode(inputMode: MotorNeutralMode) {
+        val mode = when (inputMode) {
             MotorNeutralMode.Coast -> NeutralMode.Coast
             MotorNeutralMode.Brake -> NeutralMode.Brake
         }

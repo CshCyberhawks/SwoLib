@@ -18,8 +18,8 @@ class MiscCalculationsTest {
     @Test
     fun calculateDeadzone() {
         assertEquals(0.0, MiscCalculations.calculateDeadzone(1.2, 2.0), 0.0)
-        assertEquals(2.2, MiscCalculations.calculateDeadzone(2.2, 2.0), 0.0)
+        assertEquals(.1, MiscCalculations.calculateDeadzone(2.2, 2.0), 0.000001)
         assertEquals(0.0, MiscCalculations.calculateDeadzone(-1.2, 2.0), 0.0)
-        assertEquals(-2.2, MiscCalculations.calculateDeadzone(-2.2, 2.0), 0.0)
+        assertEquals(-.1, MiscCalculations.calculateDeadzone(-2.2, 2.0), 0.000001)
     }
 }
