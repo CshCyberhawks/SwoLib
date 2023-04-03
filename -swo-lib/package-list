@@ -357,6 +357,7 @@ $dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/SwerveOdometry/#cshcy
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/fieldPosition/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-odometry/field-position.html
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/getVelocity/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-odometry/get-velocity.html
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/resetOdometryLL/#kotlin.Double/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-odometry/reset-odometry-l-l.html
+$dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/updateField/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-odometry/update-field.html
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveOdometry/updatePosition/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-odometry/update-position.html
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveWheel///PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-wheel/index.html
 $dokka.location:cshcyberhawks.swolib.swerve/SwerveWheel/SwerveWheel/#cshcyberhawks.swolib.hardware.interfaces.GenericDriveMotor#cshcyberhawks.swolib.hardware.interfaces.GenericTurnMotor#edu.wpi.first.math.controller.PIDController#edu.wpi.first.math.controller.PIDController#cshcyberhawks.swolib.swerve.configurations.SwerveModuleConfiguration/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.swerve/-swerve-wheel/-swerve-wheel.html
