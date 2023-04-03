@@ -141,11 +141,13 @@ class SwerveOdometry(
             yPosition.setDouble(fieldPosition.y)
         }
 
-        updateField()
         lastTime = MiscCalculations.getCurrentTime()
     }
 
-    private fun updateField() {
+    /**
+    * Updates the field2d object in Shuffleboard (teleometry) with the current position of the robot. Call this function to use the telemetry in Shuffleboard.
+    */
+    fun updateField() {
         if (!field2d.isEmpty) {
             val changedPosition =
                     Field2d.toWPILIBFieldPosition(
