@@ -24,6 +24,17 @@ class Vector2(var x: Double = 0.0, var y: Double = 0.0) {
 
     operator fun plus(other: Vector2): Vector2 = Vector2(x + other.x, y + other.y)
 
+
+    /**
+     * Calculates the distance between two vectors
+     * @param other The other vector
+     *
+     * @return The distance between the two vectors
+    */
+    fun distance(other: Vector2): Double {
+        return Math.sqrt(Math.pow(other.x - x, 2.0) + Math.pow(other.y - y, 2.0))
+    }
+
     operator fun div(other: Int): Vector2 = Vector2(x / other, y / other)
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

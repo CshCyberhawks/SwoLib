@@ -22,4 +22,15 @@ class MiscCalculationsTest {
         assertEquals(0.0, MiscCalculations.calculateDeadzone(-1.2, 2.0), 0.0)
         assertEquals(-.1, MiscCalculations.calculateDeadzone(-2.2, 2.0), 0.000001)
     }
+
+    @Test
+    fun closestPoint() {
+        val vecArr = arrayOf(Vector2(0.0, 0.0), Vector2(1.0, 1.0), Vector2(2.0, 2.0), Vector2(1.5, 3.0), Vector2(1.0, 5.0))
+
+        assertEquals(Vector2(0.0, 0.0), MiscCalculations.closestPoint(Vector2(0.0, 0.0), vecArr))
+
+        assertEquals(Vector2(0.0, 0.0), MiscCalculations.closestPoint(Vector2(1.0, 0.0), vecArr))
+        assertEquals(Vector2(1.5, 3.0), MiscCalculations.closestPoint(Vector2(2.0, 3.0), vecArr))
+        assertEquals(Vector2(1.0, 5.0), MiscCalculations.closestPoint(Vector2(2.0, 4.2), vecArr))
+    }
 }

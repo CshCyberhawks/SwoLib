@@ -36,4 +36,24 @@ object MiscCalculations {
      * @return The current time in milliseconds
      */
     fun getCurrentTime(): Double = WPIUtilJNI.now() * 1.0e-6
+
+    /**
+    * A function to find the closes vector2 (relative to a reference vector2) in an array of vector2s
+    * @param reference The reference vector2
+    * @param points The array of vector2s
+    * @return The closest vector2
+    */
+    fun closestPoint(reference: Vector2, points: Array<Vector2>): Vector2 {
+        var closest = points[0]
+        var closestDistance = reference.distance(points[0])
+        for (point in points) {
+            val distance = reference.distance(point)
+            if (distance < closestDistance) {
+                closest = point
+                closestDistance = distance
+            }
+        }
+        return closest
+    }
+
 }
