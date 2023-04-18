@@ -289,6 +289,7 @@ $dokka.location:cshcyberhawks.swolib.math/FieldPosition/x/#/PointingToDeclaratio
 $dokka.location:cshcyberhawks.swolib.math/FieldPosition/y/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-field-position/y.html
 $dokka.location:cshcyberhawks.swolib.math/MiscCalculations///PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-misc-calculations/index.html
 $dokka.location:cshcyberhawks.swolib.math/MiscCalculations/calculateDeadzone/#kotlin.Double#kotlin.Double/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-misc-calculations/calculate-deadzone.html
+$dokka.location:cshcyberhawks.swolib.math/MiscCalculations/closestPoint/#cshcyberhawks.swolib.math.Vector2#kotlin.Array[cshcyberhawks.swolib.math.Vector2]/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-misc-calculations/closest-point.html
 $dokka.location:cshcyberhawks.swolib.math/MiscCalculations/gToMetersPerSecond/#kotlin.Double/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-misc-calculations/g-to-meters-per-second.html
 $dokka.location:cshcyberhawks.swolib.math/MiscCalculations/getCurrentTime/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-misc-calculations/get-current-time.html
 $dokka.location:cshcyberhawks.swolib.math/Polar.Companion///PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-polar/-companion/index.html
@@ -303,6 +304,7 @@ $dokka.location:cshcyberhawks.swolib.math/Vector2.Companion///PointingToDeclarat
 $dokka.location:cshcyberhawks.swolib.math/Vector2.Companion/fromPolar/#cshcyberhawks.swolib.math.Polar/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/-companion/from-polar.html
 $dokka.location:cshcyberhawks.swolib.math/Vector2///PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/index.html
 $dokka.location:cshcyberhawks.swolib.math/Vector2/Vector2/#kotlin.Double#kotlin.Double/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/-vector2.html
+$dokka.location:cshcyberhawks.swolib.math/Vector2/distance/#cshcyberhawks.swolib.math.Vector2/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/distance.html
 $dokka.location:cshcyberhawks.swolib.math/Vector2/div/#kotlin.Int/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/div.html
 $dokka.location:cshcyberhawks.swolib.math/Vector2/equals/#kotlin.Any?/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/equals.html
 $dokka.location:cshcyberhawks.swolib.math/Vector2/hashCode/#/PointingToDeclaration/-swo-lib/cshcyberhawks.swolib.math/-vector2/hash-code.html
