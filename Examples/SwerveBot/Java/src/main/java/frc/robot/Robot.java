@@ -47,8 +47,8 @@ public class Robot extends TimedRobot {
     private PIDController drivePIDFrontRight = new PIDController(0.01, 0.0, 0.0);
     private PIDController turnPIDFrontRight = new PIDController(.012, 0.0, 0.0002);
 
-    private Limelight limelightLeft = new Limelight("limelight-left", 0.134, "123-456-7890", 0.0, 0.0, 0.0, LedMode.ForceOn, CameraMode.VisionProcessor, 1, StreamMode.Standard, SnapshotMode.Reset, new Number[]{0, 0, 0, 0}, 1);
-    private Limelight limelightRight = new Limelight("limelight-right", 0.134, "123-456-7890", 0.0, 0.0, 0.0, LedMode.ForceOn, CameraMode.VisionProcessor, 1, StreamMode.Standard, SnapshotMode.Reset, new Number[]{0, 0, 0, 0}, 1);
+    private Limelight limelightLeft = new Limelight("limelight-left", 0.134, 0.0,  "123-456-7890", 0.0, 0.0, LedMode.ForceOn, CameraMode.VisionProcessor, 1, StreamMode.Standard, SnapshotMode.Reset, new Number[]{0, 0, 0, 0}, 1);
+    private Limelight limelightRight = new Limelight("limelight-right", 0.134, 0.0, "123-456-7890", 0.0, 0.0, LedMode.ForceOn, CameraMode.VisionProcessor, 1, StreamMode.Standard, SnapshotMode.Reset, new Number[]{0, 0, 0, 0}, 1);
 
 
     private SwerveWheel backLeft = new
