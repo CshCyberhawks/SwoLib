@@ -74,3 +74,6 @@ The library is extensively documented with Dokka, a Kotlin-based improved versio
 ### QOL:
  - Wrapper interface for gyros (NavX and Pigeon). This ensures they all behave the same way
  - All major classes (`SwerveDriveTrain`, `SwerveAuto`, `SwerveOdometry`, etc) have optional `debugLogging` parameters, which (when set to true) will create a Shuffleboard tab for that class containing useful debugging information. 
+
+## Visualization
+![Visualization of this repo](./diagram.svg)
