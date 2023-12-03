@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SwerveAuto</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>SwoLib</span>
+            </a>
+    </div>
+    <div>
+1.0.0    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="SwoLib::cshcyberhawks.swolib.autonomous/SwerveAuto/SwerveAuto/#edu.wpi.first.math.controller.ProfiledPIDController#edu.wpi.first.math.controller.ProfiledPIDController#edu.wpi.first.math.controller.PIDController#edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints#kotlin.Double#kotlin.Double#cshcyberhawks.swolib.swerve.SwerveOdometry#cshcyberhawks.swolib.swerve.SwerveDriveTrain#cshcyberhawks.swolib.hardware.interfaces.GenericGyro#kotlin.Boolean#java.util.Optional[cshcyberhawks.swolib.field2d.Field2d]/PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">SwoLib</a><span class="delimiter">/</span><a href="../index.html">cshcyberhawks.swolib.autonomous</a><span class="delimiter">/</span><a href="index.html">SwerveAuto</a><span class="delimiter">/</span><span class="current">SwerveAuto</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Swerve</span><wbr></wbr><span><span>Auto</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">xPID<span class="token operator">: </span><span data-unresolved-link="edu.wpi.first.math.controller/ProfiledPIDController///PointingToDeclaration/">ProfiledPIDController</span><span class="token punctuation">, </span></span><span class="parameter ">yPID<span class="token operator">: </span><span data-unresolved-link="edu.wpi.first.math.controller/ProfiledPIDController///PointingToDeclaration/">ProfiledPIDController</span><span class="token punctuation">, </span></span><span class="parameter ">twistPID<span class="token operator">: </span><span data-unresolved-link="edu.wpi.first.math.controller/PIDController///PointingToDeclaration/">PIDController</span><span class="token punctuation">, </span></span><span class="parameter ">twistTrapConstraints<span class="token operator">: </span><span data-unresolved-link="edu.wpi.first.math.trajectory/TrapezoidProfile.Constraints///PointingToDeclaration/">TrapezoidProfile.Constraints</span><span class="token punctuation">, </span></span><span class="parameter ">angleDeadzone<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">positionDeadzone<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">swo<span class="token operator">: </span><a href="../../cshcyberhawks.swolib.swerve/-swerve-odometry/index.html">SwerveOdometry</a><span class="token punctuation">, </span></span><span class="parameter ">swerveSystem<span class="token operator">: </span><a href="../../cshcyberhawks.swolib.swerve/-swerve-drive-train/index.html">SwerveDriveTrain</a><span class="token punctuation">, </span></span><span class="parameter ">gyro<span class="token operator">: </span><a href="../../cshcyberhawks.swolib.hardware.interfaces/-generic-gyro/index.html">GenericGyro</a><span class="token punctuation">, </span></span><span class="parameter ">debugLogging<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">field2d<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../cshcyberhawks.swolib.field2d/-field2d/index.html">Field2d</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Optional.empty()</span></span><span class="token punctuation">)</span></div><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>x</span><wbr></wbr><span><span>PID</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The PID controller for the x axis</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>y</span><wbr></wbr><span><span>PID</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The PID controller for the y axis</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>twist</span><wbr></wbr><span><span>PID</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The PID controller for the twist axis</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>twist</span><wbr></wbr><span>Trap</span><wbr></wbr><span><span>Constraints</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The constraints for the twist PID controller</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>angle</span><wbr></wbr><span><span>Deadzone</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The deadzone for the twist PID controller</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>position</span><wbr></wbr><span><span>Deadzone</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The deadzone for the x and y PID controllers</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>swo</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The swerve odometry object</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>swerve</span><wbr></wbr><span><span>System</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The swerve drive train object</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>gyro</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The gyro object</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>debug</span><wbr></wbr><span><span>Logging</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Whether or not to log debug information to the console</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>field2d</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The field2d object to update</p></div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
