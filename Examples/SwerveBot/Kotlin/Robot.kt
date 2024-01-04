@@ -22,7 +22,20 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import org.littletonrobotics.junction.LogFileUtil
+import org.littletonrobotics.junction.LoggedRobot
+import org.littletonrobotics.junction.Logger
+import org.littletonrobotics.junction.networktables.LoggedDashboardChooser
+import org.littletonrobotics.junction.networktables.NT4Publisher
+import org.littletonrobotics.junction.wpilog.WPILOGReader
+import org.littletonrobotics.junction.wpilog.WPILOGWriter
 import java.util.*
+import org.littletonrobotics.junction.networktables.NT4Publisher
+
+import org.littletonrobotics.junction.wpilog.WPILOGWriter
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,7 +43,7 @@ import java.util.*
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-class Robot : TimedRobot() {
+class Robot : LoggedRobot() {
     private val swerveConfiguration: SwerveModuleConfiguration =
             SwerveModuleConfiguration(4.0, 0.0505, 7.0)
 
@@ -150,6 +163,51 @@ class Robot : TimedRobot() {
      * initialization code.
      */
     override fun robotInit() {
+        Logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME)
+        Logger.recordMetadata("BuildDate", BuildConstants.BUILD_DATE)
+        Logger.recordMetadata("GitSHA", BuildConstants.GIT_SHA)
+        Logger.recordMetadata("GitDate", BuildConstants.GIT_DATE)
+        Logger.recordMetadata("GitBranch", BuildConstants.GIT_BRANCH)
+
+        when (BuildConstants.DIRTY) {
+            0 -> Logger.recordMetadata("GitDirty", "All changes committed")
+            1 -> Logger.recordMetadata("GitDirty", "Uncomitted changes")
+            else -> Logger.recordMetadata("GitDirty", "Unknown")
+        }
+
+        when (Constants.currentMode) {
+            REAL -> {
+                // Running on a real robot, log to a USB stick
+
+                // Running on a real robot, log to a USB stick
+                Logger.addDataReceiver(WPILOGWriter("/U"))
+                Logger.addDataReceiver(NT4Publisher())
+            }
+            SIM -> {
+                // Running a physics simulator, log to NT
+                Logger.addDataReceiver(new NT4Publisher ())
+            }
+
+            REPLAY -> {
+                // Replaying a log, set up replay source
+                setUseTiming(false) // Run as fast as possible
+                String logPath = LogFileUtil . findReplayLog ()
+                Logger.setReplaySource(new WPILOGReader (logPath))
+                Logger.addDataReceiver(new WPILOGWriter (LogFileUtil.addPathSuffix(logPath, "_sim")))
+            }
+        }
+
+        // See http://bit.ly/3YIzFZ6 for more information on timestamps in AdvantageKit.
+        // Logger.disableDeterministicTimestamps()
+
+        // Start AdvantageKit logger
+        Logger.start()
+
+        // Initialize auto chooser
+        chooser.addDefaultOption("Default Auto", defaultAuto)
+        chooser.addOption("My Auto", customAuto)
+
+    }
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         //NOTE: here you might want to make sure your limelight pipelines are correctly set

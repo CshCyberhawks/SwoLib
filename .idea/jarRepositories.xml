@@ -66,5 +66,15 @@
       <option name="name" value="WPILocal" />
       <option name="url" value="file:/$PROJECT_DIR$/../../../Users/Public/wpilib/2023/maven" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPILocal" />
+      <option name="name" value="WPILocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../Users/Public/wpilib/2023/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://maven.pkg.github.com/Mechanical-Advantage/AdvantageKit" />
+    </remote-repository>
   </component>
 </project>
